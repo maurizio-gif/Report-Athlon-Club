@@ -499,6 +499,540 @@ ul.dot-list li::before{content:'';position:absolute;left:0;top:8px;width:5px;hei
     </div>
   </div>
 
+
+  <!-- ESEMPI TASK PER OPERATRICE -->
+  <div class="sh"><h2>Esempi reali di task — positivi e negativi per operatrice</h2></div>
+
+  <div class="al al-or" style="margin-bottom:20px">
+    <div class="bar"></div>
+    <div>Ogni scheda è espandibile. Clicca su un esempio per vedere il contenuto completo del task così come è stato compilato dall'operatrice. Gli esempi sono tratti direttamente dai 121 task di questa settimana.</div>
+  </div>
+
+  <style>
+  /* Accordion esempi */
+  .ex-op{margin-bottom:28px}
+  .ex-op-head{
+    display:flex;align-items:center;gap:12px;
+    padding:14px 20px;background:var(--ink);border-radius:14px;
+    margin-bottom:12px;
+  }
+  .ex-init{width:36px;height:36px;border-radius:50%;background:var(--or);color:var(--w);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .ex-op-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--w)}
+  .ex-op-sub{font-size:12px;color:rgba(255,255,255,.35);margin-top:1px}
+
+  .ex-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .ex-col-title{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;
+    display:flex;align-items:center;gap:6px;
+  }
+  .ex-col-title.pos{color:var(--green)}
+  .ex-col-title.neg{color:var(--red)}
+
+  /* Singola card task - espandibile */
+  details.task-card{
+    background:var(--w);border:1.5px solid var(--sand3);border-radius:12px;
+    margin-bottom:8px;overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  details.task-card:hover{box-shadow:0 4px 16px rgba(26,25,22,.08)}
+  details.task-card[open]{border-color:var(--or);box-shadow:0 4px 20px rgba(255,87,1,.1)}
+  details.task-card.neg-card[open]{border-color:var(--red);box-shadow:0 4px 20px rgba(192,57,43,.1)}
+
+  summary.task-summary{
+    display:flex;align-items:center;gap:10px;
+    padding:11px 16px;cursor:pointer;list-style:none;
+    user-select:none;
+  }
+  summary.task-summary::-webkit-details-marker{display:none}
+  summary.task-summary::marker{display:none}
+
+  .ts-q{
+    font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;
+    width:38px;flex-shrink:0;text-align:center;border-radius:6px;padding:2px 0;
+  }
+  .ts-q.hi{background:var(--gbg);color:var(--green)}
+  .ts-q.mid{background:var(--abg);color:var(--amber)}
+  .ts-q.lo{background:var(--rbg);color:var(--red)}
+  .ts-q.zero{background:#f0f0f0;color:#999}
+
+  .ts-type{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;
+    letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;
+    padding:2px 8px;border-radius:20px;
+  }
+  .ts-type.tel{background:var(--bbg);color:var(--blue)}
+  .ts-type.walkin{background:rgba(45,122,79,.12);color:var(--green)}
+
+  .ts-date{font-size:11px;color:var(--ink3);flex-shrink:0}
+  .ts-title{font-size:13px;font-weight:600;color:var(--ink);flex:1;min-width:0}
+  .ts-arrow{
+    font-size:11px;color:var(--ink3);flex-shrink:0;margin-left:4px;
+    transition:transform .2s;
+  }
+  details[open] .ts-arrow{transform:rotate(90deg)}
+
+  /* Corpo espanso */
+  .task-body{padding:0 16px 14px;border-top:1px solid var(--sand2)}
+  .task-field{margin-top:10px}
+  .tf-label{
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px;
+  }
+  .tf-value{
+    font-size:12.5px;color:var(--ink2);line-height:1.65;
+    background:var(--sand);border-radius:7px;padding:7px 10px;
+  }
+  .tf-value.highlight{background:var(--gbg);color:var(--green);font-weight:500}
+  .tf-value.highlight-neg{background:var(--rbg);color:#7a1e1e}
+  .perche-buono{
+    margin-top:12px;padding:9px 12px;border-radius:8px;font-size:12px;
+    line-height:1.6;border-left:3px solid var(--or);background:rgba(255,87,1,.05);
+    color:var(--ink2);
+  }
+  .perche-buono strong{color:var(--or2);font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-family:'Barlow Condensed',sans-serif;font-weight:700}
+  .perche-neg{
+    margin-top:12px;padding:9px 12px;border-radius:8px;font-size:12px;
+    line-height:1.6;border-left:3px solid var(--red);background:var(--rbg);
+    color:var(--ink2);
+  }
+  .perche-neg strong{color:var(--red);font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-family:'Barlow Condensed',sans-serif;font-weight:700}
+
+  @media(max-width:700px){.ex-cols{grid-template-columns:1fr}}
+  </style>
+
+  <!-- GIULIA -->
+  <div class="ex-op">
+    <div class="ex-op-head">
+      <div class="ex-init">GD</div>
+      <div><div class="ex-op-name">Giulia D'Annunzio</div><div class="ex-op-sub">40 relazioni · Q media 0.725 · 85% task hi</div></div>
+    </div>
+    <div class="ex-cols">
+
+      <!-- POSITIVI -->
+      <div>
+        <div class="ex-col-title pos">✓ Esempi positivi</div>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span>
+            <span class="ts-type walkin">Walk-in</span>
+            <span class="ts-date">14 apr</span>
+            <span class="ts-title">Virgin in scadenza → annuale 950€</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Reformer la mattina 8:30/9:30, corsi fitness mattina, accesso scuola nuoto intermedio 14:10</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value">Orari compatibili con la sua vita e vicinanza dal lavoro. Apprezza l'Athlon, porta i bimbi a nuoto qui.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Iscritta Virgin 3 anni open (Reformer incluso) a 84€ fisso. Rinnovo a 105€ (alcune amiche a 90€). Vuole cambiare perché lavora su Via Fucini, verrebbe a piedi. A maggio scade Virgin. Valutava annuale da 950€.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Profilo completo: attività specifiche, motivazione cambio centro, competitor nominato con prezzo, finestra temporale precisa (maggio), intenzione d'acquisto concreta. Recall programmato implicito.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">17 apr</span>
+            <span class="ts-title">Lipedema diagnosticato → annuale dopo prova</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Orari: dopo le 19 quando stacca o il sabato. Lavora vicino Tecnomat. HBX Fusion, Reformer, Hydrobike, Bodypump. Obiettivo: diagnosticato lipedema, deve fare attività a basso impatto o in acqua per scioglierlo.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value">Chiede parcheggio per macchine.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Interessata all'annuale, però prima procederà con la prova.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Caso medico documentato (lipedema), obiettivo fisico preciso, 4 attività specifiche elencate, fasce orarie indicate, intenzione annuale esplicita. Ottimo per personalizzare il follow-up.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.82</span>
+            <span class="ts-type walkin">Walk-in</span>
+            <span class="ts-date">15 apr</span>
+            <span class="ts-title">Danza → corsi serali → annuale 95€ rateizzato</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Fusion, Strength, Body Sculpt, Reformer — visti insieme durante il tour. Info Calisthenics. Obiettivo: tonificare e aumentare la forza senza sala pesi. Ragazza di Tor Lupara, fa danza.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback pass</div><div class="tf-value highlight">Feedback positivo sulla varietà e quantità di attività.</div></div>
+            <div class="task-field"><div class="tf-label">Obiezione pass / conversione</div><div class="tf-value">Partita con l'idea degli ingressi. Alla fine si è convinta che con l'abbonamento ha più opzioni, più scelta e le conviene → annuale rateizzato 95€.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Tour completo documentato, obiezione raccolta e superata in conversazione, conversione da ingressi a annuale tracciata. Il percorso decisionale è ricostruibile interamente da questo task.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.72</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">20 apr</span>
+            <span class="ts-title">Due sorelle → doppia chiusura annuale 95€</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Nota</div><div class="tf-value">Proseguono con il premium annuale rateizzato, sia lei che la sorella Viviana Serti. Spiegato della promo, molto contenta, ringrazia e avvisa sua sorella.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback pass</div><div class="tf-value highlight">Si stanno trovando benissimo.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Chiusura doppia in un'unica chiamata. Feedback pass documentato. Nome della sorella registrato (Viviana Serti). Azione successiva chiara. Esempio raro di chiusura attiva durante il pass.</div>
+          </div>
+        </details>
+      </div>
+
+      <!-- NEGATIVI -->
+      <div>
+        <div class="ex-col-title neg">✗ Esempi da migliorare</div>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q lo">0.45</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">16 apr</span>
+            <span class="ts-title">Recall: ha trovato altre soluzioni</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Perché no</div><div class="tf-value tf-value highlight-neg">Dice di aver trovato altre soluzioni e mi attacca.</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>Nessuna informazione raccolta. Non sappiamo cosa ha trovato, a che prezzo, se c'è margine futuro. Con una domanda in più ("cosa ha trovato?") si poteva capire il competitor e lasciare la porta aperta. Minimo: annotare il nome del centro alternativo.</div>
+          </div>
+        </details>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q zero">0.00</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">16 apr</span>
+            <span class="ts-title">Non interessata — ha trovato altro centro</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Perché no</div><div class="tf-value tf-value highlight-neg">Non è interessata alla settimana di prova, dice di aver trovato un altro centro. Era in autobus e non voleva parlare.</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>Qualità 0: nessun campo utile compilato. Il contesto "era in autobus" suggerisce il momento sbagliato — poteva essere un candidato per recall in giornata diversa. Nessuna nota su possibile ricontatto futuro.</div>
+          </div>
+        </details>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q lo">0.45</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">20 apr</span>
+            <span class="ts-title">Iscrizione avvenuta in autonomia — nessun dato</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Nota</div><div class="tf-value tf-value highlight-neg">Attivato smart annuale in soluzione unica in autonomia.</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>Paradossalmente il lead si è iscritto, ma non sappiamo nulla: né attività preferite, né obiettivo, né come ha trovato il centro. Un'iscrizione senza relazione documentata. Se questo cliente disdice fra 3 mesi, non avremo nessun dato per capire il perché.</div>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ALICE -->
+  <div class="ex-op">
+    <div class="ex-op-head">
+      <div class="ex-init">AC</div>
+      <div><div class="ex-op-name">Alice Cortiula</div><div class="ex-op-sub">48 relazioni · Q media 0.649 · 69% task hi · 10 task bassi (21%)</div></div>
+    </div>
+    <div class="ex-cols">
+
+      <div>
+        <div class="ex-col-title pos">✓ Esempi positivi</div>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">15 apr</span>
+            <span class="ts-title">Pilates + acqua → prova in sede</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Pilates e attività acqua.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value">Non aveva visto nulla di quello che avevamo mandato, solo della prova.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Chiede info sul premium, costi e attività. Vorrebbe iniziare la prossima settimana con la prova, soprattutto la parte acqua non la convince. Chiede se può venire in sede ad attivarla. (Ha chiesto il nome → ho detto Francesca.)</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Attività documentata, obiezione specifica raccolta (acqua non convince), richiesta attivazione in sede come step successivo chiaro. Dettaglio curioso del nome che evidenzia attenzione al rapporto personale.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">17 apr</span>
+            <span class="ts-title">Pass: reformer + body sculpt → premium flex</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Feedback pass</div><div class="tf-value">Reformer e corsi fitness.</div></div>
+            <div class="task-field"><div class="tf-label">Obiezione pass</div><div class="tf-value highlight">Si è trovata benissimo sia con reformer che con body sculpt. Piaciuti spogliatoi e pulizia delle sale.</div></div>
+            <div class="task-field"><div class="tf-label">Prossimo step</div><div class="tf-value">Verrà sabato per portare il figlio e si fermerà al desk per attivare premium flex. Ha un abbonamento fino a settembre altrove ma vuole provare qui perché le è piaciuto davvero tanto.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Feedback pass specifico (reformer, body sculpt, spogliatoi), obiezione raccolta e superata, step successivo preciso (sabato, desk, premium flex). Caso di pass in chiusura ben documentato.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span>
+            <span class="ts-type walkin">Walk-in</span>
+            <span class="ts-date">17 apr</span>
+            <span class="ts-title">Altra palestra rigida → prova con 3 amiche</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Corsi e scuola nuoto.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value">Va in un'altra palestra, scontenta perché ha giorni fissi e non può cambiarli. Contenta della nostra flessibilità su attività e orario. Apprezza lezioni alle 7:40 di mattina.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Si rivede tutto a casa e fa vedere a due sue amiche. Le propongo la prova e dice che quasi sicuramente attiverà con loro.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Competitor nominato con problema specifico (giorni fissi), punto di forza Athlon collegato direttamente all'obiezione (flessibilità), potenziale gruppo di 3 persone documentato con alta probabilità di chiusura.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">20 apr</span>
+            <span class="ts-title">Nuoto libero + SNB → prova in sede</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Nuoto libero e scuola nuoto.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value">Premette che non aveva visto nulla se non le foto delle piscine sul sito.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Si fa dire tutto, orari e differenza pacchetti. Chiede differenza tra nuoto libero e scuola nuoto. Sa già nuotare bene ma vorrebbe riprendere con qualche lezione per rivedere gli stili. Prova ad attivare online, se non riesce viene in sede.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Chiamata lunga e documentata in dettaglio. Tutte le domande raccolte. Prossimo step doppio (prova online o sede come fallback). Buon esempio di gestione di un lead curioso che non aveva visto nulla prima.</div>
+          </div>
+        </details>
+      </div>
+
+      <div>
+        <div class="ex-col-title neg">✗ Esempi da migliorare</div>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q lo">0.35</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">14 apr</span>
+            <span class="ts-title">Task sbagliata — Cinzia Morrone</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Nota</div><div class="tf-value tf-value highlight-neg">Task sbagliata, era di Cinzia Morrone.</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>Errore operativo: task aperta sul profilo sbagliato. Il dato entra nell'analisi del lead errato. Serve aprire il task sul profilo corretto prima di chiamare — non dopo.</div>
+          </div>
+        </details>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q lo">0.45</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">14 apr</span>
+            <span class="ts-title">Lasciato spoki nr — segnato POSITIVO</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Perché no</div><div class="tf-value tf-value highlight-neg">Lasciato spoki nr.</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>Con il criterio "relazione reale" questo non dovrebbe essere POSITIVO: non c'è stata relazione. L'unico contenuto è "lasciato spoki nr" — equivale a un NO RISPOSTA. Questo è esattamente il tipo di task che inquinava la qualità media nelle settimane precedenti.</div>
+          </div>
+        </details>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q lo">0.25</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">17 apr</span>
+            <span class="ts-title">Spoki nr — ancora POSITIVO</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Perché no</div><div class="tf-value tf-value highlight-neg">Lasciato spoki nr.</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>Identico al caso sopra. Qualità 0.25 e contenuto nullo. Con il criterio adottato questa settimana questo non è un POSITIVO. Sono proprio questi task che abbassano la media di Alice al 21% di task bassi.</div>
+          </div>
+        </details>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q lo">0.45</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">17 apr</span>
+            <span class="ts-title">App tel PT di coppia — molto ambiguo</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Perché no</div><div class="tf-value tf-value highlight-neg">App tel: chiede se può prendere una seduta PT di coppia e se in un'ora ce la faceva.... molto ambiguo.</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>"Molto ambiguo" descrive la difficoltà ma non la risolve. Non sappiamo cosa ha risposto Alice, se ha chiarito, quale il prossimo step. La nota dice tutto ciò che non è chiaro — ma non cosa fare dopo.</div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLAUDIA -->
+  <div class="ex-op">
+    <div class="ex-op-head">
+      <div class="ex-init">CB</div>
+      <div><div class="ex-op-name">Claudia Bonanni</div><div class="ex-op-sub">29 relazioni · Q media 0.723 · 93% task hi · 0 task bassi</div></div>
+    </div>
+    <div class="ex-cols">
+
+      <div>
+        <div class="ex-col-title pos">✓ Esempi positivi</div>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.72</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">14 apr</span>
+            <span class="ts-title">Disdetta: cambio lavoro → accessi estivi</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Motivo disdetta</div><div class="tf-value">Orari di lavoro cambiati a seguito di un cambio di posizione. Riesce ad essere poco costante. Valuta qualche accesso estivo in piscina con singoli accessi. Spera di riprendere. Conscia del cambio prezzo e della quota di attivazione. Molto gentile e consapevole.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback disdetta</div><div class="tf-value highlight">Esperienza positiva.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Disdetta gestita in profondità: causa precisa (cambio posizione), stato d'animo documentato (consapevole, gentile), proposta alternativa (accessi estivi), porta lasciata aperta. Porta il lead in uno stato "da richiamare a settembre".</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.82</span>
+            <span class="ts-type walkin">Walk-in</span>
+            <span class="ts-date">15 apr</span>
+            <span class="ts-title">Infortunio recupero → prova pianificata</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Sala pesi e corsi fitness. Recupero da infortunio post incidente. Vuole tonificare e dimagrire. Riprende pallavolo 2x settimana. Predilige la mattina (lavora di pomeriggio). Non esclude corsi.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value">Appena trasferito in zona. Comodo il parcheggio per il motorino (mezzo che userebbe). Ottima la possibilità di fare anche nuoto.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Vuole vedere i vari corsi e capire di cosa si tratta per farsi un planning e attivare la settimana di prova.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Contesto fisico documentato (infortunio, recupero), sport parallelo, fascia oraria, motivazione logistica (parcheggio, vicinanza). Il task più ricco tra i walk-in di Claudia. Prossimo step chiaro.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">20 apr</span>
+            <span class="ts-title">Reformer + aquagym LUISS → recall fine maggio</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Reformer e aquagym. Abbonamento attivo in altro centro fino fine maggio. Lavora alla LUISS, frequenterebbe sia mattina che pomeriggio.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value highlight">Complimenti per il sito — forse l'unico sito fatto bene e con le giuste informazioni che ha visto.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Aspetta la scadenza dell'abbonamento e attiverà la prova (se ancora attiva), altrimenti mensile. <strong>RICHIAMARE A METÀ FINE MAGGIO.</strong></div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Nota di recall esplicita e maiuscola. Feedback sito documentato (informazione preziosa per il team digital). Finestra temporale precisa. Alternativa prova/mensile già discussa. Tutto il necessario per un recall efficace.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">18 apr</span>
+            <span class="ts-title">Pilates + booty → prenotazioni difficili gestite</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Pilates (mat e reformer) e Booty workout di cui le ha parlato l'amica. Orari pomeridiani. Obiettivo: divertirsi e tenersi in forma.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value">Le ha detto l'amica che le prenotazioni sono difficili ed è un po' preoccupata. Consigliato di attivare con qualche giorno di anticipo rispetto alla decorrenza così da avere più possibilità.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Aspetta Marta per organizzare la settimana e partire insieme con le prenotazioni.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Obiezione prenotazioni raccolta e gestita con consiglio pratico. Referral documentato. Motivo del rinvio chiaro. Caso utile anche per segnalare al team la frizione percepita sul sistema prenotazioni.</div>
+          </div>
+        </details>
+      </div>
+
+      <div>
+        <div class="ex-col-title neg">✗ Esempi da migliorare</div>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q mid">0.52</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">18 apr</span>
+            <span class="ts-title">18 anni — "come parlare a un muro"</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Nota</div><div class="tf-value tf-value highlight-neg">È stato come parlare a un muro...</div></div>
+            <div class="task-field"><div class="tf-label">Motivo disdetta</div><div class="tf-value tf-value highlight-neg">Completamente tra le nuvole, dice che viene poco. Ha 18 anni e non ho genitori associati da chiamare.</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>La nota descrive la difficoltà ma non documenta nulla di utile. Il commento personale non aiuta l'analisi futura. In questo caso andrebbe escalation al genitore (se minorenne) oppure chiusura definitiva con motivo esplicito. La soluzione: "viene poco, chiusura definitiva" è più utile di "come parlare a un muro".</div>
+          </div>
+        </details>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.72</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">20 apr</span>
+            <span class="ts-title">Nuoto libero: no corsia → problema senza soluzione</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Nuoto libero. Già fa in un'altra piscina ma l'acqua è fredda. Vorrebbe venire dopo il lavoro in fascia pomeridiana.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value tf-value highlight-neg">Planning non compatibile con i suoi orari. Dove va hanno una corsia riservata al nuoto libero in tutti gli orari della giornata.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Prova a fare un accesso singolo il weekend.</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>Qualità 0.72 quindi non è tecnicamente un task negativo — ma il contenuto segnala un problema strutturale (no corsia nuoto libero H24) senza nessuna soluzione proposta. Il weekend come alternativa non risolve il problema di chi vuole venire dopo il lavoro. Caso da portare in riunione come feedback di prodotto.</div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALENTINA -->
+  <div class="ex-op">
+    <div class="ex-op-head">
+      <div class="ex-init">VP</div>
+      <div><div class="ex-op-name">Valentina Palazzo</div><div class="ex-op-sub">3 relazioni · Q media 0.773 · 100% task hi · modello di riferimento</div></div>
+    </div>
+    <div class="ex-cols">
+
+      <div>
+        <div class="ex-col-title pos">✓ Esempi positivi</div>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.82</span>
+            <span class="ts-type walkin">Walk-in</span>
+            <span class="ts-date">16 apr</span>
+            <span class="ts-title">Tennista + schiena → referral Susanna Mazza</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Reformer come attività aggiuntiva al tennis (sport principale). Bisogno di aumentare la mobilità e qualche dolore di schiena. Fa già pilates al circolo del tennis ma lo annoia — il reformer è più dinamico (mai provato). Libero professionista, orari flessibili, preferisce mattina 8:30. Non esclude corsi fitness o gym floor. Non interessato all'acqua. Referral di Susanna Mazza.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value highlight">Struttura piaciuta molto, nuova e organizzata. Ha chiesto anche per la figlia del 2019 (scuola nuoto martedì o venerdì dopo le 16:30).</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Vorrebbe provare prima. Inizierà con prova poi valuta ingressi singoli o mensile flex premium. Preferisce pagare di più ma non vincolarsi per un anno (in passato ha buttato i soldi e non ci è mai andato).</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task — il più ricco della settimana</strong><br>Sport principale documentato, obiettivo fisico preciso (mobilità/schiena), competitor interno (pilates al circolo) con motivazione del cambio, orari, referral nominato, figlia aggiunta spontaneamente, motivazione psicologica dell'obiezione annuale. Tutto ricostruibile da questo task.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span>
+            <span class="ts-type tel">Telefono</span>
+            <span class="ts-date">18 apr</span>
+            <span class="ts-title">Ex iscritta da bambina → reformer + nuoto</span>
+            <span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Reformer, Nuoto Libero e Scuola Nuoto. Ha fatto scuola nuoto da noi da bambina e nel 2017 il corso per diventare assistente bagnanti. Vuole riprendere il nuoto e aggiungere qualche corso.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value tf-value highlight-neg">Non ha trovato gli abbonamenti sul sito. Ha chiesto principalmente come funziona il PREMIUM.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Inizierà con la settimana di prova ricevuta su WhatsApp.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Storia con il club documentata (da bambina, assistente bagnanti 2017), 3 attività indicate, feedback sito raccolto (abbonamenti non trovati — informazione utile per chi gestisce il digitale), prossimo step già attivato. Nota: il feedback negativo sul sito è evidenziato — segnale che Valentina raccoglie anche le informazioni scomode.</div>
+          </div>
+        </details>
+      </div>
+
+      <div>
+        <div class="ex-col-title neg" style="color:var(--ink3)">— Nessun esempio negativo</div>
+        <div class="cc" style="margin-top:0">
+          <div class="ic-text" style="font-size:13px;color:var(--ink3)">
+            Con solo 3 relazioni totali, tutti i task di Valentina hanno qualità ≥ 0.72 e contenuto completo. Non ci sono esempi negativi da segnalare in questa settimana. Il volume basso non permette però un giudizio definitivo — servono almeno 2–3 settimane di dati per valutare la consistenza del metodo.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <!-- AZIONI -->
   <div class="sh"><h2>Azioni dalla settimana</h2></div>
 
