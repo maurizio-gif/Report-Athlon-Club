@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trend Qualità Task — Athlon Club Roma</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --or:#ff5701;--or2:#cc4500;
+  --sand:#F5F0E8;--sand2:#EDE8DF;--sand3:#DDD8CF;
+  --ink:#1a1916;--ink2:#3a3835;--ink3:#6b6860;
+  --w:#ffffff;
+  --green:#2d7a4f;--gbg:#e8f5ee;
+  --red:#c0392b;--rbg:#fbeaea;
+  --amber:#b5600a;--abg:#fdf0e0;
+  --blue:#1a5fa8;--bbg:#e5f0fb;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--ink);line-height:1.55}
+
+.hdr{background:var(--ink);padding:40px 48px 36px;position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;right:-60px;top:-60px;width:320px;height:320px;border-radius:50%;border:48px solid rgba(255,87,1,.10)}
+.hdr::after{content:'';position:absolute;right:60px;bottom:-80px;width:180px;height:180px;border-radius:50%;border:28px solid rgba(255,87,1,.06)}
+.hdr-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);margin-bottom:18px}
+.hdr-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:52px;line-height:1;color:var(--w);letter-spacing:-.5px;margin-bottom:6px}
+.hdr-title span{color:var(--or)}
+.hdr-meta{font-size:13px;color:rgba(255,255,255,.4);margin-top:14px;display:flex;gap:20px;flex-wrap:wrap}
+.hdr-meta strong{color:rgba(255,255,255,.65);font-weight:500}
+
+.body{padding:40px 48px 64px;max-width:1100px;margin:0 auto}
+
+.sh{display:flex;align-items:center;gap:14px;margin:40px 0 18px}
+.sh::before{content:'';width:4px;height:28px;background:var(--or);border-radius:2px;flex-shrink:0}
+.sh h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;letter-spacing:.02em;text-transform:uppercase}
+
+/* Period labels */
+.period-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+.period-box{background:var(--w);border:1.5px solid var(--sand3);border-radius:14px;padding:14px 18px}
+.period-box.current{background:var(--ink);border-color:var(--ink)}
+.period-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
+.period-box.current .period-label{color:rgba(255,255,255,.4)}
+.period-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:var(--ink)}
+.period-box.current .period-name{color:var(--or)}
+.period-sub{font-size:12px;color:var(--ink3)}
+.period-box.current .period-sub{color:rgba(255,255,255,.3)}
+
+/* Trend chart cards */
+.chart-dark{background:var(--ink);border-radius:16px;padding:22px 26px;margin:10px 0}
+.chart-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px}
+.chart-sub{font-size:12px;color:rgba(255,255,255,.25);margin-top:-10px;margin-bottom:12px}
+.chart-leg{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+.leg-i{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.5)}
+.leg-sq{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.ch-wrap{position:relative;height:220px}
+
+/* 3-col metrics grid */
+.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+
+/* Op trend card */
+.op-trend{background:var(--w);border:1.5px solid var(--sand3);border-radius:16px;overflow:hidden}
+.op-trend-head{background:var(--ink);padding:14px 18px 12px;display:flex;align-items:center;gap:10px}
+.op-badge{width:34px;height:34px;border-radius:50%;background:var(--or);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;color:var(--w)}
+.op-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:var(--w)}
+.op-body{padding:16px 18px}
+
+/* Metric row in trend */
+.tr{display:grid;grid-template-columns:130px 1fr 1fr 1fr;gap:8px;align-items:center;padding:5px 0;border-bottom:1px solid var(--sand);font-size:12.5px}
+.tr:last-child{border-bottom:none}
+.tr-label{color:var(--ink3);font-size:12px}
+.tr-val{text-align:center;font-weight:600;border-radius:6px;padding:2px 6px}
+.tr-val.best{background:var(--gbg);color:var(--green)}
+.tr-val.worst{background:var(--rbg);color:var(--red)}
+.tr-val.mid{background:var(--abg);color:var(--amber)}
+.tr-val.neutral{color:var(--ink)}
+.trend-arrow{display:inline-block;font-size:10px;margin-left:3px}
+.arr-up{color:var(--green)}
+.arr-down{color:var(--red)}
+.arr-flat{color:var(--ink3)}
+
+/* Quality stacked bar */
+.qbar-wrap{width:100%;height:14px;background:var(--sand2);border-radius:7px;overflow:hidden;display:flex;margin-top:4px}
+.qbar-hi{height:14px;background:#2d7a4f;border-radius:0}
+.qbar-mid{height:14px;background:#ef9f27}
+.qbar-lo{height:14px;background:#c0392b;border-radius:0 7px 7px 0}
+
+/* Insight cards */
+.ic{background:var(--w);border:1.5px solid var(--sand3);border-radius:14px;padding:16px 18px;margin:6px 0}
+.ic-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--or2);margin-bottom:8px}
+.ic-text{font-size:13px;color:var(--ink3);line-height:1.6}
+
+/* Alerts */
+.al{display:flex;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;line-height:1.5;margin:8px 0;align-items:flex-start}
+.al .bar{width:4px;border-radius:2px;flex-shrink:0;align-self:stretch;min-height:16px}
+.al-or{background:rgba(255,87,1,.08)} .al-or .bar{background:var(--or)}
+.al-red{background:var(--rbg)} .al-red .bar{background:var(--red)}
+.al-green{background:var(--gbg)} .al-green .bar{background:var(--green)}
+.al-amber{background:var(--abg)} .al-amber .bar{background:var(--amber)}
+
+/* Two col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* Summary table */
+.stable{width:100%;border-collapse:collapse;font-size:13px}
+.stable th{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);padding:8px 12px;text-align:left;border-bottom:2px solid var(--sand3);background:var(--sand2)}
+.stable th.center{text-align:center}
+.stable td{padding:9px 12px;border-bottom:1px solid var(--sand);vertical-align:middle}
+.stable td.center{text-align:center}
+.stable tr:last-child td{border-bottom:none}
+.stable tr:hover td{background:var(--sand)}
+.pill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:600;font-family:'Barlow Condensed',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.p-green{background:var(--gbg);color:var(--green)}
+.p-red{background:var(--rbg);color:var(--red)}
+.p-amber{background:var(--abg);color:var(--amber)}
+.p-blue{background:var(--bbg);color:var(--blue)}
+.p-gray{background:var(--sand2);color:var(--ink3)}
+
+.footer{background:var(--ink);padding:22px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--or);letter-spacing:.12em;text-transform:uppercase}
+.footer-note{font-size:12px;color:rgba(255,255,255,.28)}
+
+@media(max-width:700px){
+  .hdr,.body,.footer{padding-left:20px;padding-right:20px}
+  .period-bar,.metrics-grid,.two-col{grid-template-columns:1fr}
+  .hdr-title{font-size:36px}
+  .tr{grid-template-columns:100px 1fr 1fr 1fr;font-size:11px}
+}
+</style>
+</head>
+<body>
+<nav class="nav" style="background:#1a1916;border-bottom:1px solid rgba(255,87,1,.2);position:sticky;top:0;z-index:100;font-family:'Barlow Condensed',sans-serif"><div style="max-width:1100px;margin:0 auto;padding:0 48px;display:flex;align-items:center;gap:0"><div style="font-weight:900;font-size:14px;letter-spacing:.15em;text-transform:uppercase;color:#ff5701;padding:14px 0;margin-right:28px;white-space:nowrap">Athlon Reports</div><a href="report_14_20apr_relazioni_reali.html" style="font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:14px 16px;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap">14–20 Apr · Relazioni Reali</a><a href="report_trend_qualita_3settimane.html" style="font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#ff5701;padding:14px 16px;text-decoration:none;border-bottom:2px solid #ff5701;white-space:nowrap">Trend Qualità 3 Settimane</a><a href="report_commerciale_14_21apr2026.html" style="font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:14px 16px;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap">Report Completo 14–21 Apr</a></div></nav>
+
+<div class="hdr">
+  <div class="hdr-logo">Athlon Club Roma · Analisi Trend</div>
+  <div class="hdr-title">Qualità<br><span>Task — 3 Settimane</span></div>
+  <div class="hdr-meta">
+    <span><strong>Report</strong> 21 aprile 2026</span>
+    <span><strong>Periodo</strong> 1 aprile – 21 aprile 2026</span>
+    <span><strong>Operatori</strong> Giulia D'Annunzio · Alice Cortiula · Claudia Bonanni</span>
+    <span><strong>Task analizzati</strong> ~730 task totali su 3 settimane</span>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- PERIODO LABELS -->
+  <div class="sh"><h2>Finestre temporali analizzate</h2></div>
+  <div class="period-bar">
+    <div class="period-box">
+      <div class="period-label">Settimana 1</div>
+      <div class="period-name">1 – 7 aprile</div>
+      <div class="period-sub">7 giorni · ~230 task</div>
+    </div>
+    <div class="period-box">
+      <div class="period-label">Settimana 2</div>
+      <div class="period-name">8 – 13 aprile</div>
+      <div class="period-sub">6 giorni · ~304 task</div>
+    </div>
+    <div class="period-box current">
+      <div class="period-label">Settimana 3 (ultima)</div>
+      <div class="period-name">14 – 21 aprile</div>
+      <div class="period-sub">8 giorni · ~324 task</div>
+    </div>
+  </div>
+
+  <!-- CHART TASSO CONTATTO -->
+  <div class="sh"><h2>Tasso di contatto telefonico — trend 3 settimane</h2></div>
+
+  <div class="chart-dark">
+    <div class="chart-title">Tasso contatto (% telefonate con esito positivo su totale)</div>
+    <div class="chart-sub">Un tasso in calo indica più numeri non raggiungibili, non necessariamente meno impegno</div>
+    <div class="chart-leg">
+      <div class="leg-i"><div class="leg-sq" style="background:#ff5701"></div>Giulia D'Annunzio</div>
+      <div class="leg-i"><div class="leg-sq" style="background:#1a5fa8"></div>Alice Cortiula</div>
+      <div class="leg-i"><div class="leg-sq" style="background:#2d7a4f"></div>Claudia Bonanni</div>
+    </div>
+    <div class="ch-wrap"><canvas id="tassoChart" role="img" aria-label="Tasso contatto 3 settimane">Giulia: 53%, 50%, 34%. Alice: 47%, 56%, 44%. Claudia: 52%, 53%, 40%.</canvas></div>
+  </div>
+
+  <!-- CHART QUALITÀ MEDIA -->
+  <div class="chart-dark" style="margin-top:14px">
+    <div class="chart-title">Qualità media task positivi — trend 3 settimane</div>
+    <div class="chart-sub">Media calcolata su tutti i task con esito POSITIVO (include score 0 = nessun contenuto)</div>
+    <div class="chart-leg">
+      <div class="leg-i"><div class="leg-sq" style="background:#ff5701"></div>Giulia D'Annunzio</div>
+      <div class="leg-i"><div class="leg-sq" style="background:#1a5fa8"></div>Alice Cortiula</div>
+      <div class="leg-i"><div class="leg-sq" style="background:#2d7a4f"></div>Claudia Bonanni</div>
+    </div>
+    <div class="ch-wrap"><canvas id="qualChart" role="img" aria-label="Qualità media task 3 settimane">Giulia: 0.687, 0.613, 0.62. Alice: 0.683, 0.594, 0.57. Claudia: 0.661, 0.634, 0.62.</canvas></div>
+  </div>
+
+  <!-- ANALISI PER OPERATORE -->
+  <div class="sh"><h2>Analisi dettaglio per operatore</h2></div>
+
+  <div class="metrics-grid">
+
+    <!-- GIULIA -->
+    <div class="op-trend">
+      <div class="op-trend-head">
+        <div class="op-badge">GD</div>
+        <div><div class="op-name">Giulia D'Annunzio</div><div style="font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em">Commerciale</div></div>
+      </div>
+      <div class="op-body">
+        <div class="tr" style="font-size:11px;color:var(--ink3);font-weight:600;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid var(--sand3)">
+          <span></span><span style="text-align:center">S1 1–7 apr</span><span style="text-align:center">S2 8–13 apr</span><span style="text-align:center">S3 14–21 apr</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Telefonate</span>
+          <span class="tr-val best">47</span>
+          <span class="tr-val neutral">60</span>
+          <span class="tr-val neutral">64</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Tasso contatto</span>
+          <span class="tr-val best">53%</span>
+          <span class="tr-val mid">50%</span>
+          <span class="tr-val worst">34%</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Walk-in positivi</span>
+          <span class="tr-val neutral">9</span>
+          <span class="tr-val worst">4</span>
+          <span class="tr-val best">15</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Qualità media (pos.)</span>
+          <span class="tr-val best">0.687</span>
+          <span class="tr-val worst">0.613</span>
+          <span class="tr-val mid">0.620</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Q. telefonate +</span>
+          <span class="tr-val best">0.732</span>
+          <span class="tr-val neutral">0.721</span>
+          <span class="tr-val mid">—</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Q. walk-in +</span>
+          <span class="tr-val mid">0.662</span>
+          <span class="tr-val neutral">0.760</span>
+          <span class="tr-val best">0.776</span>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:var(--ink3);margin-bottom:4px">Task positivi: q≥0.72 (buoni) vs q≤0.45 (vuoti)</div>
+        <div style="margin-bottom:4px;font-size:11px">S1: <div class="qbar-wrap"><div class="qbar-hi" style="width:86%"></div><div class="qbar-lo" style="width:10%"></div></div></div>
+        <div style="margin-bottom:4px;font-size:11px">S2: <div class="qbar-wrap"><div class="qbar-hi" style="width:63%"></div><div class="qbar-mid" style="width:12%"></div><div class="qbar-lo" style="width:25%"></div></div></div>
+        <div style="margin-bottom:4px;font-size:11px">S3: <div class="qbar-wrap"><div class="qbar-hi" style="width:68%"></div><div class="qbar-mid" style="width:12%"></div><div class="qbar-lo" style="width:20%"></div></div></div>
+      </div>
+    </div>
+
+    <!-- ALICE -->
+    <div class="op-trend">
+      <div class="op-trend-head">
+        <div class="op-badge">AC</div>
+        <div><div class="op-name">Alice Cortiula</div><div style="font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em">Commerciale</div></div>
+      </div>
+      <div class="op-body">
+        <div class="tr" style="font-size:11px;color:var(--ink3);font-weight:600;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid var(--sand3)">
+          <span></span><span style="text-align:center">S1 1–7 apr</span><span style="text-align:center">S2 8–13 apr</span><span style="text-align:center">S3 14–21 apr</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Telefonate</span>
+          <span class="tr-val neutral">68</span>
+          <span class="tr-val neutral">63</span>
+          <span class="tr-val best">104</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Tasso contatto</span>
+          <span class="tr-val mid">47%</span>
+          <span class="tr-val best">56%</span>
+          <span class="tr-val worst">44%</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Walk-in positivi</span>
+          <span class="tr-val neutral">2</span>
+          <span class="tr-val neutral">3</span>
+          <span class="tr-val best">12</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Qualità media (pos.)</span>
+          <span class="tr-val best">0.683</span>
+          <span class="tr-val mid">0.594</span>
+          <span class="tr-val worst">0.570</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Q. telefonate +</span>
+          <span class="tr-val best">0.704</span>
+          <span class="tr-val mid">0.619</span>
+          <span class="tr-val worst">—</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Q. walk-in +</span>
+          <span class="tr-val mid">0.780</span>
+          <span class="tr-val neutral">0.740</span>
+          <span class="tr-val neutral">0.672</span>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:var(--ink3);margin-bottom:4px">Task positivi: q≥0.72 (buoni) vs q≤0.45 (vuoti)</div>
+        <div style="margin-bottom:4px;font-size:11px">S1: <div class="qbar-wrap"><div class="qbar-hi" style="width:86%"></div><div class="qbar-lo" style="width:11%"></div></div></div>
+        <div style="margin-bottom:4px;font-size:11px">S2: <div class="qbar-wrap"><div class="qbar-hi" style="width:56%"></div><div class="qbar-mid" style="width:9%"></div><div class="qbar-lo" style="width:36%"></div></div></div>
+        <div style="margin-bottom:4px;font-size:11px">S3: <div class="qbar-wrap"><div class="qbar-hi" style="width:48%"></div><div class="qbar-mid" style="width:12%"></div><div class="qbar-lo" style="width:40%"></div></div></div>
+      </div>
+    </div>
+
+    <!-- CLAUDIA -->
+    <div class="op-trend">
+      <div class="op-trend-head">
+        <div class="op-badge">CB</div>
+        <div><div class="op-name">Claudia Bonanni</div><div style="font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em">Commerciale</div></div>
+      </div>
+      <div class="op-body">
+        <div class="tr" style="font-size:11px;color:var(--ink3);font-weight:600;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid var(--sand3)">
+          <span></span><span style="text-align:center">S1 1–7 apr</span><span style="text-align:center">S2 8–13 apr</span><span style="text-align:center">S3 14–21 apr</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Telefonate</span>
+          <span class="tr-val best">40</span>
+          <span class="tr-val neutral">32</span>
+          <span class="tr-val neutral">50</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Tasso contatto</span>
+          <span class="tr-val neutral">52%</span>
+          <span class="tr-val best">53%</span>
+          <span class="tr-val worst">40%</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Disdette gestite</span>
+          <span class="tr-val neutral">8</span>
+          <span class="tr-val best">11</span>
+          <span class="tr-val neutral">10</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Qualità media (pos.)</span>
+          <span class="tr-val best">0.661</span>
+          <span class="tr-val mid">0.634</span>
+          <span class="tr-val mid">0.620</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">Q. telefonate +</span>
+          <span class="tr-val best">0.688</span>
+          <span class="tr-val mid">0.637</span>
+          <span class="tr-val worst">—</span>
+        </div>
+        <div class="tr">
+          <span class="tr-label">% task con contenuto</span>
+          <span class="tr-val best">100%</span>
+          <span class="tr-val worst">78%</span>
+          <span class="tr-val mid">82%</span>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:var(--ink3);margin-bottom:4px">Task positivi: q≥0.72 (buoni) vs q≤0.45 (vuoti)</div>
+        <div style="margin-bottom:4px;font-size:11px">S1: <div class="qbar-wrap"><div class="qbar-hi" style="width:82%"></div><div class="qbar-lo" style="width:15%"></div></div></div>
+        <div style="margin-bottom:4px;font-size:11px">S2: <div class="qbar-wrap"><div class="qbar-hi" style="width:68%"></div><div class="qbar-mid" style="width:9%"></div><div class="qbar-lo" style="width:23%"></div></div></div>
+        <div style="margin-bottom:4px;font-size:11px">S3: <div class="qbar-wrap"><div class="qbar-hi" style="width:65%"></div><div class="qbar-mid" style="width:12%"></div><div class="qbar-lo" style="width:23%"></div></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TABELLA RIASSUNTIVA -->
+  <div class="sh"><h2>Tabella sinottica — qualità task per settimana</h2></div>
+
+  <div style="background:var(--w);border-radius:14px;border:1.5px solid var(--sand3);overflow:hidden;margin-bottom:12px">
+    <table class="stable">
+      <thead>
+        <tr>
+          <th>Operatore</th>
+          <th class="center">S1 — Q.media pos.</th>
+          <th class="center">S1 — hi≥0.72</th>
+          <th class="center">S2 — Q.media pos.</th>
+          <th class="center">S2 — hi≥0.72</th>
+          <th class="center">S3 — Q.media pos.</th>
+          <th class="center">S3 — hi≥0.72</th>
+          <th class="center">Trend</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Giulia D'Annunzio</strong></td>
+          <td class="center"><span class="pill p-green">0.687</span></td>
+          <td class="center">86%</td>
+          <td class="center"><span class="pill p-amber">0.613</span></td>
+          <td class="center">63%</td>
+          <td class="center"><span class="pill p-amber">0.620</span></td>
+          <td class="center">68%</td>
+          <td class="center"><span class="pill p-red">↓ –9.7%</span></td>
+        </tr>
+        <tr>
+          <td><strong>Alice Cortiula</strong></td>
+          <td class="center"><span class="pill p-green">0.683</span></td>
+          <td class="center">86%</td>
+          <td class="center"><span class="pill p-amber">0.594</span></td>
+          <td class="center">56%</td>
+          <td class="center"><span class="pill p-red">0.570</span></td>
+          <td class="center">48%</td>
+          <td class="center"><span class="pill p-red">↓ –16.5%</span></td>
+        </tr>
+        <tr>
+          <td><strong>Claudia Bonanni</strong></td>
+          <td class="center"><span class="pill p-green">0.661</span></td>
+          <td class="center">82%</td>
+          <td class="center"><span class="pill p-amber">0.634</span></td>
+          <td class="center">68%</td>
+          <td class="center"><span class="pill p-amber">0.620</span></td>
+          <td class="center">65%</td>
+          <td class="center"><span class="pill p-amber">↓ –6.2%</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CHART DISTRIBUZIONE Q -->
+  <div class="chart-dark">
+    <div class="chart-title">Distribuzione qualità task POSITIVI — confronto settimane</div>
+    <div class="chart-sub">% task con score ≥ 0.72 (verde = buoni) vs ≤ 0.45 (rosso = vuoti o minimi)</div>
+    <div class="ch-wrap" style="height:240px"><canvas id="distChart" role="img" aria-label="Distribuzione qualità task per settimana e operatore">S1 Giulia 86% buoni. S2 Giulia 63%. S3 Giulia 68%. S1 Alice 86%. S2 Alice 56%. S3 Alice 48%. S1 Claudia 82%. S2 Claudia 68%. S3 Claudia 65%.</canvas></div>
+  </div>
+
+  <!-- INTERPRETAZIONE -->
+  <div class="sh"><h2>Interpretazione del trend — lettura critica</h2></div>
+
+  <div class="al al-red">
+    <div class="bar"></div>
+    <div><strong>Il calo di qualità è strutturale, non episodico.</strong> Tutte e tre le operatrici mostrano un trend discendente dalla S1 alla S3. Il calo maggiore è su Alice (–16.5 punti), seguita da Giulia (–9.7) e Claudia (–6.2). Questo esclude la casualità: qualcosa è cambiato nel modo in cui vengono gestiti i task nelle ultime due settimane.</div>
+  </div>
+
+  <div class="two-col" style="margin-top:12px">
+
+    <div>
+      <div class="ic">
+        <div class="ic-title">Giulia — cosa sta succedendo</div>
+        <div class="ic-text">La qualità delle <strong>telefonate cade bruscamente in S2</strong> (0.732 → 0.721) ma il dato critico è il tasso contatto: 53% → 50% → 34%. In parallelo, i <strong>walk-in crescono a 15</strong> in S3 con qualità stabile (0.776). Il profilo di Giulia si sta spostando verso un'operatrice da presenza fisica più che da telefonate. I task vuoti in S2 e S3 sono quasi tutti su telefonate con "mandato spoki" senza nessun contenuto aggiuntivo.</div>
+      </div>
+      <div class="ic" style="margin-top:6px">
+        <div class="ic-title">Alice — il problema più urgente</div>
+        <div class="ic-text">Alice mostra il <strong>peggioramento più netto e continuo</strong>. In S1 aveva l'86% dei task positivi con qualità ≥ 0.72. In S3 è scesa al 48%. Quasi la metà dei suoi task "positivi" ha ora score ≤ 0.45, ovvero nulla di utile documentato. Paradossalmente il <strong>volume è cresciuto</strong> (68 → 63 → 104 telefonate): il problema non è la quantità di lavoro, ma la qualità dell'annotazione. Il meccanismo tipico: risponde, capisce che non vuole venire o non può parlare, chiude e mette POSITIVO senza scrivere nulla.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="ic">
+        <div class="ic-title">Claudia — il calo più contenuto</div>
+        <div class="ic-text">Claudia ha il calo meno pronunciato (–6.2 punti). Il dato preoccupante è la percentuale di task con contenuto: scende da <strong>100% in S1 a 78% in S2</strong>, poi risale all'82% in S3. Le disdette rimangono il suo punto di forza (8 → 11 → 10) con qualità costante. Il vero problema di Claudia non è la qualità quando parla, ma <strong>il volume basso</strong>: in S2 solo 32 telefonate vs 40 di S1.</div>
+      </div>
+      <div class="ic" style="margin-top:6px">
+        <div class="ic-title">Pattern comune a tutti e tre</div>
+        <div class="ic-text">C'è un pattern condiviso: la <strong>qualità dei walk-in rimane alta</strong> e stabile in tutte le settimane (0.66–0.78), mentre la <strong>qualità delle telefonate si deteriora</strong>. Questo suggerisce che il problema non è la competenza nella conversazione, ma il comportamento nella registrazione: quando si parla di persona si annota meglio perché c'è più tempo; al telefono si cade nella routine di chiudere velocemente il task.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CAUSA PRINCIPALE -->
+  <div class="sh"><h2>Causa principale del calo — tre ipotesi</h2></div>
+
+  <div style="background:var(--w);border-radius:14px;border:1.5px solid var(--sand3);overflow:hidden">
+    <table class="stable">
+      <thead>
+        <tr>
+          <th>Ipotesi</th>
+          <th>Evidenza a supporto</th>
+          <th>Evidenza contraria</th>
+          <th class="center">Probabilità</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. Affaticamento / volume</strong><br><small style="color:var(--ink3)">Il volume crescente abbassa la cura</small></td>
+          <td>Alice +52% di telefonate S3 vs S1, qualità al minimo</td>
+          <td>Giulia ha meno telefonate in S3 ma qualità non recuperata</td>
+          <td class="center"><span class="pill p-amber">Media</span></td>
+        </tr>
+        <tr>
+          <td><strong>2. Nessun standard minimo definito</strong><br><small style="color:var(--ink3)">Senza criterio, ogni operatrice si autoregola</small></td>
+          <td>I task "positivi con q=0" esistevano già in S1 ma erano rari (1–2); in S3 sono 10–15 per Alice</td>
+          <td>Il sistema score non è cambiato tra le settimane</td>
+          <td class="center"><span class="pill p-red">Alta</span></td>
+        </tr>
+        <tr>
+          <td><strong>3. Pasqua / periodo festivo</strong><br><small style="color:var(--ink3)">Calo di attenzione nel periodo 14–21 apr</small></td>
+          <td>Il calo più marcato è proprio in S3 (post-Pasqua)</td>
+          <td>La S2 (8–13) mostrava già peggioramento rispetto a S1</td>
+          <td class="center"><span class="pill p-amber">Parziale</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- AZIONI -->
+  <div class="sh"><h2>Azioni correttive — qualità task</h2></div>
+
+  <div class="al al-red">
+    <div class="bar"></div>
+    <div><strong>Intervento prioritario: definire uno standard minimo di compilazione per i task positivi.</strong> Un task "POSITIVO" senza almeno uno tra attività di interesse, feedback offerta o motivo del rinvio non dovrebbe poter essere chiuso. Questo vale soprattutto per Alice che in S3 ha il 40% dei positivi sotto 0.45.</div>
+  </div>
+
+  <div class="two-col" style="margin-top:10px">
+    <div class="ic">
+      <div class="ic-title">Regola pratica da applicare subito</div>
+      <div class="ic-text">
+        <strong>Criterio minimo per task "POSITIVO" su telefonate:</strong>
+        <ul style="margin-top:6px;padding-left:16px;line-height:1.9;font-size:12.5px;color:var(--ink3)">
+          <li>Se la chiamata dura <strong>meno di 30 secondi</strong> → Esito NO RISPOSTA, non POSITIVO</li>
+          <li>Se POSITIVO → almeno <strong>un campo obbligatorio</strong>: attività di interesse OPPURE motivo del rinvio OPPURE data recall</li>
+          <li>Solo "mandato spoki" o "squilla e nr" = qualità 0 = task non valido come POSITIVO</li>
+        </ul>
+        Questa regola da sola ridurrebbe i task vuoti stimati di ~60% per Alice.
+      </div>
+    </div>
+    <div class="ic">
+      <div class="ic-title">Capitalizzare il walk-in (punto di forza stabile)</div>
+      <div class="ic-text">La qualità dei walk-in rimane alta in tutte e tre le settimane per tutti gli operatori. Giulia in particolare ha migliorato: da 0.662 (S1) a 0.776 (S3) sui walk-in. Questo suggerisce che <strong>il tempo in sede porta risultati migliori e più documentati</strong>. Strategia: dedicare più tempo mattutino/pomeridiano in area accoglienza per i lead che entrano spontaneamente, specie nel weekend.</div>
+    </div>
+  </div>
+
+  <div class="al al-amber" style="margin-top:6px">
+    <div class="bar"></div>
+    <div><strong>Per Giulia specificamente:</strong> il tasso telefonico al 34% in S3 è anomalo. Prima di intervenire sull'operatrice, verificare la composizione della lista: se molti numeri non raggiungibili, il problema è a monte (qualità dei lead generati). Se i numeri sono raggiungibili, il timing delle chiamate va ottimizzato.</div>
+  </div>
+  <div class="al al-green">
+    <div class="bar"></div>
+    <div><strong>Claudia rimane il benchmark di stabilità</strong> — calo minore, disdette gestite con costanza alta. Utile come modello interno per le altre due, non solo sulle disdette ma anche sul metodo di compilazione dei task in presenza.</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Athlon Club Roma</div>
+  <div class="footer-note">Report trend qualità task · 21 aprile 2026 · Fonte: Airtable ATHLON CLUB · 3 settimane analizzate · ~730 task</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const labels = ['S1 (1–7 apr)', 'S2 (8–13 apr)', 'S3 (14–21 apr)'];
+const gridCol = 'rgba(255,255,255,.06)';
+const tickCol = 'rgba(255,255,255,.4)';
+
+// Tasso contatto
+new Chart(document.getElementById('tassoChart'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      { label: 'Giulia', data: [53, 50, 34], borderColor: '#ff5701', backgroundColor: 'rgba(255,87,1,.15)', tension: 0.3, fill: true, borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#ff5701' },
+      { label: 'Alice', data: [47, 56, 44], borderColor: '#1a5fa8', backgroundColor: 'rgba(26,95,168,.1)', tension: 0.3, fill: true, borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#1a5fa8' },
+      { label: 'Claudia', data: [52, 53, 40], borderColor: '#2d7a4f', backgroundColor: 'rgba(45,122,79,.1)', tension: 0.3, fill: true, borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#2d7a4f' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y}%` } }
+    },
+    scales: {
+      x: { ticks: { color: tickCol, font: { size: 11 } }, grid: { color: gridCol } },
+      y: { beginAtZero: false, min: 25, max: 65, ticks: { color: tickCol, font: { size: 11 }, callback: v => v + '%' }, grid: { color: gridCol } }
+    }
+  }
+});
+
+// Qualità media
+new Chart(document.getElementById('qualChart'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      { label: 'Giulia', data: [0.687, 0.613, 0.620], borderColor: '#ff5701', backgroundColor: 'rgba(255,87,1,.12)', tension: 0.3, fill: true, borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#ff5701' },
+      { label: 'Alice', data: [0.683, 0.594, 0.570], borderColor: '#1a5fa8', backgroundColor: 'rgba(26,95,168,.08)', tension: 0.3, fill: true, borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#1a5fa8' },
+      { label: 'Claudia', data: [0.661, 0.634, 0.620], borderColor: '#2d7a4f', backgroundColor: 'rgba(45,122,79,.08)', tension: 0.3, fill: true, borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#2d7a4f' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(3)}` } }
+    },
+    scales: {
+      x: { ticks: { color: tickCol, font: { size: 11 } }, grid: { color: gridCol } },
+      y: { beginAtZero: false, min: 0.50, max: 0.75, ticks: { color: tickCol, font: { size: 11 }, callback: v => v.toFixed(2) }, grid: { color: gridCol } }
+    }
+  }
+});
+
+// Distribuzione qualità
+new Chart(document.getElementById('distChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Giulia S1', 'Giulia S2', 'Giulia S3', 'Alice S1', 'Alice S2', 'Alice S3', 'Claudia S1', 'Claudia S2', 'Claudia S3'],
+    datasets: [
+      { label: 'q ≥ 0.72 (buoni)', data: [86, 63, 68, 86, 56, 48, 82, 68, 65], backgroundColor: '#2d7a4f', borderRadius: 4 },
+      { label: '0.45 < q < 0.72 (medi)', data: [4, 12, 12, 3, 9, 12, 3, 9, 12], backgroundColor: '#ef9f27', borderRadius: 0 },
+      { label: 'q ≤ 0.45 (vuoti)', data: [10, 25, 20, 11, 36, 40, 15, 23, 23], backgroundColor: '#c0392b', borderRadius: 0 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: 'top', labels: { color: 'rgba(255,255,255,.5)', font: { size: 11 }, boxWidth: 10, padding: 12 } },
+      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y}%` } }
+    },
+    scales: {
+      x: { stacked: true, ticks: { color: tickCol, font: { size: 10 } }, grid: { color: gridCol } },
+      y: { stacked: true, beginAtZero: true, max: 100, ticks: { color: tickCol, font: { size: 11 }, callback: v => v + '%' }, grid: { color: gridCol } }
+    }
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relazioni Reali 14–20 Aprile — Athlon Club Roma</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --or:#ff5701;--or2:#cc4500;--or3:rgba(255,87,1,.1);
+  --sand:#F5F0E8;--sand2:#EDE8DF;--sand3:#DDD8CF;
+  --ink:#1a1916;--ink2:#3a3835;--ink3:#6b6860;
+  --w:#ffffff;
+  --green:#2d7a4f;--gbg:#e8f5ee;
+  --red:#c0392b;--rbg:#fbeaea;
+  --amber:#b5600a;--abg:#fdf0e0;
+  --blue:#1a5fa8;--bbg:#e5f0fb;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--ink);line-height:1.55}
+
+/* ---- NAVBAR ---- */
+.nav{background:var(--ink);border-bottom:1px solid rgba(255,87,1,.2);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 48px;display:flex;align-items:center;gap:0}
+.nav-brand{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:.15em;text-transform:uppercase;color:var(--or);padding:14px 0;margin-right:28px;white-space:nowrap}
+.nav-links{display:flex;gap:0;flex:1}
+.nav-link{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:14px 16px;text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+.nav-link:hover{color:var(--w)}
+.nav-link.active{color:var(--or);border-bottom-color:var(--or)}
+@media(max-width:700px){.nav-inner{padding:0 16px}.nav-brand{margin-right:12px}.nav-link{padding:12px 10px;font-size:11px}}
+
+/* ---- HEADER ---- */
+.hdr{background:var(--ink);padding:40px 48px 36px;position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;border:44px solid rgba(255,87,1,.09)}
+.hdr::after{content:'';position:absolute;right:50px;bottom:-70px;width:160px;height:160px;border-radius:50%;border:24px solid rgba(255,87,1,.05)}
+.hdr-eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.hdr-eyebrow::before{content:'';width:28px;height:2px;background:var(--or)}
+.hdr-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:58px;line-height:.95;color:var(--w);letter-spacing:-.5px;margin-bottom:8px}
+.hdr-title em{color:var(--or);font-style:normal}
+.hdr-sub{font-size:14px;color:rgba(255,255,255,.45);margin-top:16px;max-width:560px;line-height:1.6}
+.hdr-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:4px 12px;font-size:11.5px;color:rgba(255,255,255,.5)}
+.badge strong{color:rgba(255,255,255,.8);font-weight:500}
+
+.body{padding:40px 48px 64px;max-width:1100px;margin:0 auto}
+
+/* ---- SECTION HEAD ---- */
+.sh{display:flex;align-items:center;gap:14px;margin:40px 0 18px}
+.sh::before{content:'';width:4px;height:28px;background:var(--or);border-radius:2px;flex-shrink:0}
+.sh h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;letter-spacing:.02em;text-transform:uppercase}
+
+/* ---- DIFFERENZA METODOLOGICA ---- */
+.method-box{background:var(--ink);border-radius:16px;padding:22px 28px;margin-bottom:10px;border-left:4px solid var(--or)}
+.method-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--or);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
+.method-col{padding:12px 16px;border-radius:10px;font-size:13px;line-height:1.7}
+.method-col.before{background:rgba(192,57,43,.15);border:1px solid rgba(192,57,43,.3)}
+.method-col.after{background:rgba(45,122,79,.15);border:1px solid rgba(45,122,79,.3)}
+.method-col-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.method-col.before .method-col-title{color:#e88;}
+.method-col.after .method-col-title{color:#8ec}
+.method-col p{color:rgba(255,255,255,.6)}
+
+/* ---- KPI ---- */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.kpi{background:var(--w);border:1.5px solid var(--sand3);border-radius:14px;padding:16px 18px}
+.kpi.dark{background:var(--ink);border-color:var(--ink)}
+.kpi-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3);margin-bottom:6px}
+.kpi.dark .kpi-label{color:rgba(255,255,255,.35)}
+.kpi-val{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:40px;line-height:1;color:var(--or)}
+.kpi-sub{font-size:11px;color:var(--ink3);margin-top:4px}
+.kpi.dark .kpi-sub{color:rgba(255,255,255,.25)}
+
+/* ---- OP CARDS ---- */
+.op-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:10px}
+.op-card{background:var(--w);border-radius:16px;overflow:hidden;border:1.5px solid var(--sand3)}
+.op-head{background:var(--ink);padding:14px 18px 12px}
+.op-init{width:36px;height:36px;border-radius:50%;background:var(--or);color:var(--w);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.op-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:var(--w)}
+.op-role{font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em}
+.op-body{padding:14px 18px}
+.mr{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:12.5px;border-bottom:1px solid var(--sand)}
+.mr:last-of-type{border-bottom:none}
+.ml{color:var(--ink3)}
+.mv{font-weight:600;color:var(--ink);font-size:13px}
+.mv.hi{color:var(--or);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px}
+.mv.good{color:var(--green)}
+.mv.bad{color:var(--red)}
+.qbadge{display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding:6px 10px;background:var(--sand);border-radius:8px;font-size:11.5px;color:var(--ink3)}
+.qbadge strong{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px}
+
+/* Qualità bar stack */
+.qbar-label{font-size:11px;color:var(--ink3);margin:10px 0 2px}
+.qbar{display:flex;height:12px;border-radius:6px;overflow:hidden;width:100%}
+.qb-hi{background:var(--green);height:12px}
+.qb-mid{background:#ef9f27;height:12px}
+.qb-lo{background:var(--red);height:12px}
+
+/* ---- CHART ---- */
+.chart-dark{background:var(--ink);border-radius:16px;padding:22px 26px;margin:10px 0;position:relative;overflow:hidden}
+.chart-dark::before{content:'';position:absolute;right:-30px;top:-30px;width:160px;height:160px;border-radius:50%;background:rgba(255,87,1,.04)}
+.chart-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:4px}
+.chart-sub{font-size:11.5px;color:rgba(255,255,255,.22);margin-bottom:14px}
+.ch-wrap{position:relative}
+.leg{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+.leg-i{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.5)}
+.leg-sq{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ---- CONTENT CARDS ---- */
+.cc{background:var(--w);border:1.5px solid var(--sand3);border-radius:14px;padding:16px 20px;margin:6px 0}
+.cc-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid var(--sand)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+
+/* Insight cards */
+.ic-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--or2);margin-bottom:7px}
+.ic-text{font-size:13px;color:var(--ink3);line-height:1.65}
+
+/* Alerts */
+.al{display:flex;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;line-height:1.55;margin:7px 0;align-items:flex-start}
+.al .bar{width:4px;border-radius:2px;flex-shrink:0;align-self:stretch;min-height:16px}
+.al-or{background:var(--or3)} .al-or .bar{background:var(--or)}
+.al-red{background:var(--rbg)} .al-red .bar{background:var(--red)}
+.al-green{background:var(--gbg)} .al-green .bar{background:var(--green)}
+.al-amber{background:var(--abg)} .al-amber .bar{background:var(--amber)}
+.al-blue{background:var(--bbg)} .al-blue .bar{background:var(--blue)}
+
+/* Quote cards */
+.qcard{background:var(--ink);border-radius:12px;padding:14px 18px;margin:5px 0;position:relative}
+.qcard::before{content:'"';position:absolute;top:-6px;left:14px;font-family:'Barlow Condensed',sans-serif;font-size:48px;color:var(--or);opacity:.3;line-height:1}
+.qcard-text{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;font-style:italic;padding-top:4px}
+.qcard-meta{font-size:11px;color:rgba(255,255,255,.35);margin-top:6px;font-style:normal;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+
+/* Pill */
+.pill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:600;font-family:'Barlow Condensed',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.p-green{background:var(--gbg);color:var(--green)}
+.p-red{background:var(--rbg);color:var(--red)}
+.p-amber{background:var(--abg);color:var(--amber)}
+.p-blue{background:var(--bbg);color:var(--blue)}
+.p-gray{background:var(--sand2);color:var(--ink3)}
+.p-or{background:var(--or3);color:var(--or2)}
+
+ul.dot-list{list-style:none;font-size:13px;color:var(--ink3);line-height:1.85}
+ul.dot-list li{padding-left:14px;position:relative}
+ul.dot-list li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--or)}
+
+/* Actions */
+.ac{background:var(--w);border-radius:14px;padding:16px 18px;border:1.5px solid var(--sand3);display:flex;gap:12px;margin:6px 0}
+.ac.urgent{border-color:var(--or);background:rgba(255,87,1,.04)}
+.ac-idx{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:36px;line-height:1;color:var(--sand3);flex-shrink:0;width:40px}
+.ac.urgent .ac-idx{color:rgba(255,87,1,.2)}
+.ac-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:var(--ink);margin-bottom:3px;text-transform:uppercase}
+.ac.urgent .ac-title{color:var(--or2)}
+.ac-text{font-size:12.5px;color:var(--ink3);line-height:1.5}
+.actions-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+.footer{background:var(--ink);padding:22px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--or);letter-spacing:.12em;text-transform:uppercase}
+.footer-note{font-size:12px;color:rgba(255,255,255,.25)}
+
+@media(max-width:700px){
+  .hdr,.body,.footer{padding-left:20px;padding-right:20px}
+  .op-grid,.kpi-row,.two-col,.three-col,.actions-grid{grid-template-columns:1fr}
+  .hdr-title{font-size:42px}
+  .method-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">Athlon Reports</div>
+    <div class="nav-links">
+      <a class="nav-link active" href="report_14_20apr_relazioni_reali.html">14–20 Apr · Relazioni Reali</a>
+      <a class="nav-link" href="report_trend_qualita_3settimane.html">Trend Qualità 3 Settimane</a>
+      <a class="nav-link" href="report_commerciale_14_21apr2026.html">Report Completo 14–21 Apr</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-eyebrow">Athlon Club Roma · Analisi Commerciale</div>
+  <div class="hdr-title">Relazioni<br><em>Reali</em></div>
+  <div class="hdr-sub">Solo telefonate e walk-in con esito POSITIVO che hanno generato una vera relazione con il lead. Nessun "non risponde", nessun "mandato spoki". Dati puliti.</div>
+  <div class="hdr-badges">
+    <div class="badge"><strong>Periodo</strong> 14–20 aprile 2026</div>
+    <div class="badge"><strong>Fonte</strong> Airtable · task POSITIVI filtrati</div>
+    <div class="badge"><strong>Canali</strong> Telefonate + Walk-in / Tour</div>
+    <div class="badge"><strong>Relazioni analizzate</strong> 121 task</div>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- METODOLOGIA -->
+  <div class="sh"><h2>Perché questo report è diverso</h2></div>
+
+  <div class="method-box">
+    <div class="method-title">Cambio di metodologia — dati puliti</div>
+    <p style="color:rgba(255,255,255,.55);font-size:13px;line-height:1.6">In questa settimana il team ha applicato un criterio rigoroso: un task viene segnato POSITIVO solo se è avvenuta una relazione vera con il lead. Addio agli esiti POSITIVO su chiamate senza risposta, spoki inviati senza conferma, o contatti irraggiungibili. Il risultato: i numeri scendono, ma ogni task conta davvero.</p>
+    <div class="method-grid">
+      <div class="method-col before">
+        <div class="method-col-title">❌ Precedente (inquinato)</div>
+        <p>POSITIVO = risposta generica, mandato spoki, qualità 0 frequente<br>→ inflava il volume, abbassava la qualità media</p>
+      </div>
+      <div class="method-col after">
+        <div class="method-col-title">✅ Questa settimana (pulito)</div>
+        <p>POSITIVO = conversazione reale, contenuto acquisito, relazione instaurata<br>→ qualità media 0.65–0.73, 100% task con contenuto</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI -->
+  <div class="sh"><h2>Riepilogo settimana</h2></div>
+  <div class="kpi-row">
+    <div class="kpi dark">
+      <div class="kpi-label">Relazioni totali</div>
+      <div class="kpi-val">121</div>
+      <div class="kpi-sub">tel + walk-in positivi reali</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Walk-in positivi</div>
+      <div class="kpi-val" style="color:var(--blue)">32</div>
+      <div class="kpi-sub">26% del totale — in forte crescita</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Disdette gestite</div>
+      <div class="kpi-val" style="color:var(--amber)">24</div>
+      <div class="kpi-sub">con feedback documentato</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Qualità media</div>
+      <div class="kpi-val" style="color:var(--green)">0.70</div>
+      <div class="kpi-sub">vs 0.62 semana precedente</div>
+    </div>
+  </div>
+
+  <!-- OP CARDS -->
+  <div class="sh"><h2>Analisi per operatore — relazioni reali</h2></div>
+  <div class="op-grid">
+
+    <!-- GIULIA -->
+    <div class="op-card">
+      <div class="op-head">
+        <div class="op-init">GD</div>
+        <div class="op-name">Giulia D'Annunzio</div>
+        <div class="op-role">Commerciale</div>
+      </div>
+      <div class="op-body">
+        <div class="mr"><span class="ml">Telefonate reali</span><span class="mv">22</span></div>
+        <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv hi">18</span></div>
+        <div class="mr"><span class="ml">Totale relazioni</span><span class="mv">40</span></div>
+        <div class="mr"><span class="ml">Disdette gestite</span><span class="mv">3</span></div>
+        <div class="mr"><span class="ml">Pass in conversione</span><span class="mv good">1</span></div>
+        <div class="qbadge">
+          <span>Qualità media</span>
+          <strong style="color:var(--green)">0.725</strong>
+        </div>
+        <div class="qbar-label">hi≥0.72 · mid · lo (% task)</div>
+        <div class="qbar">
+          <div class="qb-hi" style="width:85%"></div>
+          <div class="qb-mid" style="width:8%"></div>
+          <div class="qb-lo" style="width:7%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink3);margin-top:3px">
+          <span>85% buoni</span><span>2 nulli</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALICE -->
+    <div class="op-card">
+      <div class="op-head">
+        <div class="op-init">AC</div>
+        <div class="op-name">Alice Cortiula</div>
+        <div class="op-role">Commerciale</div>
+      </div>
+      <div class="op-body">
+        <div class="mr"><span class="ml">Telefonate reali</span><span class="mv hi">37</span></div>
+        <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv">11</span></div>
+        <div class="mr"><span class="ml">Totale relazioni</span><span class="mv hi">48</span></div>
+        <div class="mr"><span class="ml">Disdette gestite</span><span class="mv">5</span></div>
+        <div class="mr"><span class="ml">Pass in conversione</span><span class="mv good">4</span></div>
+        <div class="qbadge">
+          <span>Qualità media</span>
+          <strong style="color:var(--amber)">0.649</strong>
+        </div>
+        <div class="qbar-label">hi≥0.72 · mid · lo (% task)</div>
+        <div class="qbar">
+          <div class="qb-hi" style="width:69%"></div>
+          <div class="qb-mid" style="width:10%"></div>
+          <div class="qb-lo" style="width:21%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink3);margin-top:3px">
+          <span>69% buoni</span><span>10 bassi (0.25–0.45)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLAUDIA -->
+    <div class="op-card">
+      <div class="op-head">
+        <div class="op-init">CB</div>
+        <div class="op-name">Claudia Bonanni</div>
+        <div class="op-role">Commerciale</div>
+      </div>
+      <div class="op-body">
+        <div class="mr"><span class="ml">Telefonate reali</span><span class="mv">27</span></div>
+        <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv">2</span></div>
+        <div class="mr"><span class="ml">Totale relazioni</span><span class="mv">29</span></div>
+        <div class="mr"><span class="ml">Disdette gestite</span><span class="mv hi">12</span></div>
+        <div class="mr"><span class="ml">Pass in conversione</span><span class="mv good">9</span></div>
+        <div class="qbadge">
+          <span>Qualità media</span>
+          <strong style="color:var(--green)">0.723</strong>
+        </div>
+        <div class="qbar-label">hi≥0.72 · mid · lo (% task)</div>
+        <div class="qbar">
+          <div class="qb-hi" style="width:93%"></div>
+          <div class="qb-mid" style="width:7%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink3);margin-top:3px">
+          <span>93% buoni — miglior dato</span><span>0 bassi</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VALENTINA -->
+    <div class="op-card">
+      <div class="op-head">
+        <div class="op-init">VP</div>
+        <div class="op-name">Valentina Palazzo</div>
+        <div class="op-role">Commerciale</div>
+      </div>
+      <div class="op-body">
+        <div class="mr"><span class="ml">Telefonate reali</span><span class="mv">2</span></div>
+        <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv">1</span></div>
+        <div class="mr"><span class="ml">Totale relazioni</span><span class="mv">3</span></div>
+        <div class="mr"><span class="ml">Disdette gestite</span><span class="mv">0</span></div>
+        <div class="mr"><span class="ml">Pass in conversione</span><span class="mv">0</span></div>
+        <div class="qbadge">
+          <span>Qualità media</span>
+          <strong style="color:var(--green)">0.773</strong>
+        </div>
+        <div class="qbar-label">hi≥0.72 · mid · lo (% task)</div>
+        <div class="qbar"><div class="qb-hi" style="width:100%"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink3);margin-top:3px">
+          <span>100% buoni</span><span>Volume basso</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CHART -->
+  <div class="chart-dark">
+    <div class="chart-title">Qualità media per operatore e canale — dataset pulito</div>
+    <div class="chart-sub">Confronto qualità telefonate reali vs walk-in / tour in presenza</div>
+    <div class="leg">
+      <div class="leg-i"><div class="leg-sq" style="background:#ff5701"></div>Telefonate reali</div>
+      <div class="leg-i"><div class="leg-sq" style="background:#1a5fa8"></div>Walk-in / Tour</div>
+    </div>
+    <div class="ch-wrap" style="height:200px"><canvas id="qualChart"></canvas></div>
+  </div>
+
+  <!-- CHART 2 -->
+  <div class="chart-dark" style="margin-top:12px">
+    <div class="chart-title">Distribuzione qualità task positivi — percentuale per fascia</div>
+    <div class="chart-sub">Verde = buoni (≥0.72) · Arancio = medi · Rosso = bassi (≤0.45)</div>
+    <div class="ch-wrap" style="height:200px"><canvas id="distChart"></canvas></div>
+  </div>
+
+  <!-- LETTURA PER OPERATORE -->
+  <div class="sh"><h2>Lettura qualitativa per operatore</h2></div>
+
+  <div class="two-col">
+    <div class="cc">
+      <div class="ic-title">Giulia — best performer walk-in</div>
+      <div class="ic-text">
+        Con i dati puliti Giulia emerge come la migliore in assoluto sui walk-in: <strong>18 relazioni di presenza</strong> con qualità media 0.754. Ogni tour è documentato in profondità — attività di interesse, feedback orari, contesto personale. La telefonata in questa settimana conta comunque 22 relazioni reali (qualità 0.699), con alcune chiusure rilevanti: due sorelle convertite all'annuale 95€ rateizzato durante la prova, una cliente Virgin in scadenza orientata annuale 950€.
+        <br><br>Il dato "zero" su un task (qualità 0) è un caso borderline — lead che non era interessata, segnata come positiva per aver risposto. L'unico caso del tipo in tutta la sua settimana.
+      </div>
+    </div>
+    <div class="cc">
+      <div class="ic-title">Alice — volume alto, qualità mista</div>
+      <div class="ic-text">
+        Alice è l'operatrice con più relazioni totali (48), ma ha ancora <strong>10 task con qualità ≤ 0.45</strong> su 48 totali (21%). Con i dati puliti questo è un segnale chiaro: non sono più "non risponde" travestiti da positivi — sono conversazioni reali ma documentate in modo minimo. I walk-in in presenza invece migliorano (11 task, qualità 0.643). Punto di forza: 4 pass in fase di conversione attiva, il maggior numero del team.
+        <br><br>La regola "una conversazione reale = almeno un campo compilato" è ancora non applicata uniformemente da Alice.
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:10px">
+    <div class="cc">
+      <div class="ic-title">Claudia — qualità al massimo storico</div>
+      <div class="ic-text">
+        Con il 93% dei task ≥ 0.72 e zero task sotto 0.45, Claudia registra il <strong>miglior dato di qualità in assoluto</strong> nelle tre settimane analizzate. Ogni telefonata positiva ha contenuto: attività di interesse, feedback esperienza, motivazione della disdetta. Le 12 disdette gestite con 9 feedback documentati sono il suo valore unico nel team. Il walk-in è ancora limitato (2 task) — probabilmente una questione di turni in sede.
+      </div>
+    </div>
+    <div class="cc">
+      <div class="ic-title">Valentina — qualità eccellente su basso volume</div>
+      <div class="ic-text">
+        Solo 3 relazioni ma tutte di altissima qualità (0.773 di media). Il walk-in sul tennista (Valentina Palazzo) è il task più ricco della settimana: profilo fisico dettagliato, referral documentato, interesse figlio aggiunto. Le due telefonate hanno entrambe contenuto completo. Il volume basso suggerisce che Valentina è ancora in fase di inserimento graduale nel flusso commerciale.
+      </div>
+    </div>
+  </div>
+
+  <!-- INSIGHT QUALITATIVI -->
+  <div class="sh"><h2>Cosa emerge dalle conversazioni — insight dal campo</h2></div>
+
+  <div class="three-col">
+    <div class="cc">
+      <div class="cc-title">Concorrenza nominata esplicitamente</div>
+      <ul class="dot-list">
+        <li><strong>Virgin Active</strong> — citata da cliente con abbonamento open a 84€/mese fisso (rinnovo a 105€). Lead caldo orientata annuale 950€ da noi a maggio</li>
+        <li><strong>Studio pilates Via Brennero</strong> — no flessibilità orari, cliente scontenta → prova da noi prossima settimana</li>
+        <li><strong>Palestra con giorni fissi</strong> — non può cambiare turni. Cliente entusiasta della nostra flessibilità</li>
+        <li><strong>Altra piscina</strong> — acqua fredda. Cliente interessata nuoto libero</li>
+      </ul>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Frizioni ancora aperte</div>
+      <ul class="dot-list">
+        <li><strong>Pagamenti/rinnovo automatico</strong> — lead che abbandona appena capisce la policy. Caso documentato da Giulia</li>
+        <li><strong>Nessun abbonamento solo acqua visibile</strong> — ex iscritte che cercano "solo piscina" e non lo trovano nel sito</li>
+        <li><strong>Prenotazioni difficili</strong> — segnalata da un'amica come deterrente, e da una cliente in disdetta come problema orari</li>
+        <li><strong>Corsia nuoto libero</strong> — altra piscina ha corsia dedicata H24, noi no</li>
+      </ul>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Punti di forza emergenti</div>
+      <ul class="dot-list">
+        <li><strong>Sito web</strong> — "l'unico fatto bene", "tutto chiarissimo", clienti che arrivano già preparati</li>
+        <li><strong>Flessibilità orari</strong> — citata positivamente da almeno 5 lead distinti</li>
+        <li><strong>Assistenza spogliatoio</strong> — sorprende positivamente i nuovi clienti</li>
+        <li><strong>Varietà di attività</strong> — walk-in che entrano per gym floor e escono con interesse per reformer, acqua, corsi</li>
+        <li><strong>Parcheggio motorino</strong> — citato esplicitamente come elemento di scelta</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MIGLIORI CONVERSAZIONI -->
+  <div class="sh"><h2>Le conversazioni più significative della settimana</h2></div>
+
+  <div class="two-col">
+    <div>
+      <div class="qcard">
+        <div class="qcard-text">Iscritta da 3 anni a Virgin Open (Reformer incluso) a 84€ fisso. Ora rinnovare costa 105€ — alcune amiche a 90€. Vuole cambiare perché lavora su Via Fucini, verrebbe a piedi. Valuta annuale 950€.</div>
+        <div class="qcard-meta">Giulia · Walk-in · Q 0.78 · Lead caldo, followup maggio</div>
+      </div>
+      <div class="qcard" style="margin-top:8px">
+        <div class="qcard-text">Diagnosticato lipedema, deve fare attività a basso impatto o in acqua. Interessata HBX Fusion, Reformer, Hydrobike, Bodypump. Lavora vicino Tecnomat, orari dopo le 19 o sabato. Vuole annuale, prima fa la prova.</div>
+        <div class="qcard-meta">Giulia · Telefono · Q 0.78 · Caso medico documentato</div>
+      </div>
+      <div class="qcard" style="margin-top:8px">
+        <div class="qcard-text">Tennista, rigidità e dolori schiena, fa pilates al circolo ma lo annoia. Il reformer è più dinamico. Libero professionista, orari flessibili. Struttura nuova e organizzata. Piaciuto anche per la figlia del 2019. Referral di Susanna Mazza.</div>
+        <div class="qcard-meta">Valentina · Walk-in · Q 0.82 · Task più ricco della settimana</div>
+      </div>
+    </div>
+    <div>
+      <div class="qcard">
+        <div class="qcard-text">Due sorelle in prova: si trovano benissimo, proseguono con premium annuale rateizzato 95€ entrambe. Una chiama soddisfatta, poi passa la sorella — chiusura doppia sulla stessa chiamata.</div>
+        <div class="qcard-meta">Giulia · Telefono · Q 0.72 · Chiusura annuale doppia</div>
+      </div>
+      <div class="qcard" style="margin-top:8px">
+        <div class="qcard-text">Reformer e body sculpt: si trovata benissimo, piaciuti spogliatoi e pulizia. Viene sabato con il figlio e ferma al desk per attivare premium flex. Ha un abbonamento fino a settembre in altra palestra ma vuole provare qui.</div>
+        <div class="qcard-meta">Alice · Telefono · Q 0.78 · Pass in chiusura</div>
+      </div>
+      <div class="qcard" style="margin-top:8px">
+        <div class="qcard-text">Complimenti per il sito — "forse l'unico sito fatto bene e con le giuste informazioni che ho visto". Reformer e aquagym, lavora alla LUISS. Ha abbonamento attivo fino fine maggio → recall metà/fine maggio.</div>
+        <div class="qcard-meta">Claudia · Telefono · Q 0.78 · Recall programmato</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISDETTE QUESTA SETTIMANA -->
+  <div class="sh"><h2>Disdette — questa settimana (24 gestite)</h2></div>
+
+  <div class="al al-or">
+    <div class="bar"></div>
+    <div>Claudia gestisce <strong>12 su 24</strong> (50%) delle disdette con feedback dettagliato in quasi tutti i casi. Alice e Giulia coprono le restanti 12. Rispetto alla settimana precedente il numero di feedback documentati cresce — segno che la "relazione vera" si applica anche alle disdette.</div>
+  </div>
+
+  <div class="two-col" style="margin-top:10px">
+    <div class="cc">
+      <div class="cc-title">Motivi principali</div>
+      <ul class="dot-list">
+        <li><strong>Lavoro/orari cambiati</strong> — 4 casi. Feedback: struttura apprezzata, tornano se si libera</li>
+        <li><strong>Trasloco/fuori Roma</strong> — 4 casi (calcio, Roma Sud, estate Sardegna, maggio via)</li>
+        <li><strong>Gravidanza / infortunio</strong> — 3 casi. Sospensione proposta in 2</li>
+        <li><strong>Frequenza insufficiente</strong> — 3 casi. 18enne senza genitori, ex cliente non costante, schiena+orari</li>
+        <li><strong>Figlio/figlia</strong> — 3 casi. Karate agonismo, bimba non ama nuoto, pallanuoto soppressa</li>
+      </ul>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Feedback esperienza dai disdettanti</div>
+      <ul class="dot-list">
+        <li>"Si è trovato benissimo, rapporto qualità/prezzo super giusto" — tornerà</li>
+        <li>"Staff eccezionale, i bimbi vengono volentieri"</li>
+        <li>"Esperienza positiva, apprezza lezioni singole"</li>
+        <li>"Si è trovata benissimo — dispiaciuta di aver dato più spazio al reformer" — segnale su offerta</li>
+        <li>"Stagione Sardegna: spogliatoi maschili caldi in alcuni giorni"</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- AZIONI -->
+  <div class="sh"><h2>Azioni dalla settimana</h2></div>
+
+  <div class="actions-grid">
+    <div class="ac urgent">
+      <div class="ac-idx">01</div>
+      <div>
+        <div class="ac-title">Recall Virgin in scadenza — maggio</div>
+        <div class="ac-text">Lead walk-in con abbonamento Virgin in scadenza a maggio (rinnovo 105€ vs nostro). Va ricontattata entro il 25 aprile per fissare prova prima della scadenza. Orientata annuale 950€.</div>
+      </div>
+    </div>
+    <div class="ac urgent">
+      <div class="ac-idx">02</div>
+      <div>
+        <div class="ac-title">Recall LUISS — metà/fine maggio</div>
+        <div class="ac-text">Lead Claudia con abbonamento attivo fino fine maggio. Nota esplicita in task: "RICHIAMARE A METÀ FINE MAGGIO". Reformer + aquagym, interesse alto, sito apprezzato.</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-idx">03</div>
+      <div>
+        <div class="ac-title">Alice — 10 task bassi da analizzare</div>
+        <div class="ac-text">Anche con dati puliti, 10 task su 48 hanno qualità ≤ 0.45. Verificare caso per caso: si tratta di conversazioni veloci chiuse legittimamente con poco contenuto, o di abitudine al "positivo senza documentare"?</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-idx">04</div>
+      <div>
+        <div class="ac-title">Segnalazione prodotto: abbonamento solo acqua</div>
+        <div class="ac-text">Almeno 3 lead questa settimana chiedono un abbonamento dedicato solo alla piscina e non lo trovano. Da portare alla direzione come feedback di prodotto ricorrente — potenziale segmento non servito.</div>
+      </div>
+    </div>
+    <div class="ac" style="grid-column:1/-1">
+      <div class="ac-idx">05</div>
+      <div>
+        <div class="ac-title">Adottare il metodo "relazioni reali" come standard permanente</div>
+        <div class="ac-text">I dati di questa settimana dimostrano che il criterio "POSITIVO = relazione vera" funziona: 100% dei task hanno contenuto, qualità media sale a 0.70, e i task vuoti vengono eliminati naturalmente. Questo metodo dovrebbe diventare la regola permanente — non solo un'applicazione temporanea. La raccomandazione è di trasferire il criterio anche ai report delle settimane precedenti come baseline definitiva di confronto futuro.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Athlon Club Roma</div>
+  <div class="footer-note">Report relazioni reali · 14–20 aprile 2026 · 121 task analizzati · Dati puliti applicato dal team</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const gc='rgba(255,255,255,.06)';const tc='rgba(255,255,255,.4)';
+
+new Chart(document.getElementById('qualChart'),{
+  type:'bar',
+  data:{
+    labels:["Giulia D'Annunzio","Alice Cortiula","Claudia Bonanni","Valentina Palazzo"],
+    datasets:[
+      {label:'Telefonate reali',data:[0.699,0.651,0.720,0.750],backgroundColor:'#ff5701',borderRadius:4,borderSkipped:false},
+      {label:'Walk-in / Tour',data:[0.754,0.643,0.770,0.820],backgroundColor:'#1a5fa8',borderRadius:4,borderSkipped:false}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y.toFixed(3)}`}}},
+    scales:{
+      x:{ticks:{color:tc,font:{size:11}},grid:{color:gc}},
+      y:{beginAtZero:false,min:0.55,max:0.85,ticks:{color:tc,font:{size:11},callback:v=>v.toFixed(2)},grid:{color:gc}}
+    }
+  }
+});
+
+new Chart(document.getElementById('distChart'),{
+  type:'bar',
+  data:{
+    labels:["Giulia (40)","Alice (48)","Claudia (29)","Valentina (3)"],
+    datasets:[
+      {label:'q ≥ 0.72 (buoni)',data:[85,69,93,100],backgroundColor:'#2d7a4f',borderRadius:4},
+      {label:'0.45 < q < 0.72 (medi)',data:[8,10,7,0],backgroundColor:'#ef9f27'},
+      {label:'q ≤ 0.45 (bassi)',data:[7,21,0,0],backgroundColor:'#c0392b',borderRadius:0}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:true,position:'top',labels:{color:'rgba(255,255,255,.5)',font:{size:11},boxWidth:10,padding:12}},
+      tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y}%`}}
+    },
+    scales:{
+      x:{stacked:true,ticks:{color:tc,font:{size:11}},grid:{color:gc}},
+      y:{stacked:true,beginAtZero:true,max:100,ticks:{color:tc,font:{size:11},callback:v=>v+'%'},grid:{color:gc}}
+    }
+  }
+});
+</script>
+</body>
+</html>

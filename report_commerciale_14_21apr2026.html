@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Staff Commerciale — Athlon Club Roma</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange: #ff5701;
+  --orange-dark: #cc4500;
+  --sand: #F5F0E8;
+  --sand-mid: #EDE8DF;
+  --sand-dark: #DDD8CF;
+  --ink: #1a1916;
+  --ink-mid: #3a3835;
+  --ink-light: #6b6860;
+  --white: #ffffff;
+  --green: #2d7a4f;
+  --green-bg: #e8f5ee;
+  --red: #c0392b;
+  --red-bg: #fbeaea;
+  --amber: #b5600a;
+  --amber-bg: #fdf0e0;
+  --blue: #1a5fa8;
+  --blue-bg: #e5f0fb;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--sand); color: var(--ink); line-height: 1.55; min-height: 100vh; }
+
+.header-band { background: var(--ink); padding: 40px 48px 36px; position: relative; overflow: hidden; }
+.header-band::before { content: ''; position: absolute; right: -60px; top: -60px; width: 320px; height: 320px; border-radius: 50%; border: 48px solid rgba(255,87,1,0.12); }
+.header-band::after { content: ''; position: absolute; right: 60px; bottom: -80px; width: 180px; height: 180px; border-radius: 50%; border: 28px solid rgba(255,87,1,0.07); }
+.header-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--orange); margin-bottom: 20px; }
+.header-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 52px; line-height: 1; color: var(--white); letter-spacing: -.5px; margin-bottom: 6px; }
+.header-title span { color: var(--orange); }
+.header-meta { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 14px; display: flex; gap: 20px; flex-wrap: wrap; }
+.header-meta strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+
+.body-wrap { padding: 40px 48px 64px; max-width: 1100px; margin: 0 auto; }
+
+.section-head { display: flex; align-items: center; gap: 14px; margin: 40px 0 20px; }
+.section-head::before { content: ''; width: 4px; height: 28px; background: var(--orange); border-radius: 2px; flex-shrink: 0; }
+.section-head h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: .02em; text-transform: uppercase; }
+
+/* KPI pipeline */
+.kpi-bar { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 28px; }
+.kpi-box { background: var(--white); border: 1.5px solid var(--sand-dark); border-radius: 14px; padding: 16px 18px; }
+.kpi-box.dark { background: var(--ink); border-color: var(--ink); }
+.kpi-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-light); margin-bottom: 6px; }
+.kpi-box.dark .kpi-label { color: rgba(255,255,255,.4); }
+.kpi-val { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 36px; line-height: 1; color: var(--orange); }
+.kpi-box.dark .kpi-val { color: var(--orange); }
+.kpi-sub { font-size: 11px; color: var(--ink-light); margin-top: 4px; }
+.kpi-box.dark .kpi-sub { color: rgba(255,255,255,.3); }
+
+/* Op cards */
+.op-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 8px; }
+.op-card { background: var(--white); border-radius: 16px; overflow: hidden; border: 1.5px solid var(--sand-dark); }
+.op-card-head { background: var(--ink); padding: 14px 18px 12px; position: relative; }
+.op-card-head::after { content: ''; position: absolute; right: 14px; bottom: -10px; width: 32px; height: 32px; border-radius: 50%; background: var(--orange); opacity: .15; }
+.op-initials { width: 36px; height: 36px; border-radius: 50%; background: var(--orange); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+.op-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; color: var(--white); letter-spacing: .02em; }
+.op-role { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: .06em; }
+.op-body { padding: 14px 18px; }
+.mr { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; font-size: 12.5px; border-bottom: 1px solid var(--sand); }
+.mr:last-of-type { border-bottom: none; }
+.ml { color: var(--ink-light); }
+.mv { font-weight: 600; color: var(--ink); font-size: 13px; }
+.mv.good { color: var(--green); }
+.mv.bad { color: var(--red); }
+.mv.hi { color: var(--orange); font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px; }
+.bar-wrap { height: 4px; background: var(--sand-mid); border-radius: 2px; width: 100%; margin: 3px 0 10px; overflow: hidden; }
+.bar-fill { height: 4px; border-radius: 2px; background: var(--orange); }
+.q-badge { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding: 5px 10px; background: var(--sand); border-radius: 7px; font-size: 11.5px; color: var(--ink-light); }
+.q-badge strong { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 18px; }
+
+/* Chart */
+.chart-card { background: var(--ink); border-radius: 16px; padding: 22px 26px; margin: 14px 0 0; position: relative; overflow: hidden; }
+.chart-card::before { content: ''; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; border-radius: 50%; background: rgba(255,87,1,0.06); }
+.chart-card-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 14px; }
+.leg { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+.leg-i { display: flex; align-items: center; gap: 5px; font-size: 11px; color: rgba(255,255,255,.55); }
+.leg-sq { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+.chart-wrap { position: relative; height: 200px; }
+
+/* Alerts */
+.al { display: flex; gap: 12px; padding: 13px 16px; border-radius: 12px; font-size: 13px; line-height: 1.55; margin: 8px 0; align-items: flex-start; }
+.al .bar { width: 5px; border-radius: 2px; flex-shrink: 0; align-self: stretch; min-height: 18px; }
+.al-or { background: rgba(255,87,1,0.08); }
+.al-or .bar { background: var(--orange); }
+.al-red { background: var(--red-bg); }
+.al-red .bar { background: var(--red); }
+.al-green { background: var(--green-bg); }
+.al-green .bar { background: var(--green); }
+.al-amber { background: var(--amber-bg); }
+.al-amber .bar { background: var(--amber); }
+.al-blue { background: var(--blue-bg); }
+.al-blue .bar { background: var(--blue); }
+
+/* Content cards */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.cc { background: var(--white); border-radius: 14px; padding: 18px 20px; border: 1.5px solid var(--sand-dark); }
+.cc-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1.5px solid var(--sand); }
+
+/* Clusters */
+.cluster { background: var(--white); border-radius: 14px; overflow: hidden; border: 1.5px solid var(--sand-dark); margin-bottom: 12px; }
+.cluster-h { background: var(--sand-mid); padding: 11px 18px; display: flex; align-items: center; gap: 10px; }
+.cluster-n { width: 26px; height: 26px; border-radius: 50%; background: var(--orange); color: var(--white); font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cluster-t { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px; color: var(--ink); }
+.cluster-b { padding: 12px 18px; }
+.cq { font-size: 12px; color: var(--ink-light); font-style: italic; margin-bottom: 8px; padding: 7px 10px; background: var(--sand); border-radius: 7px; border-left: 3px solid var(--sand-dark); }
+
+/* Disdette */
+.disd-row { display: grid; grid-template-columns: 90px 1fr 1fr; gap: 10px; align-items: start; padding: 10px 0; border-bottom: 1px solid var(--sand); font-size: 12.5px; }
+.disd-row:last-child { border-bottom: none; }
+
+/* Pass quotes */
+.pq { display: flex; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--sand); font-size: 12.5px; align-items: flex-start; }
+.pq:last-child { border-bottom: none; }
+.pq-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); flex-shrink: 0; margin-top: 4px; }
+
+/* Actions */
+.actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ac { background: var(--white); border-radius: 14px; padding: 16px 18px; border: 1.5px solid var(--sand-dark); display: flex; gap: 12px; }
+.ac.urgent { border-color: var(--orange); background: rgba(255,87,1,0.04); }
+.ac-idx { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 34px; line-height: 1; color: var(--sand-dark); flex-shrink: 0; width: 38px; }
+.ac.urgent .ac-idx { color: rgba(255,87,1,0.22); }
+.ac-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; color: var(--ink); margin-bottom: 3px; text-transform: uppercase; }
+.ac.urgent .ac-title { color: var(--orange-dark); }
+.ac-text { font-size: 12.5px; color: var(--ink-light); line-height: 1.5; }
+
+/* Pills */
+.pill { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; font-family: 'Barlow Condensed', sans-serif; letter-spacing: .04em; text-transform: uppercase; margin-right: 3px; }
+.pill-red { background: var(--red-bg); color: var(--red); }
+.pill-amber { background: var(--amber-bg); color: var(--amber); }
+.pill-blue { background: var(--blue-bg); color: var(--blue); }
+.pill-green { background: var(--green-bg); color: var(--green); }
+
+ul.dot-list { list-style: none; font-size: 13px; color: var(--ink-light); line-height: 1.85; }
+ul.dot-list li { padding-left: 14px; position: relative; }
+ul.dot-list li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--orange); }
+
+.footer { background: var(--ink); padding: 22px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.footer-brand { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px; color: var(--orange); letter-spacing: .12em; text-transform: uppercase; }
+.footer-note { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+/* Nota qualita calo */
+.calo-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--red-bg); color: var(--red); padding: 3px 10px; border-radius: 20px; font-size: 11.5px; font-weight: 600; font-family: 'Barlow Condensed', sans-serif; letter-spacing: .03em; }
+
+@media(max-width:700px){
+  .header-band,.body-wrap,.footer{padding-left:20px;padding-right:20px}
+  .op-grid,.kpi-bar{grid-template-columns:1fr 1fr}
+  .two-col,.three-col,.actions-grid{grid-template-columns:1fr}
+  .header-title{font-size:36px}
+  .disd-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav style="background:#1a1916;border-bottom:1px solid rgba(255,87,1,.2);position:sticky;top:0;z-index:100;font-family:'Barlow Condensed',sans-serif"><div style="max-width:1100px;margin:0 auto;padding:0 48px;display:flex;align-items:center;gap:0"><div style="font-weight:900;font-size:14px;letter-spacing:.15em;text-transform:uppercase;color:#ff5701;padding:14px 0;margin-right:28px;white-space:nowrap">Athlon Reports</div><a href="report_14_20apr_relazioni_reali.html" style="font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:14px 16px;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap">14–20 Apr · Relazioni Reali</a><a href="report_trend_qualita_3settimane.html" style="font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:14px 16px;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap">Trend Qualità 3 Settimane</a><a href="report_commerciale_14_21apr2026.html" style="font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#ff5701;padding:14px 16px;text-decoration:none;border-bottom:2px solid #ff5701;white-space:nowrap">Report Completo 14–21 Apr</a></div></nav>
+
+<!-- HEADER -->
+<div class="header-band">
+  <div class="header-logo">Athlon Club Roma · Uso Interno</div>
+  <div class="header-title">Report<br>Staff <span>Commerciale</span></div>
+  <div class="header-meta">
+    <span><strong>Data</strong> 21 aprile 2026</span>
+    <span><strong>Periodo analizzato</strong> 14–21 aprile 2026</span>
+    <span><strong>Fonte</strong> Airtable · Task, Richieste, Disdette, Scadenza Pass</span>
+    <span><strong>Operatori</strong> Giulia D'Annunzio · Alice Cortiula · Claudia Bonanni · Valentina Palazzo</span>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <!-- KPI PIPELINE -->
+  <div class="section-head"><h2>Pipeline richieste — 14–21 aprile</h2></div>
+
+  <div class="kpi-bar">
+    <div class="kpi-box dark">
+      <div class="kpi-label">Richieste totali</div>
+      <div class="kpi-val">149</div>
+      <div class="kpi-sub">periodo 8 giorni</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Richieste valide</div>
+      <div class="kpi-val" style="color:var(--ink)">123</div>
+      <div class="kpi-sub">esclusi doppi e cancellati</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Gestite (SI)</div>
+      <div class="kpi-val" style="color:var(--green)">37</div>
+      <div class="kpi-sub">iscrizioni o prova attivata</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Doppi / Cancellati</div>
+      <div class="kpi-val" style="color:var(--red)">26</div>
+      <div class="kpi-sub">da escludere dall'analisi</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Non ancora gestite</div>
+      <div class="kpi-val" style="color:var(--amber)">59+</div>
+      <div class="kpi-sub">in coda (arrivi recenti)</div>
+    </div>
+  </div>
+
+  <div class="al al-or">
+    <div class="bar"></div>
+    <div><strong>Mix richieste:</strong> Abbonamenti 58% · Info Junior 15% · Referral 12% · Richiesta Prova 5% · Guest 4% · Info Adulti 3% · WhatsApp 3% · Newsletter 1%. Il segmento ABBONAMENTI rimane il principale driver — su 87 richieste, il 70% sono NUOVO profilo.</div>
+  </div>
+
+  <!-- SEZIONE 1: PANORAMICA OPERATORI -->
+  <div class="section-head"><h2>Panoramica attività per operatore</h2></div>
+
+  <div class="op-grid">
+
+    <!-- GIULIA -->
+    <div class="op-card">
+      <div class="op-card-head">
+        <div class="op-initials">GD</div>
+        <div class="op-name">Giulia D'Annunzio</div>
+        <div class="op-role">Commerciale</div>
+      </div>
+      <div class="op-body">
+        <div class="mr"><span class="ml">Telefonate totali</span><span class="mv">64</span></div>
+        <div class="mr"><span class="ml">Esito positivo</span><span class="mv good">22</span></div>
+        <div class="mr"><span class="ml">No risposta</span><span class="mv bad">42</span></div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:34%"></div></div>
+        <div style="font-size:11px;color:var(--ink-light);margin:-6px 0 8px;text-align:right">Tasso contatto <strong style="color:var(--red)">34%</strong></div>
+        <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv hi">15</span></div>
+        <div class="mr"><span class="ml">WhatsApp / Email +</span><span class="mv">17</span></div>
+        <div class="mr"><span class="ml">Disdette gestite</span><span class="mv">4</span></div>
+        <div class="mr"><span class="ml">Scadenza pass</span><span class="mv">2</span></div>
+        <div class="q-badge">
+          <span>Qualità media task</span>
+          <strong style="color:var(--amber)">0.62</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALICE -->
+    <div class="op-card">
+      <div class="op-card-head">
+        <div class="op-initials">AC</div>
+        <div class="op-name">Alice Cortiula</div>
+        <div class="op-role">Commerciale</div>
+      </div>
+      <div class="op-body">
+        <div class="mr"><span class="ml">Telefonate totali</span><span class="mv hi">104</span></div>
+        <div class="mr"><span class="ml">Esito positivo</span><span class="mv good">46</span></div>
+        <div class="mr"><span class="ml">No risposta</span><span class="mv bad">58</span></div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:44%"></div></div>
+        <div style="font-size:11px;color:var(--ink-light);margin:-6px 0 8px;text-align:right">Tasso contatto 44%</div>
+        <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv">12</span></div>
+        <div class="mr"><span class="ml">WhatsApp / Email +</span><span class="mv">25</span></div>
+        <div class="mr"><span class="ml">Disdette gestite</span><span class="mv">4</span></div>
+        <div class="mr"><span class="ml">Scadenza pass</span><span class="mv">3</span></div>
+        <div class="q-badge">
+          <span>Qualità media task</span>
+          <strong style="color:var(--red)">0.57</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLAUDIA -->
+    <div class="op-card">
+      <div class="op-card-head">
+        <div class="op-initials">CB</div>
+        <div class="op-name">Claudia Bonanni</div>
+        <div class="op-role">Commerciale</div>
+      </div>
+      <div class="op-body">
+        <div class="mr"><span class="ml">Telefonate totali</span><span class="mv">50</span></div>
+        <div class="mr"><span class="ml">Esito positivo</span><span class="mv good">20</span></div>
+        <div class="mr"><span class="ml">No risposta</span><span class="mv bad">30</span></div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:40%"></div></div>
+        <div style="font-size:11px;color:var(--ink-light);margin:-6px 0 8px;text-align:right">Tasso contatto 40%</div>
+        <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv">2</span></div>
+        <div class="mr"><span class="ml">WhatsApp / Email +</span><span class="mv">10</span></div>
+        <div class="mr"><span class="ml">Disdette gestite</span><span class="mv hi">10</span></div>
+        <div class="mr"><span class="ml">Scadenza pass</span><span class="mv">1</span></div>
+        <div class="q-badge">
+          <span>Qualità media task</span>
+          <strong style="color:var(--amber)">0.62</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- VALENTINA -->
+    <div class="op-card">
+      <div class="op-card-head">
+        <div class="op-initials">VP</div>
+        <div class="op-name">Valentina Palazzo</div>
+        <div class="op-role">Commerciale</div>
+      </div>
+      <div class="op-body">
+        <div class="mr"><span class="ml">Telefonate totali</span><span class="mv">5</span></div>
+        <div class="mr"><span class="ml">Esito positivo</span><span class="mv good">2</span></div>
+        <div class="mr"><span class="ml">No risposta</span><span class="mv bad">3</span></div>
+        <div class="bar-wrap"><div class="bar-fill" style="width:40%"></div></div>
+        <div style="font-size:11px;color:var(--ink-light);margin:-6px 0 8px;text-align:right">Tasso contatto 40%</div>
+        <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv">1</span></div>
+        <div class="mr"><span class="ml">WhatsApp / Email +</span><span class="mv">0</span></div>
+        <div class="mr"><span class="ml">Disdette gestite</span><span class="mv">0</span></div>
+        <div class="mr"><span class="ml">Scadenza pass</span><span class="mv">0</span></div>
+        <div class="q-badge">
+          <span>Qualità media task</span>
+          <strong style="color:var(--green)">0.76</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHART -->
+  <div class="chart-card">
+    <div class="chart-card-title">Confronto attività — 14–21 aprile 2026</div>
+    <div class="leg">
+      <div class="leg-i"><div class="leg-sq" style="background:#ff5701"></div>Tel. positivo</div>
+      <div class="leg-i"><div class="leg-sq" style="background:#c0392b"></div>No risposta</div>
+      <div class="leg-i"><div class="leg-sq" style="background:#1a5fa8"></div>Walk-in +</div>
+      <div class="leg-i"><div class="leg-sq" style="background:#b5600a"></div>Disdette</div>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="mainChart" role="img" aria-label="Confronto attività operatori">Giulia: 22 pos, 42 NR, 15 walk-in, 4 disdette. Alice: 46 pos, 58 NR, 12 walk-in, 4 disdette. Claudia: 20 pos, 30 NR, 2 walk-in, 10 disdette. Valentina: 2 pos, 3 NR, 1 walk-in, 0 disdette.</canvas>
+    </div>
+  </div>
+
+  <!-- SEZIONE 2: CONFRONTO CON PERIODO PRECEDENTE -->
+  <div class="section-head"><h2>Confronto con periodo precedente (1–13 aprile)</h2></div>
+
+  <div class="al al-red">
+    <div class="bar"></div>
+    <div><strong>Attenzione: calo generalizzato nei tassi di contatto telefonico.</strong> Il tasso di contatto telefonico scende in tutti e tre gli operatori rispetto al periodo 1–13 aprile. Giulia passa da 51% a 34% — il calo più marcato. Alice da 52% a 44%. Claudia rimane stabile (52% → 40%). Il volume di walk-in di Giulia è invece il punto di forza del periodo: 15 walk-in positivi contro i 13 del periodo precedente.</div>
+  </div>
+
+  <div class="three-col" style="margin-top: 14px;">
+    <div class="cc">
+      <div class="cc-title">Giulia — variazione</div>
+      <div class="mr"><span class="ml">Telefonate</span><span class="mv">64 <span class="calo-badge">↓ da 106</span></span></div>
+      <div class="mr"><span class="ml">Tasso contatto</span><span class="mv bad">34% <span class="calo-badge">↓ da 51%</span></span></div>
+      <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv good">15 <span style="color:var(--green);font-size:11px;font-weight:600">↑ da 13</span></span></div>
+      <div class="mr"><span class="ml">Qualità media</span><span class="mv">0.62 <span class="calo-badge">↓ da 0.67</span></span></div>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Alice — variazione</div>
+      <div class="mr"><span class="ml">Telefonate</span><span class="mv">104 <span class="calo-badge">↓ da 138</span></span></div>
+      <div class="mr"><span class="ml">Tasso contatto</span><span class="mv bad">44% <span class="calo-badge">↓ da 52%</span></span></div>
+      <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv">12 <span style="color:var(--green);font-size:11px;font-weight:600">↑ da 7</span></span></div>
+      <div class="mr"><span class="ml">Qualità media</span><span class="mv bad">0.57 <span class="calo-badge">↓ da 0.64</span></span></div>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Claudia — variazione</div>
+      <div class="mr"><span class="ml">Telefonate</span><span class="mv">50 <span class="calo-badge">↓ da 63</span></span></div>
+      <div class="mr"><span class="ml">Tasso contatto</span><span class="mv">40% <span class="calo-badge">↓ da 52%</span></span></div>
+      <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv bad">2 <span class="calo-badge">↓ da 6</span></span></div>
+      <div class="mr"><span class="ml">Qualità media</span><span class="mv">0.62 ↔ stabile</span></div>
+    </div>
+  </div>
+
+  <!-- SEZIONE 3: QUALITÀ TASK -->
+  <div class="section-head"><h2>Qualità task — telefonate e walk-in positivi</h2></div>
+
+  <div class="al al-red">
+    <div class="bar"></div>
+    <div>La qualità media scende a <strong>0.57–0.62/1.0</strong> contro lo 0.64–0.67 del periodo precedente. Il calo più preoccupante è quello di Alice (0.57): molte telefonate positive restano senza attività di interesse, feedback offerta o obiezione documentata. Il walk-in rimane il formato con la qualità più alta (0.72–0.82) in tutti gli operatori.</div>
+  </div>
+
+  <div class="two-col" style="margin-top:14px;">
+    <div class="cc">
+      <div class="cc-title">Giulia — punti di forza e lacune</div>
+      <ul class="dot-list">
+        <li><strong>Walk-in eccellenti</strong>: 15 positivi con dettaglio attività, obiettivo fisico (lipedema, riabilitazione), piano abbonamento ragionato. Qualità 0.78–0.82.</li>
+        <li><strong>Conversioni annuale rateizzato</strong>: due sorelle convertite ad annuale 95€ durante la settimana di prova — chiusura proattiva ben documentata.</li>
+        <li><strong>Tasso telefonico al 34%</strong> è il dato critico del periodo: 42 no risposta su 64 chiamate. Va investigato se è un problema di timing o di lista contatti.</li>
+        <li><strong>Task "mandato spoki" o "mandato mail"</strong> senza nessun dato raccolto rimangono troppo frequenti.</li>
+      </ul>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Alice — punti di forza e lacune</div>
+      <ul class="dot-list">
+        <li><strong>Volume walk-in in crescita</strong>: 12 positivi vs 7 del periodo precedente — buona attività in presenza il 20 aprile con 5 prove attivate in sede in un pomeriggio.</li>
+        <li><strong>Disdette gestite in crescita</strong>: 4 vs 1 del periodo precedente — segnale di miglioramento nel presidio di quella coda.</li>
+        <li><strong>Qualità al minimo storico (0.57)</strong>: molte telefonate positive senza alcun contenuto. Serve un criterio minimo: se la chiamata dura oltre 30 secondi, almeno un campo va compilato.</li>
+        <li>L'obiezione "prezzi alti" ricorre ancora senza controproposta documentata.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cc" style="margin-top:14px;">
+    <div class="cc-title">Claudia — punti di forza e lacune</div>
+    <div class="two-col">
+      <ul class="dot-list">
+        <li>Conferma il presidio assoluto delle disdette: 10 casi gestiti con profondità (motivo, feedback, proposta sospensione/revoca)</li>
+        <li>Task di qualità alta nelle telefonate positive: attività specifica, feedback sito, logistica (parcheggio, orari)</li>
+        <li>Sito molto citato nei feedback positivi: "l'unico sito fatto bene con le giuste informazioni" — da comunicare al team</li>
+        <li>Nota sul sistema di prenotazione: diverse persone lo trovano difficile o poco chiaro — segnale da portare in evidenza</li>
+      </ul>
+      <ul class="dot-list">
+        <li>Walk-in in forte calo (2 vs 6): da verificare se è questione di turni in sede o meno presenza</li>
+        <li>Tasso telefonico al 40% — stabile ma non migliorato rispetto al periodo precedente</li>
+        <li>Scadenza pass quasi assente (1) — area ancora scoperta</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SEZIONE 4: OBIEZIONI -->
+  <div class="section-head"><h2>Perché non si iscrivono — analisi obiezioni</h2></div>
+
+  <div class="cluster">
+    <div class="cluster-h"><div class="cluster-n">1</div><div class="cluster-t">Distanza / parcheggio / comodità</div></div>
+    <div class="cluster-b">
+      <div class="cq">"Ho trovato un centro vicino casa" · "Troppo lontano" · "Parcheggio"</div>
+      <div class="al al-or" style="margin:0"><div class="bar"></div><div><strong>Follow-up:</strong> Proporre apertura 6:30, parcheggio interno, qualità struttura (piscina riscaldata, reformer, spogliatoi) assente nei centri di quartiere. Recall a 30 giorni: <em>"hai avuto modo di provare il centro vicino? come ti trovi?"</em></div></div>
+    </div>
+  </div>
+
+  <div class="cluster">
+    <div class="cluster-h"><div class="cluster-n">2</div><div class="cluster-t">Già iscritti altrove con contratto in corso</div></div>
+    <div class="cluster-b">
+      <div class="cq">Virgin open a 84€/mese · Centro di solo pilates reformer in scadenza fine mese · Abbonamento LUISS</div>
+      <div class="al al-or" style="margin:0"><div class="bar"></div><div><strong>Follow-up:</strong> Recall programmato 2–3 settimane prima della scadenza. Caso specifico emerso: donna iscritta a Virgin con open 84€ fisso per 3 anni — ora le propongono 105€. Obiezione prezzo gestibile con comparazione diretta. <strong>Caso LUISS: recall esplicito a fine maggio.</strong></div></div>
+    </div>
+  </div>
+
+  <div class="cluster">
+    <div class="cluster-h"><div class="cluster-n">3</div><div class="cluster-t">Prezzi percepiti alti</div></div>
+    <div class="cluster-b">
+      <div class="cq">"I prezzi sono aumentati!" · "Troppo caro per solo nuoto libero" · "Non c'è abbonamento solo fitness"</div>
+      <div class="al al-or" style="margin:0"><div class="bar"></div><div><strong>Azione meeting:</strong> Script condiviso ancora mancante. Emerso un nuovo caso: ex iscritto che lamenta l'aumento dei prezzi rispetto al passato — serve risposta pronta. Punto da definire in riunione: script comparativo con costo per accesso Smart vs singolo.</div></div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="cluster">
+      <div class="cluster-h"><div class="cluster-n">4</div><div class="cluster-t">Indecisione / rimando temporale</div></div>
+      <div class="cluster-b">
+        <div class="cq">"Con l'arrivo dell'estate sono indecisa" · "Parto mercoledì" · "A settembre" · "Aspetto l'amica"</div>
+        <div class="al al-amber" style="margin:0"><div class="bar"></div><div><strong>Regola:</strong> ogni "aspetto" deve diventare un recall con data precisa. Molti lead di questo periodo attendono un'amica prima di attivare — questi sono lead caldi che devono avere un follow-up a 5–7 giorni.</div></div>
+      </div>
+    </div>
+    <div class="cluster">
+      <div class="cluster-h"><div class="cluster-n">5</div><div class="cluster-t">Problemi tecnici / app / pagamento</div></div>
+      <div class="cluster-b">
+        <div class="cq">"Non trovo gli abbonamenti sul sito" · "Non riesco a completare il pagamento" · "Cambio banca"</div>
+        <div class="al al-blue" style="margin:0"><div class="bar"></div><div><strong>Azione strutturale:</strong> Diversi lead bloccati in fase di acquisto autonomo. Chi segnala difficoltà tecnica va richiamato entro 24 ore con offerta di attivazione in sede come alternativa immediata.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cluster">
+    <div class="cluster-h"><div class="cluster-n">6</div><div class="cluster-t">Orari non compatibili</div></div>
+    <div class="cluster-b">
+      <div class="cq">Scuola nuoto bambini: orari venerdì/sabato pomeriggio tardi non disponibili · Nuoto libero: corsia non sempre disponibile</div>
+      <div class="al al-or" style="margin:0"><div class="bar"></div><div><strong>Dati per direzione:</strong> la mancanza di fasce orarie specifiche per scuola nuoto junior (venerdì pomeriggio tardo, sabato post 16) e di corsie dedicate al nuoto libero continuo è una barriera reale alla conversione. Questi casi vanno segnalati come feedback di prodotto.</div></div>
+    </div>
+  </div>
+
+  <!-- SEZIONE 5: DISDETTE -->
+  <div class="section-head"><h2>Disdette — analisi e azioni</h2></div>
+
+  <div class="al al-or" style="margin-bottom:14px;">
+    <div class="bar"></div>
+    <div>Claudia gestisce il 56% delle disdette del periodo (10 su 18 totali). Nuova presenza: Alice con 4 disdette gestite, in linea con il miglioramento richiesto nel report precedente. Giulia mantiene 4 casi.</div>
+  </div>
+
+  <div class="two-col">
+    <div class="cc">
+      <div class="cc-title">Motivi e azioni per tipo</div>
+      <div class="disd-row" style="font-weight:600;font-size:11px;color:var(--ink-light);text-transform:uppercase;letter-spacing:.04em;padding-bottom:5px;border-bottom:2px solid var(--sand-dark)">
+        <span>Categoria</span><span>Motivo</span><span>Azione</span>
+      </div>
+      <div class="disd-row">
+        <span><span class="pill pill-red">Definitivo</span></span>
+        <span>Trasferimento Roma Sud / Ostia · Cambio città (calcio)</span>
+        <span style="color:var(--ink-light)">Documentare e chiudere</span>
+      </div>
+      <div class="disd-row">
+        <span><span class="pill pill-red">Definitivo</span></span>
+        <span>Gravidanza all'ultimo mese, non potrà venire con neonato</span>
+        <span style="color:var(--ink-light)">Proposta sospensione per maternità</span>
+      </div>
+      <div class="disd-row">
+        <span><span class="pill pill-amber">Recuper.</span></span>
+        <span>Cambio orari lavoro, poca costanza</span>
+        <span style="color:var(--amber)">Accessi singoli estivi + recall settembre</span>
+      </div>
+      <div class="disd-row">
+        <span><span class="pill pill-amber">Recuper.</span></span>
+        <span>Infortunio + voglia scomparsa</span>
+        <span style="color:var(--amber)">Proposta sospensione malattia + recall</span>
+      </div>
+      <div class="disd-row">
+        <span><span class="pill pill-amber">Recuper.</span></span>
+        <span>Problemi schiena + orari cambiati (2 mesi 0 accessi)</span>
+        <span style="color:var(--amber)">Alert 0 accessi — proposta cambio fascia</span>
+      </div>
+      <div class="disd-row">
+        <span><span class="pill pill-amber">Recuper.</span></span>
+        <span>Non costante, non viene mai (18 anni)</span>
+        <span style="color:var(--amber)">Nessun genitore associato — caso da escalation</span>
+      </div>
+      <div class="disd-row">
+        <span><span class="pill pill-blue">Temp.</span></span>
+        <span>Maggio fuori Roma (2 famiglie) · Stagione estiva Sardegna</span>
+        <span style="color:var(--blue)">Sospensione + recall settembre/ottobre</span>
+      </div>
+      <div class="disd-row">
+        <span><span class="pill pill-blue">Temp.</span></span>
+        <span>Bimba non ama nuotare · Passaggio agonismo karate</span>
+        <span style="color:var(--blue)">Recall a settembre nuova stagione</span>
+      </div>
+    </div>
+
+    <div class="cc">
+      <div class="cc-title">Feedback critici e segnali strutturali</div>
+      <div class="al al-red" style="margin-bottom:8px;">
+        <div class="bar"></div>
+        <div><em>"Avremmo preferito una chiamata proattiva prima"</em> — confermato anche questo periodo. Due disdette arrivano dopo 2+ mesi di 0 accessi senza nessun contatto. <strong>Alert su iscritti con 0 accessi da 30+ giorni: ancora non attivato.</strong></div>
+      </div>
+      <div class="al al-amber" style="margin-bottom:8px;">
+        <div class="bar"></div>
+        <div><em>"Hanno dato più spazio al reformer a discapito di altri corsi"</em> — feedback su cambio offerta percepito negativamente. Segnale da portare alla direzione.</div>
+      </div>
+      <div class="al al-amber" style="margin-bottom:8px;">
+        <div class="bar"></div>
+        <div><em>"Sistema di prenotazione difficile, prenotare con anticipo è stressante"</em> — citato da 3 lead separati come freno all'iscrizione. Elemento che si ripete anche nelle disdette.</div>
+      </div>
+      <div class="al al-green">
+        <div class="bar"></div>
+        <div><em>"Il rapporto qualità/prezzo è giusto"</em> · <em>"La struttura mi piace molto, tornerò non appena avrò voglia"</em> — anche nelle disdette la struttura viene apprezzata. La fedeltà potenziale è alta.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEZIONE 6: SCADENZA PASS -->
+  <div class="section-head"><h2>Scadenza Pass — analisi</h2></div>
+
+  <div class="two-col">
+    <div class="cc">
+      <div class="cc-title">Motivi di mancata conversione</div>
+      <ul class="dot-list">
+        <li><strong>Abbonamento attivo altrove fino a fine mese/maggio</strong> — lead caldo: recall in anticipo di 2 settimane. Caso concreto: donna iscritta in studio reformer in Via Brennero, insoddisfatta degli orari → recall a fine aprile.</li>
+        <li><strong>Orari serali troppo tardi</strong> (le 21 non compatibili con le 20) — barriera tecnica. Verificare se aggiungere turni precedenti aumenta la conversione.</li>
+        <li><strong>Passa in sede nelle prossime settimane</strong> — lead tiepido, recall entro 7 giorni per mantenere il calore.</li>
+        <li><strong>Si è trovata benissimo ma valuta ancora</strong> — tipico dopo 1 visita. Reminder proattivo entro il 3° giorno del pass per prenotare 2a e 3a sessione.</li>
+      </ul>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Feedback pass — argomenti di vendita</div>
+      <div class="pq"><div class="pq-dot"></div><div>"Fitness, reformer e corsi: si sono trovati benissimo" — <strong>esperienza multidisciplinare</strong> come punto di forza vs monopalestre</div></div>
+      <div class="pq"><div class="pq-dot"></div><div>"Sala pesi pulita, si è trovato benissimo" — argomento <strong>qualità struttura</strong></div></div>
+      <div class="pq"><div class="pq-dot"></div><div>"Si è trovata benissimo con reformer e body sculpt, spogliatoi e pulizia apprezzati"</div></div>
+      <div class="pq"><div class="pq-dot"></div><div>"Si stanno trovando benissimo" — coppia che procede con annuale premium rateizzato: <strong>chiusura di coppia efficace</strong> da replicare</div></div>
+      <div class="pq"><div class="pq-dot"></div><div>"Sito fatto benissimo, l'unico con le info giuste" — <strong>asset digitale</strong> che genera lead qualificati autonomamente</div></div>
+    </div>
+  </div>
+
+  <!-- SEZIONE 7: AZIONI -->
+  <div class="section-head"><h2>Azioni prioritarie</h2></div>
+
+  <div class="actions-grid">
+    <div class="ac urgent">
+      <div class="ac-idx">01</div>
+      <div>
+        <div class="ac-title">Alert iscritti 0 accessi / 30 giorni</div>
+        <div class="ac-text">Due disdette questo periodo sarebbero state evitabili con una chiamata proattiva (2+ mesi di 0 accessi). Attivare in Airtable una vista filtrata per iscritti attivi con 0 accessi negli ultimi 30 giorni — assegnare a un operatore per contatto settimanale.</div>
+      </div>
+    </div>
+    <div class="ac urgent">
+      <div class="ac-idx">02</div>
+      <div>
+        <div class="ac-title">Recall con data: regola non negoziabile</div>
+        <div class="ac-text">Ancora molti lead con "aspetto l'amica" o "ci penso" senza data di ricontatto nel task. Introdurre un campo obbligatorio in Airtable: ogni task aperto positivo deve avere una data recall entro 7 giorni. Senza data = lead non gestito.</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-idx">03</div>
+      <div>
+        <div class="ac-title">Script prezzi: definire in riunione</div>
+        <div class="ac-text">L'obiezione "prezzi aumentati" e "troppo caro solo per nuoto" si ripete senza risposta standardizzata. Definire 3 casistiche con risposta pronta: solo nuoto libero, solo fitness, primo contatto generico. Qualità media Alice sotto 0.60: threshold minima da applicare.</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-idx">04</div>
+      <div>
+        <div class="ac-title">Follow-up tecnico: blocchi acquisto online</div>
+        <div class="ac-text">Almeno 4 lead bloccati da problemi tecnici (pagamento, app, credenziali). Chi segnala una difficoltà tecnica deve essere richiamato entro 24 ore con l'offerta di attivazione in sede. Aggiungere un tag "blocco tecnico" nel task per tracciare il problema.</div>
+      </div>
+    </div>
+    <div class="ac" style="grid-column:1/-1; background:var(--ink); border-color:var(--orange)">
+      <div class="ac-idx" style="color:rgba(255,87,1,0.25)">05</div>
+      <div>
+        <div class="ac-title" style="color:var(--orange)">Giulia — focus sul tasso telefonico</div>
+        <div class="ac-text" style="color:rgba(255,255,255,0.55)">Il tasso di contatto telefonico di Giulia è sceso al 34% (da 51%). Va analizzata la composizione della lista: se molti numeri non raggiungibili, verificare la qualità dei contatti generati. Il suo punto di forza rimangono i walk-in (15 positivi). Valutare se ridurre il volume di telefonate e aumentare il tempo in sede per capitalizzare i walk-in.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">Athlon Club Roma</div>
+  <div class="footer-note">Report generato il 21 aprile 2026 · Uso riservato staff commerciale · Dati: Airtable ATHLON CLUB · 149 richieste · 324 task analizzati</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+new Chart(document.getElementById('mainChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Giulia D\'Annunzio', 'Alice Cortiula', 'Claudia Bonanni', 'Valentina Palazzo'],
+    datasets: [
+      { label: 'Tel. positivo', data: [22, 46, 20, 2], backgroundColor: '#ff5701', borderRadius: 4, borderSkipped: false },
+      { label: 'No risposta', data: [42, 58, 30, 3], backgroundColor: '#c0392b', borderRadius: 4, borderSkipped: false },
+      { label: 'Walk-in +', data: [15, 12, 2, 1], backgroundColor: '#1a5fa8', borderRadius: 4, borderSkipped: false },
+      { label: 'Disdette', data: [4, 4, 10, 0], backgroundColor: '#b5600a', borderRadius: 4, borderSkipped: false }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: 'rgba(255,255,255,0.5)', font: { size: 11, family: "'DM Sans'" } }, grid: { color: 'rgba(255,255,255,0.06)' } },
+      y: { beginAtZero: true, ticks: { color: 'rgba(255,255,255,0.4)', font: { size: 11 }, stepSize: 10 }, grid: { color: 'rgba(255,255,255,0.06)' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
