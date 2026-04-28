@@ -11,409 +11,244 @@
   --sand:#F5F0E8;--sand2:#EDE8DF;--sand3:#DDD8CF;
   --ink:#1a1916;--ink2:#3a3835;--ink3:#6b6860;
   --w:#ffffff;
-  --green:#2d7a4f;--gbg:#e8f5ee;
-  --amber:#b5600a;--abg:#fdf0e0;
-  --blue:#1a5fa8;--bbg:#e5f0fb;
+  --green:#2d7a4f;--amber:#b5600a;--red:#c0392b;--blue:#1a5fa8;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--w);min-height:100vh;overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--w);min-height:100vh}
 
-/* ---- HERO ---- */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:80px 64px 64px;overflow:hidden}
+/* HERO */
+.hero{min-height:48vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;padding:52px 64px 44px;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#1a1916 55%,#251a0f);z-index:0}
+.hero::after{content:'';position:absolute;right:-80px;top:-80px;width:440px;height:440px;border-radius:50%;border:60px solid rgba(255,87,1,.07);z-index:0}
+.hero-grid{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 88px,rgba(255,255,255,.016) 88px,rgba(255,255,255,.016) 89px);z-index:0}
+.hero-inner{position:relative;z-index:1;max-width:800px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:16px}
+.eyebrow::before,.eyebrow::after{content:'';width:24px;height:2px;background:var(--or)}
+.hero-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(44px,7vw,82px);line-height:.92;letter-spacing:-.5px;margin-bottom:14px}
+.hero-title .l1{display:block;color:var(--w)}
+.hero-title .l2{display:block;color:var(--or)}
+.hero-title .l3{display:block;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.13)}
+.hero-desc{font-size:14px;color:rgba(255,255,255,.38);line-height:1.7;max-width:440px;margin-bottom:26px}
+.hero-stats{display:flex;gap:26px;flex-wrap:wrap}
+.hs{display:flex;flex-direction:column}
+.hs-val{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:28px;color:var(--or);line-height:1}
+.hs-lbl{font-size:10px;color:rgba(255,255,255,.27);margin-top:2px;text-transform:uppercase;letter-spacing:.07em;font-family:'Barlow Condensed',sans-serif;font-weight:600}
 
-/* Sfondo grafico */
-.hero-bg{position:absolute;inset:0;pointer-events:none}
-.hero-bg::before{
-  content:'';position:absolute;right:-120px;top:-120px;
-  width:600px;height:600px;border-radius:50%;
-  border:80px solid rgba(255,87,1,.07);
-}
-.hero-bg::after{
-  content:'';position:absolute;left:-80px;bottom:-80px;
-  width:400px;height:400px;border-radius:50%;
-  border:50px solid rgba(255,87,1,.04);
-}
-.hero-bg-line{
-  position:absolute;top:0;left:0;width:100%;height:100%;
-  background:repeating-linear-gradient(
-    90deg,
-    transparent,transparent 80px,
-    rgba(255,255,255,.015) 80px,rgba(255,255,255,.015) 81px
-  );
-}
+/* SECTION */
+.section{padding:44px 64px;background:var(--sand)}
+.sec-eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--or);margin-bottom:7px}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;color:var(--ink);line-height:1.1;margin-bottom:4px}
+.sec-sub{font-size:13px;color:var(--ink3);margin-bottom:22px}
 
-/* Contenuto hero */
-.hero-inner{position:relative;z-index:1;max-width:900px}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:10px;
-  font-family:'Barlow Condensed',sans-serif;font-weight:700;
-  font-size:12px;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--or);margin-bottom:28px;
-}
-.hero-eyebrow::before{content:'';width:32px;height:2px;background:var(--or)}
-.hero-eyebrow::after{content:'';width:32px;height:2px;background:var(--or)}
+/* WEEK CARDS */
+.weeks{display:flex;flex-direction:column;gap:8px}
 
-.hero-title{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(56px,8vw,100px);line-height:.92;
-  letter-spacing:-.5px;margin-bottom:24px;
+.wcard{
+  background:var(--w);border:1.5px solid var(--sand3);border-radius:14px;
+  overflow:hidden;text-decoration:none;color:inherit;
+  display:grid;grid-template-columns:56px 1fr auto;align-items:stretch;
+  transition:transform .17s,box-shadow .17s,border-color .17s;
 }
-.hero-title .line1{display:block;color:var(--w)}
-.hero-title .line2{display:block;color:var(--or)}
-.hero-title .line3{
-  display:block;color:transparent;
-  -webkit-text-stroke:1.5px rgba(255,255,255,.2);
-}
+.wcard:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(26,25,22,.1);border-color:var(--or)}
+.wcard:hover .warr{transform:translateX(3px)}
+.wcard.latest{border-color:var(--or)}
 
-.hero-desc{
-  font-size:16px;color:rgba(255,255,255,.45);
-  line-height:1.7;max-width:520px;margin-bottom:40px;
-}
+.wnum{background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:14px 0}
+.wcard.latest .wnum{background:var(--or)}
+.wn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--w);line-height:1}
+.wnl{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:1px}
+.wcard.latest .wnl{color:rgba(255,255,255,.65)}
+.new-dot{position:absolute;top:6px;right:6px;width:6px;height:6px;border-radius:50%;background:#8ec;box-shadow:0 0 0 2px rgba(142,204,142,.3)}
 
-.hero-meta{
-  display:flex;gap:24px;flex-wrap:wrap;
-  font-family:'Barlow Condensed',sans-serif;font-weight:600;
-  font-size:12px;letter-spacing:.08em;text-transform:uppercase;
-  color:rgba(255,255,255,.3);
-}
-.hero-meta span{display:flex;align-items:center;gap:6px}
-.hero-meta span::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--or);flex-shrink:0}
+.wbody{padding:13px 16px}
+.wperiod{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+.wtitle{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--ink);line-height:1.2;margin-bottom:8px}
+.wmets{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:6px}
+.wm{background:var(--sand);border-radius:7px;padding:3px 8px;text-align:center}
+.wmv{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;line-height:1}
+.wml{font-size:9px;color:var(--ink3);text-transform:uppercase;letter-spacing:.04em}
+.wmv.g{color:var(--green)}.wmv.a{color:var(--amber)}.wmv.r{color:var(--red)}.wmv.o{color:var(--or)}
+.wops{display:flex;gap:4px;flex-wrap:wrap}
+.wop{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:9px;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:20px;background:var(--sand2);color:var(--ink3)}
 
-/* Scroll cue */
-.scroll-cue{
-  position:absolute;bottom:36px;left:64px;z-index:1;
-  display:flex;align-items:center;gap:10px;
-  font-family:'Barlow Condensed',sans-serif;font-weight:600;
-  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(255,255,255,.2);animation:pulse 2.5s ease-in-out infinite;
-}
-@keyframes pulse{0%,100%{opacity:.3}50%{opacity:.7}}
-.scroll-arrow{
-  width:20px;height:20px;border:1px solid rgba(255,255,255,.2);
-  border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;
-}
+.warr{font-size:15px;color:var(--ink3);padding:0 16px;display:flex;align-items:center;transition:transform .17s;flex-shrink:0}
+.wcard.latest .warr{color:var(--or)}
 
-/* ---- REPORTS SECTION ---- */
-.reports-section{
-  background:var(--sand);padding:80px 64px;
-  position:relative;
-}
-.reports-section::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--or),transparent);
-}
+/* OPS STRIP */
+.ops{background:var(--ink);padding:28px 64px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;border-top:1px solid rgba(255,255,255,.06)}
+.op-i{}
+.op-av{width:36px;height:36px;border-radius:50%;background:var(--or);color:var(--w);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.op-n{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:var(--w)}
+.op-r{font-size:10px;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px}
+.op-bar{height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;margin-bottom:3px}
+.op-bar-f{height:4px;background:var(--or);border-radius:2px}
+.op-ql{font-size:11px;color:rgba(255,255,255,.3);display:flex;justify-content:space-between}
+.op-ql span:last-child{color:var(--or);font-weight:600}
 
-.section-head{margin-bottom:40px}
-.section-eyebrow{
-  font-family:'Barlow Condensed',sans-serif;font-weight:700;
-  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--or);margin-bottom:10px;
-}
-.section-title{
-  font-family:'Barlow Condensed',sans-serif;font-weight:800;
-  font-size:36px;color:var(--ink);line-height:1.1;
-}
+/* FOOTER */
+.footer{background:var(--ink);padding:18px 64px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.fbrand{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;color:var(--or);letter-spacing:.15em;text-transform:uppercase}
+.fnote{font-size:11px;color:rgba(255,255,255,.2)}
 
-/* Report cards */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pill-new{display:inline-block;padding:1px 7px;border-radius:20px;font-size:10px;font-weight:600;font-family:'Barlow Condensed',sans-serif;letter-spacing:.05em;text-transform:uppercase;background:rgba(45,122,79,.25);color:#8ec;margin-left:5px}
 
-.card{
-  background:var(--w);border:1.5px solid var(--sand3);
-  border-radius:18px;overflow:hidden;
-  text-decoration:none;color:inherit;
-  display:flex;flex-direction:column;
-  transition:transform .2s,box-shadow .2s,border-color .2s;
-  position:relative;
-}
-.card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 20px 40px rgba(26,25,22,.12);
-  border-color:var(--or);
-}
-.card:hover .card-arrow{transform:translateX(4px)}
-
-.card-top{
-  background:var(--ink);padding:22px 24px 20px;
-  position:relative;overflow:hidden;
-}
-.card-top::after{
-  content:'';position:absolute;right:-20px;bottom:-20px;
-  width:100px;height:100px;border-radius:50%;
-  border:20px solid rgba(255,87,1,.1);pointer-events:none;
-}
-.card-num{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:48px;line-height:1;color:rgba(255,87,1,.15);
-  position:absolute;top:12px;right:20px;
-}
-.card-tag{
-  display:inline-block;
-  font-family:'Barlow Condensed',sans-serif;font-weight:700;
-  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-  padding:3px 10px;border-radius:20px;margin-bottom:12px;
-}
-.tag-new{background:rgba(45,122,79,.25);color:#8ec}
-.tag-trend{background:rgba(26,95,168,.25);color:#8bc}
-.tag-full{background:rgba(255,87,1,.15);color:rgba(255,87,1,.8)}
-
-.card-title{
-  font-family:'Barlow Condensed',sans-serif;font-weight:800;
-  font-size:22px;color:var(--w);line-height:1.15;
-  position:relative;z-index:1;
-}
-.card-date{
-  font-size:11px;color:rgba(255,255,255,.35);
-  margin-top:6px;position:relative;z-index:1;
-  font-family:'Barlow Condensed',sans-serif;font-weight:600;
-  letter-spacing:.06em;text-transform:uppercase;
-}
-
-.card-body{padding:20px 24px;flex:1;display:flex;flex-direction:column;gap:12px}
-.card-desc{font-size:13px;color:var(--ink3);line-height:1.65;flex:1}
-
-.card-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.stat{background:var(--sand);border-radius:8px;padding:8px 10px;text-align:center}
-.stat-val{
-  font-family:'Barlow Condensed',sans-serif;font-weight:800;
-  font-size:22px;color:var(--or);line-height:1;
-}
-.stat-label{font-size:10px;color:var(--ink3);margin-top:2px;line-height:1.3}
-
-.card-footer{
-  padding:14px 24px;border-top:1px solid var(--sand);
-  display:flex;align-items:center;justify-content:space-between;
-}
-.card-cta{
-  font-family:'Barlow Condensed',sans-serif;font-weight:700;
-  font-size:12px;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--or2);
-}
-.card-arrow{
-  width:28px;height:28px;border-radius:50%;border:1.5px solid var(--sand3);
-  display:flex;align-items:center;justify-content:center;
-  font-size:13px;color:var(--ink3);
-  transition:transform .2s;
-}
-
-/* ---- INFO STRIP ---- */
-.info-strip{
-  background:var(--ink);padding:40px 64px;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
-  border-top:1px solid rgba(255,255,255,.06);
-}
-.info-item{}
-.info-label{
-  font-family:'Barlow Condensed',sans-serif;font-weight:700;
-  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(255,255,255,.3);margin-bottom:6px;
-}
-.info-val{
-  font-family:'Barlow Condensed',sans-serif;font-weight:800;
-  font-size:18px;color:var(--w);
-}
-.info-sub{font-size:12px;color:rgba(255,255,255,.3);margin-top:2px}
-
-/* ---- FOOTER ---- */
-.footer{
-  background:var(--ink);padding:24px 64px;
-  border-top:1px solid rgba(255,255,255,.06);
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:10px;
-}
-.footer-brand{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:15px;color:var(--or);letter-spacing:.15em;text-transform:uppercase;
-}
-.footer-note{font-size:12px;color:rgba(255,255,255,.2)}
-
-@media(max-width:900px){
-  .hero,.reports-section,.info-strip,.footer{padding-left:24px;padding-right:24px}
-  .scroll-cue{left:24px}
-  .cards{grid-template-columns:1fr}
-  .info-strip{grid-template-columns:1fr 1fr}
-  .hero-title{font-size:clamp(42px,10vw,72px)}
-}
-@media(max-width:500px){
-  .info-strip{grid-template-columns:1fr}
-  .card-stats{grid-template-columns:1fr 1fr 1fr}
-}
+@media(max-width:900px){.hero,.section,.ops,.footer{padding-left:20px;padding-right:20px}.ops{grid-template-columns:1fr 1fr}.hero-title{font-size:clamp(36px,9vw,58px)}}
+@media(max-width:520px){.ops{grid-template-columns:1fr}.wmets{gap:5px}}
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-bg">
-    <div class="hero-bg-line"></div>
-  </div>
-
+  <div class="hero-grid"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">Athlon Club Roma</div>
-
+    <div class="eyebrow">Athlon Club Roma · Uso Interno</div>
     <h1 class="hero-title">
-      <span class="line1">Report</span>
-      <span class="line2">Commerciale</span>
-      <span class="line3">Aprile 2026</span>
+      <span class="l1">Report</span>
+      <span class="l2">Commerciale</span>
+      <span class="l3">Aprile 2026</span>
     </h1>
-
-    <p class="hero-desc">
-      Analisi dell'attività commerciale del team: qualità dei task, relazioni reali con i lead, trend settimanali e disdette. Dati estratti direttamente da Airtable.
-    </p>
-
-    <div class="hero-meta">
-      <span>Giulia D'Annunzio</span>
-      <span>Alice Cortiula</span>
-      <span>Claudia Bonanni</span>
-      <span>Valentina Palazzo</span>
+    <p class="hero-desc">Attività commerciale del team settimana per settimana. Solo relazioni reali — telefonate e walk-in con conversazione vera avvenuta.</p>
+    <div class="hero-stats">
+      <div class="hs"><span class="hs-val">4</span><span class="hs-lbl">Operatori</span></div>
+      <div class="hs"><span class="hs-val">4</span><span class="hs-lbl">Settimane</span></div>
+      <div class="hs"><span class="hs-val">~465</span><span class="hs-lbl">Relazioni reali</span></div>
+      <div class="hs"><span class="hs-val">Apr '26</span><span class="hs-lbl">Periodo</span></div>
     </div>
   </div>
-
-  <div class="scroll-cue">
-    <div class="scroll-arrow">↓</div>
-    Vedi i report
-  </div>
 </section>
 
-<!-- REPORTS -->
-<section class="reports-section">
-  <div class="section-head">
-    <div class="section-eyebrow">Tutti i report · Aprile 2026</div>
-    <h2 class="section-title">Scegli l'analisi</h2>
-  </div>
+<section class="section">
+  <div class="sec-eyebrow">Report settimanali · Relazioni reali</div>
+  <h2 class="sec-title">Settimana per settimana</h2>
+  <p class="sec-sub">Un report per ogni settimana. Solo task con relazione vera avvenuta. Ogni report include confronto con le 2 settimane precedenti.</p>
 
-  <div class="cards">
+  <div class="weeks">
 
-    <!-- CARD 1: Relazioni Reali -->
-    <a class="card" href="report_14_20apr_relazioni_reali.html">
-      <div class="card-top">
-        <div class="card-num">01</div>
-        <div class="card-tag tag-new">Nuovo · Dati puliti</div>
-        <div class="card-title">Relazioni Reali<br>14–20 Aprile</div>
-        <div class="card-date">Solo telefonate e walk-in con relazione vera</div>
+    <!-- S4 — ULTIMA -->
+    <a class="wcard latest" href="report_21_27apr_relazioni_reali.html">
+      <div class="wnum">
+        <div class="new-dot"></div>
+        <div class="wn">S4</div><div class="wnl">Ultima</div>
       </div>
-      <div class="card-body">
-        <p class="card-desc">
-          Analisi focalizzata su 121 interazioni reali — nessun "non risponde", nessun spoki senza conferma. Il metodo più preciso per misurare la qualità effettiva del team.
-        </p>
-        <div class="card-stats">
-          <div class="stat">
-            <div class="stat-val">121</div>
-            <div class="stat-label">Relazioni reali</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">0.70</div>
-            <div class="stat-label">Qualità media</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">100%</div>
-            <div class="stat-label">Task con contenuto</div>
-          </div>
+      <div class="wbody">
+        <div class="wperiod">21 – 27 aprile 2026</div>
+        <div class="wtitle">Settimana 4 <span class="pill-new">Più recente</span></div>
+        <div class="wmets">
+          <div class="wm"><span class="wmv o">97</span><span class="wml">Task</span></div>
+          <div class="wm"><span class="wmv g">0.72</span><span class="wml">Q. media</span></div>
+          <div class="wm"><span class="wmv g">91%</span><span class="wml">Giulia hi</span></div>
+          <div class="wm"><span class="wmv g">88%</span><span class="wml">Alice hi</span></div>
+          <div class="wm"><span class="wmv g">100%</span><span class="wml">Claudia hi</span></div>
+          <div class="wm"><span class="wmv g">100%</span><span class="wml">Valentina hi</span></div>
+        </div>
+        <div class="wops">
+          <span class="wop">Giulia</span><span class="wop">Alice</span><span class="wop">Claudia</span><span class="wop">Valentina</span>
         </div>
       </div>
-      <div class="card-footer">
-        <span class="card-cta">Apri report</span>
-        <div class="card-arrow">→</div>
-      </div>
+      <div class="warr">→</div>
     </a>
 
-    <!-- CARD 2: Trend qualità -->
-    <a class="card" href="report_trend_qualita_3settimane.html">
-      <div class="card-top">
-        <div class="card-num">02</div>
-        <div class="card-tag tag-trend">Trend · 3 settimane</div>
-        <div class="card-title">Trend Qualità<br>1–21 Aprile</div>
-        <div class="card-date">Analisi comparativa settimana per settimana</div>
-      </div>
-      <div class="card-body">
-        <p class="card-desc">
-          Come è cambiata la qualità dei task nelle tre settimane di aprile. Distribuzione per fascia, confronto per operatore, cause del calo e azioni correttive.
-        </p>
-        <div class="card-stats">
-          <div class="stat">
-            <div class="stat-val">3</div>
-            <div class="stat-label">Settimane</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">~730</div>
-            <div class="stat-label">Task totali</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">−16%</div>
-            <div class="stat-label">Calo Alice</div>
-          </div>
+    <!-- S3 -->
+    <a class="wcard" href="report_14_20apr_relazioni_reali.html">
+      <div class="wnum"><div class="wn">S3</div><div class="wnl">Sett.</div></div>
+      <div class="wbody">
+        <div class="wperiod">14 – 20 aprile 2026</div>
+        <div class="wtitle">Settimana 3</div>
+        <div class="wmets">
+          <div class="wm"><span class="wmv o">121</span><span class="wml">Task</span></div>
+          <div class="wm"><span class="wmv g">0.70</span><span class="wml">Q. media</span></div>
+          <div class="wm"><span class="wmv g">85%</span><span class="wml">Giulia hi</span></div>
+          <div class="wm"><span class="wmv a">69%</span><span class="wml">Alice hi</span></div>
+          <div class="wm"><span class="wmv g">93%</span><span class="wml">Claudia hi</span></div>
+          <div class="wm"><span class="wmv g">100%</span><span class="wml">Valentina hi</span></div>
+        </div>
+        <div class="wops">
+          <span class="wop">Giulia</span><span class="wop">Alice</span><span class="wop">Claudia</span><span class="wop">Valentina</span>
         </div>
       </div>
-      <div class="card-footer">
-        <span class="card-cta">Apri report</span>
-        <div class="card-arrow">→</div>
-      </div>
+      <div class="warr">→</div>
     </a>
 
-    <!-- CARD 3: Report completo -->
-    <a class="card" href="report_commerciale_14_21apr2026.html">
-      <div class="card-top">
-        <div class="card-num">03</div>
-        <div class="card-tag tag-full">Report completo</div>
-        <div class="card-title">Report Commerciale<br>14–21 Aprile</div>
-        <div class="card-date">Pipeline · Disdette · Obiezioni · Azioni</div>
-      </div>
-      <div class="card-body">
-        <p class="card-desc">
-          Il report settimanale completo: 149 richieste, tutti gli operatori, analisi delle obiezioni, disdette per categoria, feedback dai pass e azioni prioritarie.
-        </p>
-        <div class="card-stats">
-          <div class="stat">
-            <div class="stat-val">149</div>
-            <div class="stat-label">Richieste</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">324</div>
-            <div class="stat-label">Task</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">18</div>
-            <div class="stat-label">Disdette</div>
-          </div>
+    <!-- S2 -->
+    <a class="wcard" href="report_08_13apr_relazioni_reali.html">
+      <div class="wnum"><div class="wn">S2</div><div class="wnl">Sett.</div></div>
+      <div class="wbody">
+        <div class="wperiod">8 – 13 aprile 2026</div>
+        <div class="wtitle">Settimana 2</div>
+        <div class="wmets">
+          <div class="wm"><span class="wmv o">115</span><span class="wml">Task</span></div>
+          <div class="wm"><span class="wmv a">0.69</span><span class="wml">Q. media</span></div>
+          <div class="wm"><span class="wmv a">79%</span><span class="wml">Giulia hi</span></div>
+          <div class="wm"><span class="wmv r">67%</span><span class="wml">Alice hi</span></div>
+          <div class="wm"><span class="wmv a">75%</span><span class="wml">Claudia hi</span></div>
+          <div class="wm"><span class="wmv g">92%</span><span class="wml">Valentina hi</span></div>
+        </div>
+        <div class="wops">
+          <span class="wop">Giulia</span><span class="wop">Alice</span><span class="wop">Claudia</span><span class="wop">Valentina</span>
         </div>
       </div>
-      <div class="card-footer">
-        <span class="card-cta">Apri report</span>
-        <div class="card-arrow">→</div>
+      <div class="warr">→</div>
+    </a>
+
+    <!-- S1 -->
+    <a class="wcard" href="report_01_07apr_relazioni_reali.html">
+      <div class="wnum"><div class="wn">S1</div><div class="wnl">Sett.</div></div>
+      <div class="wbody">
+        <div class="wperiod">1 – 7 aprile 2026</div>
+        <div class="wtitle">Settimana 1</div>
+        <div class="wmets">
+          <div class="wm"><span class="wmv o">134</span><span class="wml">Task</span></div>
+          <div class="wm"><span class="wmv g">0.71</span><span class="wml">Q. media</span></div>
+          <div class="wm"><span class="wmv g">86%</span><span class="wml">Giulia hi</span></div>
+          <div class="wm"><span class="wmv g">86%</span><span class="wml">Alice hi</span></div>
+          <div class="wm"><span class="wmv g">82%</span><span class="wml">Claudia hi</span></div>
+          <div class="wm"><span class="wmv g">88%</span><span class="wml">Valentina hi</span></div>
+        </div>
+        <div class="wops">
+          <span class="wop">Giulia</span><span class="wop">Alice</span><span class="wop">Claudia</span><span class="wop">Valentina</span>
+        </div>
       </div>
+      <div class="warr">→</div>
     </a>
 
   </div>
 </section>
 
-<!-- INFO STRIP -->
-<div class="info-strip">
-  <div class="info-item">
-    <div class="info-label">Fonte dati</div>
-    <div class="info-val">Airtable CRM</div>
-    <div class="info-sub">Base ATHLON CLUB</div>
+<div class="ops">
+  <div class="op-i">
+    <div class="op-av">GD</div>
+    <div class="op-n">Giulia D'Annunzio</div>
+    <div class="op-r">Commerciale</div>
+    <div class="op-bar"><div class="op-bar-f" style="width:90%"></div></div>
+    <div class="op-ql"><span>Q. S4</span><span>0.720</span></div>
   </div>
-  <div class="info-item">
-    <div class="info-label">Periodo</div>
-    <div class="info-val">Aprile 2026</div>
-    <div class="info-sub">Settimane 1–21 aprile</div>
+  <div class="op-i">
+    <div class="op-av">AC</div>
+    <div class="op-n">Alice Cortiula</div>
+    <div class="op-r">Commerciale</div>
+    <div class="op-bar"><div class="op-bar-f" style="width:86%"></div></div>
+    <div class="op-ql"><span>Q. S4</span><span>0.689</span></div>
   </div>
-  <div class="info-item">
-    <div class="info-label">Team commerciale</div>
-    <div class="info-val">4 operatori</div>
-    <div class="info-sub">Giulia · Alice · Claudia · Valentina</div>
+  <div class="op-i">
+    <div class="op-av">CB</div>
+    <div class="op-n">Claudia Bonanni</div>
+    <div class="op-r">Commerciale</div>
+    <div class="op-bar"><div class="op-bar-f" style="width:94%"></div></div>
+    <div class="op-ql"><span>Q. S4</span><span>0.752</span></div>
   </div>
-  <div class="info-item">
-    <div class="info-label">Generato il</div>
-    <div class="info-val">21 apr 2026</div>
-    <div class="info-sub">Uso interno riservato</div>
+  <div class="op-i">
+    <div class="op-av">VP</div>
+    <div class="op-n">Valentina Palazzo</div>
+    <div class="op-r">Commerciale</div>
+    <div class="op-bar"><div class="op-bar-f" style="width:95%"></div></div>
+    <div class="op-ql"><span>Q. S4</span><span>0.760</span></div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-brand">Athlon Club Roma</div>
-  <div class="footer-note">© 2026 Athlon Club Roma · Via delle Isole 22 · Roma · Uso interno riservato</div>
+  <div class="fbrand">Athlon Club Roma</div>
+  <div class="fnote">© 2026 · Via delle Isole 22, Roma · Uso interno riservato · Fonte: Airtable ATHLON CLUB</div>
 </footer>
 
 </body>

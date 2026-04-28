@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relazioni Reali 21–27 Aprile — Athlon Club Roma</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --or:#ff5701;--or2:#cc4500;--or3:rgba(255,87,1,.1);
+  --sand:#F5F0E8;--sand2:#EDE8DF;--sand3:#DDD8CF;
+  --ink:#1a1916;--ink2:#3a3835;--ink3:#6b6860;
+  --w:#ffffff;
+  --green:#2d7a4f;--gbg:#e8f5ee;
+  --red:#c0392b;--rbg:#fbeaea;
+  --amber:#b5600a;--abg:#fdf0e0;
+  --blue:#1a5fa8;--bbg:#e5f0fb;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--ink);line-height:1.55}
+
+/* ---- NAVBAR ---- */
+.nav{background:var(--ink);border-bottom:1px solid rgba(255,87,1,.2);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 48px;display:flex;align-items:center;gap:0}
+.nav-brand{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:.15em;text-transform:uppercase;color:var(--or);padding:14px 0;margin-right:28px;white-space:nowrap}
+.nav-links{display:flex;gap:0;flex:1}
+.nav-link{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:14px 16px;text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+.nav-link:hover{color:var(--w)}
+.nav-link.active{color:var(--or);border-bottom-color:var(--or)}
+@media(max-width:700px){.nav-inner{padding:0 16px}.nav-brand{margin-right:12px}.nav-link{padding:12px 10px;font-size:11px}}
+
+/* ---- HEADER ---- */
+.hdr{background:var(--ink);padding:40px 48px 36px;position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;border:44px solid rgba(255,87,1,.09)}
+.hdr::after{content:'';position:absolute;right:50px;bottom:-70px;width:160px;height:160px;border-radius:50%;border:24px solid rgba(255,87,1,.05)}
+.hdr-eyebrow{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--or);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.hdr-eyebrow::before{content:'';width:28px;height:2px;background:var(--or)}
+.hdr-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:58px;line-height:.95;color:var(--w);letter-spacing:-.5px;margin-bottom:8px}
+.hdr-title em{color:var(--or);font-style:normal}
+.hdr-sub{font-size:14px;color:rgba(255,255,255,.45);margin-top:16px;max-width:560px;line-height:1.6}
+.hdr-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:4px 12px;font-size:11.5px;color:rgba(255,255,255,.5)}
+.badge strong{color:rgba(255,255,255,.8);font-weight:500}
+
+.body{padding:40px 48px 64px;max-width:1100px;margin:0 auto}
+
+/* ---- SECTION HEAD ---- */
+.sh{display:flex;align-items:center;gap:14px;margin:40px 0 18px}
+.sh::before{content:'';width:4px;height:28px;background:var(--or);border-radius:2px;flex-shrink:0}
+.sh h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;letter-spacing:.02em;text-transform:uppercase}
+
+/* ---- DIFFERENZA METODOLOGICA ---- */
+.method-box{background:var(--ink);border-radius:16px;padding:22px 28px;margin-bottom:10px;border-left:4px solid var(--or)}
+.method-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--or);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
+.method-col{padding:12px 16px;border-radius:10px;font-size:13px;line-height:1.7}
+.method-col.before{background:rgba(192,57,43,.15);border:1px solid rgba(192,57,43,.3)}
+.method-col.after{background:rgba(45,122,79,.15);border:1px solid rgba(45,122,79,.3)}
+.method-col-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.method-col.before .method-col-title{color:#e88;}
+.method-col.after .method-col-title{color:#8ec}
+.method-col p{color:rgba(255,255,255,.6)}
+
+/* ---- KPI ---- */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.kpi{background:var(--w);border:1.5px solid var(--sand3);border-radius:14px;padding:16px 18px}
+.kpi.dark{background:var(--ink);border-color:var(--ink)}
+.kpi-label{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3);margin-bottom:6px}
+.kpi.dark .kpi-label{color:rgba(255,255,255,.35)}
+.kpi-val{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:40px;line-height:1;color:var(--or)}
+.kpi-sub{font-size:11px;color:var(--ink3);margin-top:4px}
+.kpi.dark .kpi-sub{color:rgba(255,255,255,.25)}
+
+/* ---- OP CARDS ---- */
+.op-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:10px}
+.op-card{background:var(--w);border-radius:16px;overflow:hidden;border:1.5px solid var(--sand3)}
+.op-head{background:var(--ink);padding:14px 18px 12px}
+.op-init{width:36px;height:36px;border-radius:50%;background:var(--or);color:var(--w);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.op-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:var(--w)}
+.op-role{font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em}
+.op-body{padding:14px 18px}
+.mr{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:12.5px;border-bottom:1px solid var(--sand)}
+.mr:last-of-type{border-bottom:none}
+.ml{color:var(--ink3)}
+.mv{font-weight:600;color:var(--ink);font-size:13px}
+.mv.hi{color:var(--or);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px}
+.mv.good{color:var(--green)}
+.mv.bad{color:var(--red)}
+.qbadge{display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding:6px 10px;background:var(--sand);border-radius:8px;font-size:11.5px;color:var(--ink3)}
+.qbadge strong{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px}
+
+/* Qualità bar stack */
+.qbar-label{font-size:11px;color:var(--ink3);margin:10px 0 2px}
+.qbar{display:flex;height:12px;border-radius:6px;overflow:hidden;width:100%}
+.qb-hi{background:var(--green);height:12px}
+.qb-mid{background:#ef9f27;height:12px}
+.qb-lo{background:var(--red);height:12px}
+
+/* ---- CHART ---- */
+.chart-dark{background:var(--ink);border-radius:16px;padding:22px 26px;margin:10px 0;position:relative;overflow:hidden}
+.chart-dark::before{content:'';position:absolute;right:-30px;top:-30px;width:160px;height:160px;border-radius:50%;background:rgba(255,87,1,.04)}
+.chart-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:4px}
+.chart-sub{font-size:11.5px;color:rgba(255,255,255,.22);margin-bottom:14px}
+.ch-wrap{position:relative}
+.leg{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+.leg-i{display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,.5)}
+.leg-sq{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ---- CONTENT CARDS ---- */
+.cc{background:var(--w);border:1.5px solid var(--sand3);border-radius:14px;padding:16px 20px;margin:6px 0}
+.cc-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;padding-bottom:8px;border-bottom:1.5px solid var(--sand)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+
+/* Insight cards */
+.ic-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--or2);margin-bottom:7px}
+.ic-text{font-size:13px;color:var(--ink3);line-height:1.65}
+
+/* Alerts */
+.al{display:flex;gap:12px;padding:12px 16px;border-radius:12px;font-size:13px;line-height:1.55;margin:7px 0;align-items:flex-start}
+.al .bar{width:4px;border-radius:2px;flex-shrink:0;align-self:stretch;min-height:16px}
+.al-or{background:var(--or3)} .al-or .bar{background:var(--or)}
+.al-red{background:var(--rbg)} .al-red .bar{background:var(--red)}
+.al-green{background:var(--gbg)} .al-green .bar{background:var(--green)}
+.al-amber{background:var(--abg)} .al-amber .bar{background:var(--amber)}
+.al-blue{background:var(--bbg)} .al-blue .bar{background:var(--blue)}
+
+/* Quote cards */
+.qcard{background:var(--ink);border-radius:12px;padding:14px 18px;margin:5px 0;position:relative}
+.qcard::before{content:'"';position:absolute;top:-6px;left:14px;font-family:'Barlow Condensed',sans-serif;font-size:48px;color:var(--or);opacity:.3;line-height:1}
+.qcard-text{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;font-style:italic;padding-top:4px}
+.qcard-meta{font-size:11px;color:rgba(255,255,255,.35);margin-top:6px;font-style:normal;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+
+/* Pill */
+.pill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:600;font-family:'Barlow Condensed',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.p-green{background:var(--gbg);color:var(--green)}
+.p-red{background:var(--rbg);color:var(--red)}
+.p-amber{background:var(--abg);color:var(--amber)}
+.p-blue{background:var(--bbg);color:var(--blue)}
+.p-gray{background:var(--sand2);color:var(--ink3)}
+.p-or{background:var(--or3);color:var(--or2)}
+
+ul.dot-list{list-style:none;font-size:13px;color:var(--ink3);line-height:1.85}
+ul.dot-list li{padding-left:14px;position:relative}
+ul.dot-list li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--or)}
+
+/* Actions */
+.ac{background:var(--w);border-radius:14px;padding:16px 18px;border:1.5px solid var(--sand3);display:flex;gap:12px;margin:6px 0}
+.ac.urgent{border-color:var(--or);background:rgba(255,87,1,.04)}
+.ac-idx{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:36px;line-height:1;color:var(--sand3);flex-shrink:0;width:40px}
+.ac.urgent .ac-idx{color:rgba(255,87,1,.2)}
+.ac-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:var(--ink);margin-bottom:3px;text-transform:uppercase}
+.ac.urgent .ac-title{color:var(--or2)}
+.ac-text{font-size:12.5px;color:var(--ink3);line-height:1.5}
+.actions-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+.footer{background:var(--ink);padding:22px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:var(--or);letter-spacing:.12em;text-transform:uppercase}
+.footer-note{font-size:12px;color:rgba(255,255,255,.25)}
+
+@media(max-width:700px){
+  .hdr,.body,.footer{padding-left:20px;padding-right:20px}
+  .op-grid,.kpi-row,.two-col,.three-col,.actions-grid{grid-template-columns:1fr}
+  .hdr-title{font-size:42px}
+  .method-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav style="background:#1a1916;border-bottom:1px solid rgba(255,87,1,.2);position:sticky;top:0;z-index:100"><div style="max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:stretch;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:#ff5701;padding:0 14px 0 0;display:flex;align-items:center;white-space:nowrap;flex-shrink:0;border-right:1px solid rgba(255,255,255,.08);margin-right:4px">Athlon</div><a href="report_01_07apr_relazioni_reali.html" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:0 12px;text-decoration:none;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;color:rgba(255,255,255,.4);border-bottom:2px solid transparent">S1 — 1–7 apr</a><a href="report_08_13apr_relazioni_reali.html" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:0 12px;text-decoration:none;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;color:rgba(255,255,255,.4);border-bottom:2px solid transparent">S2 — 8–13 apr</a><a href="report_14_20apr_relazioni_reali.html" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:0 12px;text-decoration:none;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;color:rgba(255,255,255,.4);border-bottom:2px solid transparent">S3 — 14–20 apr</a><a href="report_21_27apr_relazioni_reali.html" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:0 12px;text-decoration:none;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;color:#ff5701;border-bottom:2px solid #ff5701;font-weight:700">S4 — 21–27 apr</a><a href="report_trend_qualita_3settimane.html" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:0 12px;text-decoration:none;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;color:rgba(255,255,255,.4);border-bottom:2px solid transparent">Trend</a><a href="report_commerciale_14_21apr2026.html" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:0 12px;text-decoration:none;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;color:rgba(255,255,255,.4);border-bottom:2px solid transparent">Report completo</a><a href="index.html" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:0 12px;text-decoration:none;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;color:rgba(255,255,255,.4);border-bottom:2px solid transparent">← Hub</a></div></nav>
+
+
+<!-- NAVBAR -->
+
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-eyebrow">Athlon Club Roma · Analisi Commerciale</div>
+  <div class="hdr-title">Relazioni<br><em>Reali</em></div>
+  <div class="hdr-sub">Solo telefonate e walk-in con esito POSITIVO che hanno generato una vera relazione con il lead. Nessun "non risponde", nessun "mandato spoki". Dati puliti.</div>
+  <div class="hdr-badges">
+    <div class="badge"><strong>Periodo</strong> 21–27 aprile 2026</div>
+    <div class="badge"><strong>Fonte</strong> Airtable · task POSITIVI filtrati</div>
+    <div class="badge"><strong>Canali</strong> Telefonate + Walk-in / Tour</div>
+    <div class="badge"><strong>Relazioni analizzate</strong> 97 task</div>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- METODOLOGIA -->
+  <div class="sh"><h2>Perché questo report è diverso</h2></div>
+
+  <div class="method-box">
+    <div class="method-title">Cambio di metodologia — dati puliti</div>
+    <p style="color:rgba(255,255,255,.55);font-size:13px;line-height:1.6">In questa settimana il team ha applicato un criterio rigoroso: un task viene segnato POSITIVO solo se è avvenuta una relazione vera con il lead. Addio agli esiti POSITIVO su chiamate senza risposta, spoki inviati senza conferma, o contatti irraggiungibili. Il risultato: i numeri scendono, ma ogni task conta davvero.</p>
+    <div class="method-grid">
+      <div class="method-col before">
+        <div class="method-col-title">❌ Precedente (inquinato)</div>
+        <p>POSITIVO = risposta generica, mandato spoki, qualità 0 frequente<br>→ inflava il volume, abbassava la qualità media</p>
+      </div>
+      <div class="method-col after">
+        <div class="method-col-title">✅ Questa settimana (pulito)</div>
+        <p>POSITIVO = conversazione reale, contenuto acquisito, relazione instaurata<br>→ qualità media 0.65–0.73, 100% task con contenuto</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI -->
+  
+  <!-- NOTA SETTIMANA -->
+  <div class="sh"><h2>Riepilogo settimana</h2></div>
+
+  <div class="al al-green" style="margin-bottom:20px">
+    <div class="bar"></div>
+    <div><strong>Miglioramento netto rispetto alla settimana precedente.</strong> La qualità media sale in tutti gli operatori. Giulia tocca il 91% di task hi, Alice risale all'88%, Claudia raggiunge il 100%. Il criterio "relazione reale" viene applicato con più consistenza — i task vuoti da spoki si riducono ma non scompaiono del tutto.</div>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-row">
+    <div class="kpi dark">
+      <div class="kpi-label">Relazioni totali</div>
+      <div class="kpi-val">97</div>
+      <div class="kpi-sub">periodo 7 giorni (21–27 apr)</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Walk-in positivi</div>
+      <div class="kpi-val" style="color:var(--blue)">18</div>
+      <div class="kpi-sub">19% del totale</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Disdette gestite</div>
+      <div class="kpi-val" style="color:var(--amber)">1</div>
+      <div class="kpi-sub">vs 24 settimana precedente</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Qualità media</div>
+      <div class="kpi-val" style="color:var(--green)">0.72</div>
+      <div class="kpi-sub">↑ da 0.70 della settimana prec.</div>
+    </div>
+  </div>
+
+  <!-- OP CARDS -->
+  <div class="sh"><h2>Analisi per operatore — relazioni reali</h2></div>
+  <div class="op-grid">
+
+    <div class="op-card">
+      <div class="op-head">
+        <div class="op-init">GD</div>
+        <div class="op-name">Giulia D'Annunzio</div>
+        <div class="op-role">Commerciale</div>
+      </div>
+      <div class="op-body">
+        <div class="mr"><span class="ml">Telefonate reali</span><span class="mv">32</span></div>
+        <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv hi">12</span></div>
+        <div class="mr"><span class="ml">Totale relazioni</span><span class="mv hi">44</span></div>
+        <div class="mr"><span class="ml">Disdette gestite</span><span class="mv">1</span></div>
+        <div class="mr"><span class="ml">Pass in conversione</span><span class="mv good">5</span></div>
+        <div class="qbadge">
+          <span>Qualità media</span>
+          <strong style="color:var(--green)">0.720</strong>
+        </div>
+        <div class="qbar-label">hi≥0.72 · mid · lo (% task)</div>
+        <div class="qbar">
+          <div class="qb-hi" style="width:91%"></div>
+          <div class="qb-mid" style="width:0%"></div>
+          <div class="qb-lo" style="width:9%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink3);margin-top:3px">
+          <span>91% buoni ↑</span><span>4 bassi (spoki/chiusi)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="op-card">
+      <div class="op-head">
+        <div class="op-init">AC</div>
+        <div class="op-name">Alice Cortiula</div>
+        <div class="op-role">Commerciale</div>
+      </div>
+      <div class="op-body">
+        <div class="mr"><span class="ml">Telefonate reali</span><span class="mv hi">33</span></div>
+        <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv">1</span></div>
+        <div class="mr"><span class="ml">Totale relazioni</span><span class="mv hi">34</span></div>
+        <div class="mr"><span class="ml">Disdette gestite</span><span class="mv">0</span></div>
+        <div class="mr"><span class="ml">Pass in conversione</span><span class="mv good">4</span></div>
+        <div class="qbadge">
+          <span>Qualità media</span>
+          <strong style="color:var(--green)">0.689</strong>
+        </div>
+        <div class="qbar-label">hi≥0.72 · mid · lo (% task)</div>
+        <div class="qbar">
+          <div class="qb-hi" style="width:88%"></div>
+          <div class="qb-mid" style="width:0%"></div>
+          <div class="qb-lo" style="width:12%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink3);margin-top:3px">
+          <span>88% buoni ↑↑ da 69%</span><span>4 bassi (3 spoki)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="op-card">
+      <div class="op-head">
+        <div class="op-init">CB</div>
+        <div class="op-name">Claudia Bonanni</div>
+        <div class="op-role">Commerciale</div>
+      </div>
+      <div class="op-body">
+        <div class="mr"><span class="ml">Telefonate reali</span><span class="mv">12</span></div>
+        <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv">3</span></div>
+        <div class="mr"><span class="ml">Totale relazioni</span><span class="mv">15</span></div>
+        <div class="mr"><span class="ml">Disdette gestite</span><span class="mv">1</span></div>
+        <div class="mr"><span class="ml">Pass in conversione</span><span class="mv good">2</span></div>
+        <div class="qbadge">
+          <span>Qualità media</span>
+          <strong style="color:var(--green)">0.752</strong>
+        </div>
+        <div class="qbar-label">hi≥0.72 · mid · lo (% task)</div>
+        <div class="qbar"><div class="qb-hi" style="width:100%"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink3);margin-top:3px">
+          <span>100% buoni ← miglior dato</span><span>0 bassi</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="op-card">
+      <div class="op-head">
+        <div class="op-init">VP</div>
+        <div class="op-name">Valentina Palazzo</div>
+        <div class="op-role">Commerciale</div>
+      </div>
+      <div class="op-body">
+        <div class="mr"><span class="ml">Telefonate reali</span><span class="mv">2</span></div>
+        <div class="mr"><span class="ml">Walk-in positivi</span><span class="mv">2</span></div>
+        <div class="mr"><span class="ml">Totale relazioni</span><span class="mv">4</span></div>
+        <div class="mr"><span class="ml">Disdette gestite</span><span class="mv">0</span></div>
+        <div class="mr"><span class="ml">Pass in conversione</span><span class="mv good">2</span></div>
+        <div class="qbadge">
+          <span>Qualità media</span>
+          <strong style="color:var(--green)">0.760</strong>
+        </div>
+        <div class="qbar-label">hi≥0.72 · mid · lo (% task)</div>
+        <div class="qbar"><div class="qb-hi" style="width:100%"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink3);margin-top:3px">
+          <span>100% buoni</span><span>Volume basso</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHART -->
+  <div class="chart-dark">
+    <div class="chart-title">Qualità media e distribuzione task — 21–27 aprile</div>
+    <div class="chart-sub">Confronto settimana precedente (14–20 apr) vs questa settimana</div>
+    <div class="leg">
+      <div class="leg-i"><div class="leg-sq" style="background:#2d7a4f"></div>Questa settimana</div>
+      <div class="leg-i"><div class="leg-sq" style="background:rgba(255,87,1,.5)"></div>Settimana prec. (14–20)</div>
+    </div>
+    <div class="ch-wrap" style="height:200px"><canvas id="qualChart"></canvas></div>
+  </div>
+
+  <div class="chart-dark" style="margin-top:12px">
+    <div class="chart-title">% task hi (≥0.72) — confronto due settimane</div>
+    <div class="chart-sub">Percentuale di task con contenuto completo per operatore</div>
+    <div class="ch-wrap" style="height:180px"><canvas id="hiChart"></canvas></div>
+  </div>
+
+  <!-- LETTURA QUALITATIVA -->
+  <div class="sh"><h2>Lettura qualitativa per operatore</h2></div>
+
+  <div class="two-col">
+    <div class="cc">
+      <div class="ic-title">Giulia — costanza walk-in + telefonate migliorate</div>
+      <div class="ic-text">Il miglioramento di Giulia questa settimana è solido: 91% di task hi, 4 bassi su 44 totali e tutti da spoki o lead chiusi senza interesse. I walk-in continuano ad essere documentati con profondità. Due case rilevanti: una signora anziana post-operazione inviata dal medico (acqua fitness, fascia pranzo, tour con Iris), e un uomo che viene da noi da piccolo e si è presentato nel mezzo delle pratiche dopo la morte della madre — trattato con sensibilità e appuntamento in sede.<br><br>I 4 task bassi sono tutti spoki o link app tel già inviati in passato — limite accettabile considerando il volume totale (44 relazioni in 7 giorni).</div>
+    </div>
+    <div class="cc">
+      <div class="ic-title">Alice — recupero netto da 69% a 88%</div>
+      <div class="ic-text">Il miglioramento di Alice è il dato più significativo della settimana: da 69% hi a 88% hi. I 4 task bassi sono tutti "spoki nr" o "lasciato app tel" — la stessa tipologia problematica della settimana precedente, ma molto ridotta (4 vs 10). I task positivi sono ben documentati, con feedback specifici su prezzi, attività, obiezioni. I pass gestiti (4) sono il suo punto di forza stabile.<br><br>L'unico walk-in della settimana è curiosamente minimo (ragazza belga di passaggio, accesso singolo). Il focus è quasi interamente sulle telefonate.</div>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:10px">
+    <div class="cc">
+      <div class="ic-title">Claudia — 100% hi, secondo risultato perfetto consecutivo</div>
+      <div class="ic-text">Claudia conferma il 100% di task con qualità ≥ 0.72 per la seconda settimana consecutiva. Il volume è basso (15 relazioni) ma ogni task ha contenuto. Questa settimana ha gestito due casi medici (ortopedico che prescrive nuoto) con approccio personalizzato, e il caso disdetta di un bambino che vuole cambiare sport — documentato con feedback sull'esperienza positiva degli istruttori. Recall a fine giugno su lead Virgin già programmato.</div>
+    </div>
+    <div class="cc">
+      <div class="ic-title">Valentina — 2 pass in conversione su 4 task</div>
+      <div class="ic-text">Il dato di Valentina questa settimana è notevole in proporzione: 2 pass in fase di attivazione abbonamento su 4 relazioni totali. Il walk-in della signora 54enne (danza classica, vuole riprendere) è il task più ricco della settimana insieme a quello di Giulia sull'uomo con la madre. Valentina documenta bene anche le obiezioni (prezzo mensile Smart percepito alto) e i feedback sulla struttura. Volume ancora basso ma costante.</div>
+    </div>
+  </div>
+
+  <!-- INSIGHT DAL CAMPO -->
+  <div class="sh"><h2>Insight dal campo — segnali ricorrenti</h2></div>
+
+  <div class="three-col">
+    <div class="cc">
+      <div class="cc-title">Prezzo — nuova frizione emersa</div>
+      <ul class="dot-list">
+        <li><strong>Abbonamento solo acqua assente</strong> — segnalato da almeno 3 lead diversi questa settimana (come la precedente). Chi fa palestra altrove vuole solo la piscina senza pagare il premium</li>
+        <li><strong>Silver fitness cercato</strong> — una lead ha chiesto più volte se esistesse ancora, riferendosi a un vecchio piano. Segnale che alcuni ex clienti hanno una memoria di prezzo diversa</li>
+        <li><strong>Prezzi "altini"</strong> — frase usata da 2 lead maschili (ex iscritto 2022, nuoto libero pranzo). In entrambi i casi non c'era alternativa proposta documentata</li>
+      </ul>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Sito & app — segnali positivi e critici</div>
+      <ul class="dot-list">
+        <li><strong>Virtual tour apprezzato</strong> — citato da due lead (walk-in con Iris) come elemento decisivo per venire. "Si complimenta per la comodità del virtual tour"</li>
+        <li><strong>Lead "ultra moderni"</strong> — ex cliente che aveva visto le foto online: definisce la struttura così. Argomento da usare attivamente</li>
+        <li><strong>App prenotazioni = entusiasmo</strong> — Valentina riporta la reazione di una lead quando ha saputo che non serve telefonare: "rimasta entusiasta". Da comunicare sempre in fase di presentazione</li>
+        <li><strong>Sito difficile per anziani</strong> — lead di età avanzata "dice di non esserci riuscito". Segnale da portare al team digital</li>
+      </ul>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Casi medici — segmento in crescita</div>
+      <ul class="dot-list">
+        <li><strong>Ortopedico prescrive nuoto</strong> — 2 casi questa settimana (legamento rotto, problemi schiena). Entrambi con riluttanza iniziale ma intenzione di provarci</li>
+        <li><strong>Post-operazione</strong> — signora anziana indirizzata dal medico, cerca acqua fitness e fasce orarie del pranzo</li>
+        <li><strong>Ritenzione idrica</strong> — lead che scopre per la prima volta che la nostra offerta copre il suo problema medico. Conversione avvenuta dopo spiegazione dettagliata</li>
+        <li>I casi medici sono lead con alta motivazione — lo standard di documentazione dovrebbe essere massimo per questi profili</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ESEMPI TASK -->
+
+
+  <!-- CONFRONTO SETTIMANE PRECEDENTI -->
+  <div class="sh"><h2>Confronto con le settimane precedenti</h2></div>
+  <div class="al al-blue" style="margin-bottom:16px"><div class="bar"></div><div>Confronto ultime 3 settimane. Evidenziata la settimana corrente. <span style="color:#2d7a4f;font-weight:600">↑ miglioramento</span> · <span style="color:#c0392b;font-weight:600">↓ peggioramento</span> · <span style="color:#6b6860">↔ stabile</span>.</div></div>
+  <div style="background:var(--w);border:1.5px solid var(--sand3);border-radius:14px;overflow:hidden;margin-bottom:14px"><table class="stable"><thead><tr><th>Operatore</th><th class="center" colspan="3">8–13 apr</th><th class="center" colspan="3">14–20 apr</th><th class="center" colspan="3" style="background:rgba(255,87,1,.12);color:#ff5701">21–27 apr●</th></tr><tr><th></th><th class="center" style="font-size:10px;color:var(--ink3)">Q.media</th><th class="center" style="font-size:10px;color:var(--ink3)">hi≥0.72</th><th class="center" style="font-size:10px;color:var(--ink3)">Task</th><th class="center" style="font-size:10px;color:var(--ink3)">Q.media</th><th class="center" style="font-size:10px;color:var(--ink3)">hi≥0.72</th><th class="center" style="font-size:10px;color:var(--ink3)">Task</th><th class="center" style="font-size:10px;color:var(--ink3)">Q.media</th><th class="center" style="font-size:10px;color:var(--ink3)">hi≥0.72</th><th class="center" style="font-size:10px;color:var(--ink3)">Task</th></tr></thead><tbody><tr><td><strong>Giulia D'Annunzio</strong></td><td class="center" style=""><span style="color:var(--amber)">0.693</span> </td><td class="center" style=""><span style="color:var(--amber)">79%</span> </td><td class="center" style=";color:var(--ink3)">38</td><td class="center" style=""><span style="color:var(--green)">0.725</span> <span style="color:#2d7a4f;font-size:11px;font-weight:700">↑</span></td><td class="center" style=""><span style="color:var(--green)">85%</span> <span style="color:#2d7a4f;font-size:11px;font-weight:700">↑ +6%</span></td><td class="center" style=";color:var(--ink3)">40</td><td class="center" style="background:rgba(255,87,1,.06);font-weight:700;"><span style="color:var(--green)">0.720</span> <span style="color:#6b6860;font-size:11px">↔</span></td><td class="center" style="background:rgba(255,87,1,.06);font-weight:700;"><span style="color:var(--green)">91%</span> <span style="color:#2d7a4f;font-size:11px;font-weight:700">↑ +6%</span></td><td class="center" style="background:rgba(255,87,1,.06);font-weight:700;;color:var(--ink3)">44</td></tr>
+<tr><td><strong>Alice Cortiula</strong></td><td class="center" style=""><span style="color:var(--red)">0.628</span> </td><td class="center" style=""><span style="color:var(--red)">67%</span> </td><td class="center" style=";color:var(--ink3)">48</td><td class="center" style=""><span style="color:var(--red)">0.649</span> <span style="color:#2d7a4f;font-size:11px;font-weight:700">↑</span></td><td class="center" style=""><span style="color:var(--red)">69%</span> <span style="color:#6b6860;font-size:11px">↔</span></td><td class="center" style=";color:var(--ink3)">48</td><td class="center" style="background:rgba(255,87,1,.06);font-weight:700;"><span style="color:var(--amber)">0.689</span> <span style="color:#2d7a4f;font-size:11px;font-weight:700">↑</span></td><td class="center" style="background:rgba(255,87,1,.06);font-weight:700;"><span style="color:var(--green)">88%</span> <span style="color:#2d7a4f;font-size:11px;font-weight:700">↑ +19%</span></td><td class="center" style="background:rgba(255,87,1,.06);font-weight:700;;color:var(--ink3)">34</td></tr>
+<tr><td><strong>Claudia Bonanni</strong></td><td class="center" style=""><span style="color:var(--amber)">0.662</span> </td><td class="center" style=""><span style="color:var(--amber)">75%</span> </td><td class="center" style=";color:var(--ink3)">16</td><td class="center" style=""><span style="color:var(--green)">0.723</span> <span style="color:#2d7a4f;font-size:11px;font-weight:700">↑</span></td><td class="center" style=""><span style="color:var(--green)">93%</span> <span style="color:#2d7a4f;font-size:11px;font-weight:700">↑ +18%</span></td><td class="center" style=";color:var(--ink3)">29</td><td class="center" style="background:rgba(255,87,1,.06);font-weight:700;"><span style="color:var(--green)">0.752</span> <span style="color:#2d7a4f;font-size:11px;font-weight:700">↑</span></td><td class="center" style="background:rgba(255,87,1,.06);font-weight:700;"><span style="color:var(--green)">100%</span> <span style="color:#2d7a4f;font-size:11px;font-weight:700">↑ +7%</span></td><td class="center" style="background:rgba(255,87,1,.06);font-weight:700;;color:var(--ink3)">15</td></tr>
+<tr><td><strong>Valentina Palazzo</strong></td><td class="center" style=""><span style="color:var(--green)">0.773</span> </td><td class="center" style=""><span style="color:var(--green)">92%</span> </td><td class="center" style=";color:var(--ink3)">13</td><td class="center" style=""><span style="color:var(--green)">0.773</span> <span style="color:#6b6860;font-size:11px">↔</span></td><td class="center" style=""><span style="color:var(--green)">100%</span> <span style="color:#2d7a4f;font-size:11px;font-weight:700">↑ +8%</span></td><td class="center" style=";color:var(--ink3)">3</td><td class="center" style="background:rgba(255,87,1,.06);font-weight:700;"><span style="color:var(--green)">0.760</span> <span style="color:#6b6860;font-size:11px">↔</span></td><td class="center" style="background:rgba(255,87,1,.06);font-weight:700;"><span style="color:var(--green)">100%</span> <span style="color:#6b6860;font-size:11px">↔</span></td><td class="center" style="background:rgba(255,87,1,.06);font-weight:700;;color:var(--ink3)">4</td></tr>
+</tbody></table></div>
+  <div class="two-col">
+    <div class="chart-dark"><div class="chart-title">Qualità media — settimane</div><div class="leg"><div class="leg-i"><div class="leg-sq" style="background:#ff5701"></div>Giulia</div><div class="leg-i"><div class="leg-sq" style="background:#1a5fa8"></div>Alice</div><div class="leg-i"><div class="leg-sq" style="background:#2d7a4f"></div>Claudia</div><div class="leg-i"><div class="leg-sq" style="background:#b5600a"></div>Valentina</div></div><div class="ch-wrap" style="height:180px"><canvas id="cQ_s4"></canvas></div></div>
+    <div class="chart-dark"><div class="chart-title">% task hi (≥0.72)</div><div class="ch-wrap" style="height:180px"><canvas id="cH_s4"></canvas></div></div>
+  </div>
+  <script>(function(){const gc='rgba(255,255,255,.06)';const tc='rgba(255,255,255,.4)';new Chart(document.getElementById('cQ_s4'),{type:'line',data:{labels:["8–13 apr", "14–20 apr", "21–27 apr"],datasets:[{label:"Giulia",data:[0.693, 0.725, 0.72],borderColor:"#ff5701",backgroundColor:"#ff570122",tension:0.3,fill:true,borderWidth:2.5,pointRadius:5,pointBackgroundColor:"#ff5701"},{label:"Alice",data:[0.628, 0.649, 0.689],borderColor:"#1a5fa8",backgroundColor:"#1a5fa822",tension:0.3,fill:true,borderWidth:2.5,pointRadius:5,pointBackgroundColor:"#1a5fa8"},{label:"Claudia",data:[0.662, 0.723, 0.752],borderColor:"#2d7a4f",backgroundColor:"#2d7a4f22",tension:0.3,fill:true,borderWidth:2.5,pointRadius:5,pointBackgroundColor:"#2d7a4f"},{label:"Valentina",data:[0.773, 0.773, 0.76],borderColor:"#b5600a",backgroundColor:"#b5600a22",tension:0.3,fill:true,borderWidth:2.5,pointRadius:5,pointBackgroundColor:"#b5600a"}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tc,font:{size:10}},grid:{color:gc}},y:{beginAtZero:false,min:0.55,max:0.82,ticks:{color:tc,font:{size:10},callback:v=>v.toFixed(2)},grid:{color:gc}}}}});new Chart(document.getElementById('cH_s4'),{type:'bar',data:{labels:["8–13 apr", "14–20 apr", "21–27 apr"],datasets:[{label:"Giulia",data:[79, 85, 91],backgroundColor:"#ff5701",borderRadius:4,borderSkipped:false},{label:"Alice",data:[67, 69, 88],backgroundColor:"#1a5fa8",borderRadius:4,borderSkipped:false},{label:"Claudia",data:[75, 93, 100],backgroundColor:"#2d7a4f",borderRadius:4,borderSkipped:false},{label:"Valentina",data:[92, 100, 100],backgroundColor:"#b5600a",borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tc,font:{size:10}},grid:{color:gc}},y:{beginAtZero:true,max:105,ticks:{color:tc,font:{size:10},callback:v=>v+'%'},grid:{color:gc}}}}});})();</script>
+
+  <div class="sh"><h2>Esempi reali di task — positivi e negativi per operatrice</h2></div>
+
+  <div class="al al-or" style="margin-bottom:20px">
+    <div class="bar"></div>
+    <div>Clicca su ogni scheda per vedere il contenuto completo del task. Gli esempi sono tratti direttamente dai 97 task di questa settimana.</div>
+  </div>
+
+  <style>
+  .ex-op{margin-bottom:28px}
+  .ex-op-head{display:flex;align-items:center;gap:12px;padding:14px 20px;background:var(--ink);border-radius:14px;margin-bottom:12px}
+  .ex-init{width:36px;height:36px;border-radius:50%;background:var(--or);color:var(--w);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .ex-op-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--w)}
+  .ex-op-sub{font-size:12px;color:rgba(255,255,255,.35);margin-top:1px}
+  .ex-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .ex-col-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+  .ex-col-title.pos{color:var(--green)} .ex-col-title.neg{color:var(--red)}
+  details.task-card{background:var(--w);border:1.5px solid var(--sand3);border-radius:12px;margin-bottom:8px;overflow:hidden;transition:box-shadow .2s}
+  details.task-card:hover{box-shadow:0 4px 16px rgba(26,25,22,.08)}
+  details.task-card[open]{border-color:var(--or);box-shadow:0 4px 20px rgba(255,87,1,.1)}
+  details.task-card.neg-card[open]{border-color:var(--red);box-shadow:0 4px 20px rgba(192,57,43,.1)}
+  summary.task-summary{display:flex;align-items:center;gap:10px;padding:11px 16px;cursor:pointer;list-style:none;user-select:none}
+  summary.task-summary::-webkit-details-marker{display:none}
+  .ts-q{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;width:38px;flex-shrink:0;text-align:center;border-radius:6px;padding:2px 0}
+  .ts-q.hi{background:var(--gbg);color:var(--green)} .ts-q.mid{background:var(--abg);color:var(--amber)} .ts-q.lo{background:var(--rbg);color:var(--red)} .ts-q.zero{background:#f0f0f0;color:#999}
+  .ts-type{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.08em;text-transform:uppercase;flex-shrink:0;padding:2px 8px;border-radius:20px}
+  .ts-type.tel{background:var(--bbg);color:var(--blue)} .ts-type.walkin{background:rgba(45,122,79,.12);color:var(--green)}
+  .ts-date{font-size:11px;color:var(--ink3);flex-shrink:0}
+  .ts-title{font-size:13px;font-weight:600;color:var(--ink);flex:1;min-width:0}
+  .ts-arrow{font-size:11px;color:var(--ink3);flex-shrink:0;margin-left:4px;transition:transform .2s}
+  details[open] .ts-arrow{transform:rotate(90deg)}
+  .task-body{padding:0 16px 14px;border-top:1px solid var(--sand2)}
+  .task-field{margin-top:10px}
+  .tf-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
+  .tf-value{font-size:12.5px;color:var(--ink2);line-height:1.65;background:var(--sand);border-radius:7px;padding:7px 10px}
+  .tf-value.highlight{background:var(--gbg);color:var(--green);font-weight:500}
+  .tf-value.highlight-neg{background:var(--rbg);color:#7a1e1e}
+  .perche-buono{margin-top:12px;padding:9px 12px;border-radius:8px;font-size:12px;line-height:1.6;border-left:3px solid var(--or);background:rgba(255,87,1,.05);color:var(--ink2)}
+  .perche-buono strong{color:var(--or2);font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-family:'Barlow Condensed',sans-serif;font-weight:700}
+  .perche-neg{margin-top:12px;padding:9px 12px;border-radius:8px;font-size:12px;line-height:1.6;border-left:3px solid var(--red);background:var(--rbg);color:var(--ink2)}
+  .perche-neg strong{color:var(--red);font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-family:'Barlow Condensed',sans-serif;font-weight:700}
+  @media(max-width:700px){.ex-cols{grid-template-columns:1fr}}
+  </style>
+
+  <!-- GIULIA -->
+  <div class="ex-op">
+    <div class="ex-op-head">
+      <div class="ex-init">GD</div>
+      <div><div class="ex-op-name">Giulia D'Annunzio</div><div class="ex-op-sub">44 relazioni · Q media 0.720 · 91% task hi ↑ da 85%</div></div>
+    </div>
+    <div class="ex-cols">
+      <div>
+        <div class="ex-col-title pos">✓ Esempi positivi</div>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.82</span><span class="ts-type tel">Telefono</span><span class="ts-date">21 apr</span>
+            <span class="ts-title">Bimba traumatizzata da New Green Hill → corsi intensivi</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Lezioni private di scuola nuoto bimbi per la figlia del 2021.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Vorrebbe partire da metà maggio, consigliati i corsi intensivi così da vedere come reagisce la bimba. Chiede le private perché proviene da New Green Hill e la bimba è traumatizzata perché aveva svolto solo lezioni di baby nuoto (con il genitore) e quando ha iniziato con la snb gli istruttori l'hanno buttata in acqua senza sostegni e lei ha pianto per un mese intero. Chiede anche info per snb a partire da subito, turno possibile lunedì alle 15:20/16 va bene (monosettimanale). Proposto di venire in sede così da vedere la piscina.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Caso emotivamente delicato gestito con profondità: storia traumatica documentata, centro precedente nominato, approccio proposto calibrato (intensivi prima della snb), fascia oraria specifica, proposta visita in sede. Questo task è un argomento di vendita: la differenza di metodo rispetto ad altri centri è esplicita.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span><span class="ts-type tel">Telefono</span><span class="ts-date">21 apr</span>
+            <span class="ts-title">Ritenzione idrica → scopre reformer e decide di provare</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Obiettivo: diminuire la ritenzione idrica. Orari: dopo le 17.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value">Orari compatibili. Inizialmente scioccata del prezzo del mensile e degli accessi singoli, poi si è resa conto che potrebbe fare sia attività in acqua (che le hanno consigliato per la ritenzione idrica), chiede info su TRX (proposto Fusion e Boxing) e poi ha provato il reformer e le è piaciuto molto quindi ha deciso di provare.</div></div>
+            <div class="task-field"><div class="tf-label">Prossimo step</div><div class="tf-value">Passa in sede uno di questi pomeriggi, era a lavoro e non aveva tempo di creare account insieme.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Obiezione prezzo raccolta e superata in conversazione: il percorso da "scioccata" a "ha deciso di provare" è tutto documentato. Obiettivo medico preciso. Conversazione ricca con più attività esplorate.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span><span class="ts-type tel">Telefono</span><span class="ts-date">27 apr</span>
+            <span class="ts-title">Pass: premium 950€ — ragiona sui costi e si convince</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Nota</div><div class="tf-value">Sicuramente opterà per l'abbonamento premium (950) perché ha ragionato sul fatto che vorrebbe farlo un paio di volte a settimana e che quindi non le convengono gli accessi singoli. Contenta della promo. Spiegato anche che può abbinare altri corsi fitness e anche il tapis roulant se non vuole fare pesi. Chiede info sulle tempistiche del certificato medico.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback pass</div><div class="tf-value highlight">Si trova bene, poi anche la figlia frequenta l'Athlon e ha un Premium.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Chiusura annuale documentata con il ragionamento del cliente (frequenza 2x/sett → annuale conviene). Referral familiare (figlia già iscritta) come elemento di fiducia. Dettaglio promo ricordato. Caso modello di conversione pass → annuale.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span><span class="ts-type tel">Telefono</span><span class="ts-date">23 apr</span>
+            <span class="ts-title">Ex cliente dalla morte della mamma → viene in sede</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Principalmente nuoto libero e sala pesi.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value highlight">Apprezza Athlon perché veniva da noi da piccolo ed è molto legato a noi.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Abita molto vicino, era in banca a sbrigare le pratiche per la morte della mamma di qualche giorno fa, appena si libera vuole venire direttamente in sede.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Situazione personale delicata documentata con rispetto. Ex cliente storico con legame emotivo al club. Il task mostra sensibilità: non si forza la chiusura, si lascia spazio. Prossimo step naturale (sede, appena si libera).</div>
+          </div>
+        </details>
+      </div>
+
+      <div>
+        <div class="ex-col-title neg">✗ Esempi da migliorare</div>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q lo">0.15</span><span class="ts-type tel">Telefono</span><span class="ts-date">23 apr</span>
+            <span class="ts-title">"Assolutamente no" — qualità minima storica</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Perché no</div><div class="tf-value tf-value highlight-neg">Non interessata dice "assolutamente no", ha trovato altre soluzioni...</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>Qualità 0.15 — il valore più basso dell'intera analisi su 3 settimane. Nessuna informazione: non sappiamo cosa ha trovato, a che prezzo, se c'è un margine futuro. Una domanda semplice ("cosa ha trovato vicino casa?") avrebbe documentato il competitor. Task segnato POSITIVO ma senza nessun contenuto utile.</div>
+          </div>
+        </details>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q lo">0.45</span><span class="ts-type tel">Telefono</span><span class="ts-date">27 apr</span>
+            <span class="ts-title">Mandato spoki — segnato POSITIVO</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Perché no</div><div class="tf-value tf-value highlight-neg">Mandato spoki.</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>Il problema si ripete: spoki inviati segnati come POSITIVO. Anche con dati puliti, Giulia ha 1 task di questo tipo (vs i 3 di Alice). Non c'è stata nessuna relazione. Esito corretto: NO RISPOSTA.</div>
+          </div>
+        </details>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q lo">0.45</span><span class="ts-type walkin">Walk-in</span><span class="ts-date">27 apr</span>
+            <span class="ts-title">Venuto solo per video recensione social</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Feedback pass</div><div class="tf-value tf-value highlight-neg">Venuto solo per fare video recensione social.</div></div>
+            <div class="task-field"><div class="tf-label">Obiezione pass</div><div class="tf-value tf-value highlight-neg">Non è in zona.</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>Questo non è un lead commerciale — è un creator/influencer che ha fatto contenuto. Dovrebbe avere una categorizzazione separata (SOCIAL / CREATOR) e non entrare nell'analisi dei task commerciali. Il task come POSITIVO inquina le statistiche.</div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALICE -->
+  <div class="ex-op">
+    <div class="ex-op-head">
+      <div class="ex-init">AC</div>
+      <div><div class="ex-op-name">Alice Cortiula</div><div class="ex-op-sub">34 relazioni · Q media 0.689 · 88% task hi ↑↑ da 69%</div></div>
+    </div>
+    <div class="ex-cols">
+      <div>
+        <div class="ex-col-title pos">✓ Esempi positivi</div>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span><span class="ts-type tel">Telefono</span><span class="ts-date">21 apr</span>
+            <span class="ts-title">Ex cliente: "ultra moderni" — reformer + nuoto → in sede domani</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Reformer e nuoto, ha visto il premium.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value highlight">Capisce che il prezzo si sia alzato un po' rispetto a qualche anno fa, ha visto le foto e che sono cambiate un sacco di cose... ci definisce "ultra moderni".</div></div>
+            <div class="task-field"><div class="tf-label">Prossimo step</div><div class="tf-value">Passerà in sede domani. Chiede info per sospensione abbonamento e se, invece di sospenderlo, poteva cederlo a qualcuno.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Citazione spontanea dell'ex cliente ("ultra moderni") documentata — argomento di vendita. Obiezione prezzo gestita: capisce l'aumento. Domanda sulla cessione abbonamento è un segnale di intenzione concreta di acquisto. Appuntamento in sede fissato.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span><span class="ts-type tel">Telefono</span><span class="ts-date">24 apr</span>
+            <span class="ts-title">Acqua training → viene sabato 2 maggio</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Corsi acqua, preferisce tra tutti acqua training.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value">Accessi singoli al prezzo che le interessava, non voleva spendere chissà quanto.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Abita qui dietro ma lavora a Casal Lumbroso. Verrebbe solo la sera quando ritorna da lavoro o il sabato mattina. Non è intenzionata a fare un abbonamento perché non sa essere costante, soprattutto con l'estate che arriva. La figlia dà canottaggio e spesso la segue anche lei nelle varie gare e allenamenti. Viene sabato 2 maggio per provare.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Profilo lifestyle documentato (lavoro lontano, figlia canottaggio, estate incerta). Obiezione chiarissima e reale (non costante). Data precisa di visita (2 maggio). Il task prepara perfettamente il follow-up post-visita.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span><span class="ts-type tel">Telefono</span><span class="ts-date">24 apr</span>
+            <span class="ts-title">Pass corsi fitness → vuole iscriversi domenica/lunedì</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Feedback pass</div><div class="tf-value highlight">Provati alcuni corsi fitness, dice che si è trovata molto bene e pensa di attivare. Chiede quando poter venire per attivare insieme a noi al desk. Domenica mattina o lunedì verrà qui e si iscriverà.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Feedback pass positivo e specifico. Step successivo concreto con due date alternative. La richiesta di venire "insieme a noi" indica preferenza per supporto in sede — segnale da gestire proattivamente con reminder.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span><span class="ts-type tel">Telefono</span><span class="ts-date">27 apr</span>
+            <span class="ts-title">Nuoto libero → fascia pranzo unica in zona</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Nuoto libero.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value highlight">Contento che ci sia la fascia dell'ora di pranzo. Ha sentito altre piscine in zona e dice che nessuna fa come noi su fasce orarie.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Abita lontano ma lavora qui. Verrebbe a piedi durante l'orario di pausa. Chiede il riepilogo di tutti i vari costi. Preferirebbe uno smart annuale. Ci pensa un attimo e valuta le varie opzioni che si è segnato.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Punto di forza competitivo documentato spontaneamente dal lead (fasce orarie pranzo). "Nessuna fa come noi" è una citazione da usare come argomento di vendita. Profilo chiaro: lavora vicino, verrebbe a piedi, orientato smart annuale.</div>
+          </div>
+        </details>
+      </div>
+
+      <div>
+        <div class="ex-col-title neg">✗ Esempi da migliorare</div>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q lo">0.25</span><span class="ts-type tel">Telefono</span><span class="ts-date">22 apr</span>
+            <span class="ts-title">Spoki nr — ancora POSITIVO</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Perché no</div><div class="tf-value tf-value highlight-neg">Spoki nr.</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>Terza settimana con questo errore. Lo spoki senza risposta non è una relazione reale. Questo task riduce la media di Alice. Miglioramento rispetto alla settimana prec. (3 spoki vs 3), ma il problema persiste. Regola: spoki senza risposta = NO RISPOSTA, non POSITIVO.</div>
+          </div>
+        </details>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q lo">0.45</span><span class="ts-type tel">Telefono</span><span class="ts-date">22 apr</span>
+            <span class="ts-title">App tel molto veloce — attacca dopo 2 secondi</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Nuoto libero.</div></div>
+            <div class="task-field"><div class="tf-label">Perché no</div><div class="tf-value tf-value highlight-neg">App tel. Molto veloce, mi dice solo che voleva sapere quanto venisse il mensile per nuoto libero. Due secondi e mi attacca.</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>Qualità 0.45 con una sola informazione (nuoto libero). Non sappiamo se ha trovato il prezzo troppo alto, se ha confrontato con altri, se c'è un follow-up possibile. Anche qui: se la chiamata dura 2 secondi è NO RISPOSTA o CHIUSO, non POSITIVO.</div>
+          </div>
+        </details>
+
+        <details class="task-card neg-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.72</span><span class="ts-type tel">Telefono</span><span class="ts-date">23 apr</span>
+            <span class="ts-title">"Tipa ambigua" — attacca a 119€</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Corsi acqua fitness e sala pesi.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value tf-value highlight-neg">Insiste sul fatto che non ci sia un pacchetto sala pesi e corsi acqua, non capisce perché deve fare il premium. Continua dicendo "ah quindi devo pagare 115?", la correggo dicendo 119, e dice "eh vabbe allora è caro, no grazie".</div></div>
+            <div class="task-field"><div class="tf-label">Perché no</div><div class="tf-value tf-value highlight-neg">Tipa ambigua, molto ambigua... attacca quando sente i 119. Non da modo di dire altro.</div></div>
+            <div class="perche-neg"><strong>Cosa manca</strong><br>Qualità 0.72 tecnica ma il commento personale ("tipa ambigua") non aiuta. L'obiezione centrale (no pacchetto sala+acqua) è la stessa segnalata da altri lead — andrebbe documentata come feedback strutturale, non come giudizio sulla persona. Il prezzo 119 citato prima di 115 suggerisce che la conversazione sul prezzo non è stata condotta in modo ottimale.</div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLAUDIA -->
+  <div class="ex-op">
+    <div class="ex-op-head">
+      <div class="ex-init">CB</div>
+      <div><div class="ex-op-name">Claudia Bonanni</div><div class="ex-op-sub">15 relazioni · Q media 0.752 · 100% task hi — 2ª settimana perfetta consecutiva</div></div>
+    </div>
+    <div class="ex-cols">
+      <div>
+        <div class="ex-col-title pos">✓ Esempi positivi</div>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span><span class="ts-type tel">Telefono</span><span class="ts-date">23 apr</span>
+            <span class="ts-title">Virgin (acqua fredda) → recall fine giugno</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Reformer e aquafitness, orari pomeridiani (lavora 9-17). Attualmente iscritta in Virgin fino a fine giugno — non riesce ad andare in acqua perché fredda e a trovare posto a Reformer. Vista la promo aprile ma non vuole buttare due mesi là che comunque sono costosi.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value highlight">Ottimi gli orari serali dell'acqua gym. Ex iscritta, conosce il centro e ha visto sul sito i miglioramenti fatti.</div></div>
+            <div class="task-field"><div class="tf-label">Perché non si iscrive / prossimo step</div><div class="tf-value">Attualmente iscritta in Virgin fino a fine giugno. <strong>Richiamare a fine giugno.</strong></div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Recall esplicito e motivato. Competitor nominato con problema concreto (acqua fredda, no posto reformer). Ex cliente che si fida del centro. Obiezione finanziaria razionale (non vuole perdere 2 mesi Virgin già pagati) — gestita correttamente senza forzare la chiusura anticipata.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span><span class="ts-type tel">Telefono</span><span class="ts-date">27 apr</span>
+            <span class="ts-title">Danza classica → prima esperienza in palestra</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Aqua fitness. Prima esperienza in un centro fitness — viene da anni di danza classica ma è arrivata al limite. Ha bisogno di svagarsi, divertirsi e tonificare. Lavora fino alle 18 quindi corsi dalle 18:30 in poi.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value">Ottima la proposta serale. Non si è mai approcciata alla palestra e non sa nemmeno leggere il planning. Valutava i singoli accessi ma l'ho fatta rendere conto che venendo 2 volte a settimana è uno spreco anche solo per fare aqua fitness. Mensile per iniziare.</div></div>
+            <div class="task-field"><div class="tf-label">Prossimo step</div><div class="tf-value">Viene in sede per attivare la settimana di prova con la nostra assistenza (e ne ha bisogno).</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Background documentato (danza classica). Ragionamento economico esplicitato e condiviso con la lead (singoli vs mensile). Nota sull'assistenza necessaria → attivazione guidata in sede pianificata. Il task gestisce un profilo da "principiante assoluta" con il giusto livello di accompagnamento.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.72</span><span class="ts-type tel">Telefono</span><span class="ts-date">21 apr</span>
+            <span class="ts-title">Disdetta: cambio sport → istruttori apprezzati</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Nota</div><div class="tf-value">Le ho spiegato che nell'abbonamento sono incluse altre attività oltre alla scuola nuoto ma non interessa.</div></div>
+            <div class="task-field"><div class="tf-label">Motivo disdetta</div><div class="tf-value">Parlato con la mamma. Vuole cambiare sport e seguire il suo gruppo di amici a scuola.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback disdetta</div><div class="tf-value highlight">In quasi due anni si è sempre trovato bene e a suo agio con gli istruttori.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Disdetta completamente fuori dal nostro controllo (vuole seguire gli amici) documentata con motivo e feedback. Il feedback positivo sugli istruttori è prezioso: un bambino che ha passato 2 anni a suo agio è pubblicità futura.</div>
+          </div>
+        </details>
+      </div>
+
+      <div>
+        <div class="ex-col-title neg" style="color:var(--ink3)">— Nessun esempio negativo significativo</div>
+        <div class="cc" style="margin-top:0;border:1.5px solid var(--gbg)">
+          <div class="ic-text" style="font-size:13px;color:var(--ink3)">
+            Per la seconda settimana consecutiva Claudia non produce task sotto 0.72. L'unico limite osservabile è il volume basso (15 relazioni in 7 giorni). Due note minori: il walk-in del giocatore di calcio ha contenuto scarso sulla scheda personale (solo feedback pass su poca informazioni), e il task del papà "di poche parole" ha qualità 0.72 ma contenuto sintetico. Nessuno dei due è però un task negativo — sono semplicemente interazioni brevi con poco materiale disponibile.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALENTINA -->
+  <div class="ex-op">
+    <div class="ex-op-head">
+      <div class="ex-init">VP</div>
+      <div><div class="ex-op-name">Valentina Palazzo</div><div class="ex-op-sub">4 relazioni · Q media 0.760 · 100% task hi · 2 pass in attivazione</div></div>
+    </div>
+    <div class="ex-cols">
+      <div>
+        <div class="ex-col-title pos">✓ Esempi positivi</div>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.82</span><span class="ts-type walkin">Walk-in</span><span class="ts-date">24 apr</span>
+            <span class="ts-title">Signora 54 anni, ex danza, vuole tutto — famiglia interessata</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Attività di interesse</div><div class="tf-value">Signora di 54 anni che lavora a scuola. Ha provato qualche anno fa aquagym e reformer e ha pensato di riprendere. Può allenarsi la mattina fino massimo alle 18. Incuriosita da corsi acquafitness e pilates, moto e simili. Non esclude la sala pesi. Ha sempre voluto provare boxing perché crede sia divertente. Venuta perché ha visto la promo della settimana di prova online.</div></div>
+            <div class="task-field"><div class="tf-label">Feedback offerta</div><div class="tf-value highlight">Piaciuto il centro e ha voluto vedere gli spogliatoi (tour virtuale). Chiesto se avevamo pacchetti famiglia perché oltre al marito ha anche due figlie di 21 e 23 anni che vorrebbero fare palestra. Orientata per settimana di prova e mensile premium. Chiesto il sistema di prenotazione e quando ho detto tramite app è rimasta entusiasta di non dover telefonare o prenotare al desk.</div></div>
+            <div class="task-field"><div class="tf-label">Prossimo step</div><div class="tf-value">Inizia con la settimana di prova.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Profilo completo: età, occupazione, esperienze passate, attività desiderate. Potenziale famiglia (marito + 2 figlie) documentato spontaneamente. Feedback su app prenotazioni (entusiasmo) da usare come argomento. La reazione all'app è un'informazione di prodotto preziosa.</div>
+          </div>
+        </details>
+
+        <details class="task-card">
+          <summary class="task-summary">
+            <span class="ts-q hi">0.78</span><span class="ts-type tel">Telefono</span><span class="ts-date">24 apr</span>
+            <span class="ts-title">Pass: si trovata molto bene → mensile premium lunedì</span><span class="ts-arrow">›</span>
+          </summary>
+          <div class="task-body">
+            <div class="task-field"><div class="tf-label">Feedback pass</div><div class="tf-value highlight">Si è trovata molto bene, vorrebbe fare il mensile premium sfruttando la promo. Viene lunedì in sede per attivare l'abbonamento perché da sola non è in grado. Ora era all'estero in vacanza qualche giorno. Ricordato di farlo partire lunedì stesso.</div></div>
+            <div class="perche-buono"><strong>Perché è un buon task</strong><br>Chiusura pass → mensile documentata con data precisa (lunedì) e nota pratica (ricordato di farlo partire subito). Dettaglio "era all'estero" spiega perché non è venuta prima. Gestione proattiva del timing.</div>
+          </div>
+        </details>
+      </div>
+
+      <div>
+        <div class="ex-col-title neg" style="color:var(--ink3)">— Nessun esempio negativo</div>
+        <div class="cc" style="margin-top:0;border:1.5px solid var(--gbg)">
+          <div class="ic-text" style="font-size:13px;color:var(--ink3)">
+            Tutti e 4 i task di Valentina questa settimana hanno qualità ≥ 0.72. Il task del walk-in della bimba di 7 anni per corsi intensivi è il meno documentato (qualità 0.72 senza feedback) — ma accettabile per un task breve di conferma. Con il volume attuale non si possono fare valutazioni definitive, ma il pattern di qualità alta si consolida per 2 settimane consecutive.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- AZIONI -->
+  <div class="sh"><h2>Azioni dalla settimana</h2></div>
+
+  <div class="actions-grid">
+    <div class="ac urgent">
+      <div class="ac-idx">01</div>
+      <div>
+        <div class="ac-title">Recall Virgin in scadenza — maggio</div>
+        <div class="ac-text">Lead walk-in con abbonamento Virgin in scadenza a maggio (rinnovo 105€ vs nostro). Va ricontattata entro il 25 aprile per fissare prova prima della scadenza. Orientata annuale 950€.</div>
+      </div>
+    </div>
+    <div class="ac urgent">
+      <div class="ac-idx">02</div>
+      <div>
+        <div class="ac-title">Recall LUISS — metà/fine maggio</div>
+        <div class="ac-text">Lead Claudia con abbonamento attivo fino fine maggio. Nota esplicita in task: "RICHIAMARE A METÀ FINE MAGGIO". Reformer + aquagym, interesse alto, sito apprezzato.</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-idx">03</div>
+      <div>
+        <div class="ac-title">Alice — 10 task bassi da analizzare</div>
+        <div class="ac-text">Anche con dati puliti, 10 task su 48 hanno qualità ≤ 0.45. Verificare caso per caso: si tratta di conversazioni veloci chiuse legittimamente con poco contenuto, o di abitudine al "positivo senza documentare"?</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-idx">04</div>
+      <div>
+        <div class="ac-title">Segnalazione prodotto: abbonamento solo acqua</div>
+        <div class="ac-text">Almeno 3 lead questa settimana chiedono un abbonamento dedicato solo alla piscina e non lo trovano. Da portare alla direzione come feedback di prodotto ricorrente — potenziale segmento non servito.</div>
+      </div>
+    </div>
+    <div class="ac" style="grid-column:1/-1">
+      <div class="ac-idx">05</div>
+      <div>
+        <div class="ac-title">Adottare il metodo "relazioni reali" come standard permanente</div>
+        <div class="ac-text">I dati di questa settimana dimostrano che il criterio "POSITIVO = relazione vera" funziona: 100% dei task hanno contenuto, qualità media sale a 0.70, e i task vuoti vengono eliminati naturalmente. Questo metodo dovrebbe diventare la regola permanente — non solo un'applicazione temporanea. La raccomandazione è di trasferire il criterio anche ai report delle settimane precedenti come baseline definitiva di confronto futuro.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-brand">Athlon Club Roma</div>
+  <div class="footer-note">Report relazioni reali · 21–27 aprile 2026 · 97 task analizzati · Dati puliti applicato dal team</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const gc='rgba(255,255,255,.06)';const tc='rgba(255,255,255,.4)';
+
+new Chart(document.getElementById('qualChart'),{
+  type:'bar',
+  data:{
+    labels:["Giulia","Alice","Claudia","Valentina"],
+    datasets:[
+      {label:'Questa settimana (21–27)',data:[0.720,0.689,0.752,0.760],backgroundColor:'#2d7a4f',borderRadius:4,borderSkipped:false},
+      {label:'Settimana prec. (14–20)',data:[0.725,0.649,0.723,0.773],backgroundColor:'rgba(255,87,1,.5)',borderRadius:4,borderSkipped:false}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:true,position:'top',labels:{color:'rgba(255,255,255,.5)',font:{size:11},boxWidth:10,padding:10}},tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y.toFixed(3)}`}}},
+    scales:{
+      x:{ticks:{color:tc,font:{size:11}},grid:{color:gc}},
+      y:{beginAtZero:false,min:0.60,max:0.82,ticks:{color:tc,font:{size:11},callback:v=>v.toFixed(2)},grid:{color:gc}}
+    }
+  }
+});
+
+new Chart(document.getElementById('hiChart'),{
+  type:'bar',
+  data:{
+    labels:["Giulia","Alice","Claudia","Valentina"],
+    datasets:[
+      {label:'21–27 apr (questa)',data:[91,88,100,100],backgroundColor:'#2d7a4f',borderRadius:4,borderSkipped:false},
+      {label:'14–20 apr (prec.)',data:[85,69,93,100],backgroundColor:'rgba(255,87,1,.45)',borderRadius:4,borderSkipped:false}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:true,position:'top',labels:{color:'rgba(255,255,255,.5)',font:{size:11},boxWidth:10,padding:10}},
+      tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y}%`}}
+    },
+    scales:{
+      x:{ticks:{color:tc,font:{size:11}},grid:{color:gc}},
+      y:{beginAtZero:true,max:105,ticks:{color:tc,font:{size:11},callback:v=>v+'%'},grid:{color:gc}}
+    }
+  }
+});
+</script>
+</body>
+</html>
